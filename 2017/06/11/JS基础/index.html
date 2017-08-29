@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="孙梦尧, 孙梦尧的博客" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="孙梦尧的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="JS前置知识浏览器以及网站相关介绍 浏览器定义：可以显示网页服务器或者文件系统的HTML文件内容，并让用户与这些文件交互的一种软件  我们常规使用的五大浏览器：chorme，firefox，IE，Safari以及Oprea 从内核来看：有webkit，gecko，trident，presto  1、Trident内核代表产品Internet Explorer，又称其为IE内核。Trident（又称">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS基础知识">
+<meta property="og:url" content="http://yoursite.com/2017/06/11/JS基础/index.html">
+<meta property="og:site_name" content="孙梦尧的博客">
+<meta property="og:description" content="JS前置知识浏览器以及网站相关介绍 浏览器定义：可以显示网页服务器或者文件系统的HTML文件内容，并让用户与这些文件交互的一种软件  我们常规使用的五大浏览器：chorme，firefox，IE，Safari以及Oprea 从内核来看：有webkit，gecko，trident，presto  1、Trident内核代表产品Internet Explorer，又称其为IE内核。Trident（又称">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/01.jpg01.jpg">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/03.jpg03.jpg">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/02.jpg02.jpg">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/04.jpg">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/05.jpg">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/06.jpg">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/07.jpg">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/08.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/09.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/10.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/11.jpg">
+<meta property="og:updated_time" content="2017-08-28T06:31:25.995Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS基础知识">
+<meta name="twitter:description" content="JS前置知识浏览器以及网站相关介绍 浏览器定义：可以显示网页服务器或者文件系统的HTML文件内容，并让用户与这些文件交互的一种软件  我们常规使用的五大浏览器：chorme，firefox，IE，Safari以及Oprea 从内核来看：有webkit，gecko，trident，presto  1、Trident内核代表产品Internet Explorer，又称其为IE内核。Trident（又称">
+<meta name="twitter:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/01.jpg01.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/11/JS基础/"/>
+
+
+
+
+
+  <title>JS基础知识 | 孙梦尧的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/sunmy000"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    
+	<header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">孙梦尧的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/11/JS基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sunmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/hanbao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孙梦尧的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS基础知识</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-11T16:03:00+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JS前置知识"><a href="#JS前置知识" class="headerlink" title="JS前置知识"></a>JS前置知识</h1><h2 id="浏览器以及网站相关介绍"><a href="#浏览器以及网站相关介绍" class="headerlink" title="浏览器以及网站相关介绍"></a>浏览器以及网站相关介绍</h2><blockquote>
+<p><strong>浏览器定义</strong>：可以显示网页服务器或者文件系统的HTML文件内容，并让用户与这些文件交互的一种软件</p>
+</blockquote>
+<pre><code>我们常规使用的五大浏览器：chorme，firefox，IE，Safari以及Oprea
+从内核来看：有webkit，gecko，trident，presto
+
+1、Trident内核代表产品Internet Explorer，又称其为IE内核。Trident（又称为MSHTML），是微软开发的
+一种排版引擎。使用Trident渲染引擎的浏览器包括：IE、傲游、世界之窗浏览器、Avant、腾讯TT、Netscape 
+8、NetCaptor、Sleipnir、GOSURF、GreenBrowser和KKman等。
+2、Gecko内核代表作品Mozilla FirefoxGecko是一套开放源代码的、以C++编写的网页排版引擎。Gecko是最
+流行的排版引擎之一，仅次于Trident。使用它的最著名浏览器有Firefox、Netscape6至9。
+3、WebKit内核代表作品Safari、Chromewebkit 是一个开源项目，包含了来自KDE项目和苹果公司的一些组件
+，主要用于Mac OS系统，它的特点在于源码结构清晰、渲染速度极快。缺点是对网页代码的兼容性不高，导致一
+些编写不标准的网页无法正常显示。主要代表作品有Safari和Google的浏览器Chrome。
+4、Presto内核代表作品OperaPresto是由Opera Software开发的浏览器排版引擎，供Opera 7.0及以上使用。
+它取代了旧版Opera 4至6版本使用的Elektra排版引擎，包括加入动态功能，例如网页或其部分可随着DOM及
+Script语法的事件而重新排版。
+</code></pre><p><a href="http://www.cnblogs.com/vajoy/p/3735553.html" target="_blank" rel="external">各主流浏览器内核介绍</a></p>
+<p><a href="http://blog.csdn.net/ofsno/article/details/51164575" target="_blank" rel="external">了解四大主流浏览器内核</a></p>
+<p><a href="http://www.cnblogs.com/zichi/p/5116764.html" target="_blank" rel="external">主流浏览器内核介绍</a></p>
+<h3 id="1浏览器工作原理的介绍"><a href="#1浏览器工作原理的介绍" class="headerlink" title="1浏览器工作原理的介绍"></a>1浏览器工作原理的介绍</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/01.jpg01.jpg" alt=""><br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">说明：</div><div class="line">    1、User<span class="built_in"> Interface </span> 用户界面，我们所看到的浏览器</div><div class="line">    2、Browser engine  浏览器引擎，用来查询和操作渲染引擎</div><div class="line">    3、Rendering engine 用来显示请求的内容，负责解析HTML、CSS</div><div class="line">    4、Networking   网络，负责发送网络请求</div><div class="line">    5、JavaScript Interpreter(解析者)   JavaScript解析器，负责执行JavaScript的代码</div><div class="line">    6、UI Backend   UI后端，用来绘制类似组合框和弹出窗口</div><div class="line">    7、Data Persistence(持久化)  数据持久化，数据存储  cookie、HTML5中的sessionStorage</div></pre></td></tr></table></figure></p>
+<h3 id="2网站工作原理的简单介绍"><a href="#2网站工作原理的简单介绍" class="headerlink" title="2网站工作原理的简单介绍"></a>2网站工作原理的简单介绍</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/03.jpg03.jpg" alt=""></p>
+<h2 id="为什么要有js？"><a href="#为什么要有js？" class="headerlink" title="为什么要有js？"></a>为什么要有js？</h2><pre><code>js设计的最初目的
+    - 判断客户端表单输入验证(以前的网速慢)
+    - 后来被一度用于小广告
+ js现在的意义
+    -页面特效（pc端的网页特效）
+    -移动端（移动web和app）
+    -异步和服务器交互 ajax
+    -服务器端开发（nodeJs）
+    -数据库甚至烤面包机都可以运行js了 （mongodb 嵌入式开发）
+    -另外还可以抢月饼（阿里巴巴月饼事件）
+js的历史总结：
+    - javascript诞生于1995年
+    -javascript的是由网景公司的布兰登艾奇开发的
+    -javascript的前名叫livescript
+</code></pre><h2 id="什么是JS语言？"><a href="#什么是JS语言？" class="headerlink" title="什么是JS语言？"></a>什么是JS语言？</h2><blockquote>
+<p>javascript是一种运行在<strong><em>客户端</em></strong> 的<strong><em>脚本语言</em></strong> </p>
+</blockquote>
+<p>客户端：即接受服务的一端，与服务端相对应，在前端开发中，通常客户端指的就是浏览器。</p>
+<p>脚本语言：也叫解释型语言，特点是<strong><em>执行一行，解释一行，如果发现报错，代码就停止执行</em></strong> 。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tips：脚本语言一般会有一个宿主环境（当前脚本运行并且起作用一个环境）</div><div class="line">类似的有：<span class="keyword">as</span>（actionScript flash宿主环境）</div></pre></td></tr></table></figure>
+<blockquote>
+<p>javascript的三个组成部分：ECMAScript、BOM、DOM</p>
+</blockquote>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/02.jpg02.jpg" alt=""></p>
+<p>ECMAScript：定义了javascript的语法规范，是js语法的基础核心。</p>
+<p>BOM：定义一套操作浏览器功能的API，通过这些api能够更好的操作浏览器行为。</p>
+<p>DOM：定义一套操作页面元素的API，通过使用这些api来操作页面元素。</p>
+<blockquote>
+<p>挑选一把称手的工具</p>
+</blockquote>
+<pre><code>txt,Nodpad++, Editplus
+Dreamweaver 
+Hbuilder，WebStorm,MyEclipse, Visual Studio
+Sublime，bracket,Atom,vscode
+Vim gvim
+……
+</code></pre><hr>
+<h2 id="script标签"><a href="#script标签" class="headerlink" title="script标签"></a>script标签</h2><blockquote>
+<p>书写Javascript代码有三种方式，第一种是直接在script标签中书写，第二种是将代码写在js文件中，通过script进行引入。第三种为内嵌入html结构中书写js，但不利于后期代码开发和维护，不推荐；</p>
+</blockquote>
+<p>直接在script中书写javascript代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="actionscript">	alert(<span class="string">"今天天气真好呀"</span>);</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>通过script标签引入一个JS文件，需要指定src属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"test.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>通过在html标签中内嵌入脚本执行<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">"alert('今天天气不错！')"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<font color="#ff7600">tips：如果script标签指定了src属性，说明是想要引入一个js文件，这个时候不能继续在script标签中写JS代码，即便写了，也不会执行。</font>
+
+
+
+<blockquote>
+<p>script标签的书写位置，原则上来说，可以在页面中的任意位置书写script标签。</p>
+</blockquote>
+<ol>
+<li>写在head标签中，style标签之后。</li>
+<li>写在&lt;//body&gt;标签的前面。</li>
+<li>写在的后面，即页面的最后面。</li>
+</ol>
+<blockquote>
+<p>script的一些属性</p>
+</blockquote>
+<ul>
+<li>language已废弃</li>
+<li>src 表示要引入的外部文件</li>
+<li>type 表示脚本语言的类型<ul>
+<li>async(了解)   async=”async”</li>
+</ul>
+</li>
+<li>值可以省略，立即异步下载外部JS下载完毕立即执行</li>
+<li>defer(了解)  defer=”defer”</li>
+<li>值可以省略，脚本延迟到文档完全被解析和显示后再执行</li>
+</ul>
+<h2 id="输入输出语句"><a href="#输入输出语句" class="headerlink" title="输入输出语句"></a>输入输出语句</h2><blockquote>
+<p>在实际开发，常用1和3，并且1在控制台输出不影响页面正常显示，不会阻塞代码运行，灵活操作，在实际开发中用于代码调试较多。</p>
+</blockquote>
+<ol>
+<li>console.log 控制台输出日志</li>
+<li>document.write 往页面中写入内容</li>
+<li>alert 弹框警告[^注释]</li>
+<li>confirm 确认框[^注释]</li>
+<li>prompt 输入框[^注释]</li>
+</ol>
+<p>[^注释]: window 是全局对象  是浏览器中的顶级对象  window.alert()中的window 可以省略不写</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><blockquote>
+<p>不被程序执行的代码。用于程序员标记代码，在后期的修改，以及他人的学习时有所帮助，在JS中，分为单行注释和多行注释</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这是单行注释，只能注释一行</span></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">	这是多行注释，不能嵌套</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+<p>注释的作用：</p>
+<pre><code>1. 模块划分，方便代码查找和维护
+2. 用于解释复杂代码的逻辑，方便维护和后期开发。
+</code></pre><p>要求：写代码的时候必须要写注释 不加注释是不道德的</p>
+<p>【永无bug.js】</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//                            _ooOoo_</span></div><div class="line"><span class="comment">//                           o8888888o</span></div><div class="line"><span class="comment">//                           88" . "88</span></div><div class="line"><span class="comment">//                           (| -_- |)</span></div><div class="line"><span class="comment">//                           O\  =  /O</span></div><div class="line"><span class="comment">//                        ____/`---'\____</span></div><div class="line"><span class="comment">//                      .'  \\|     |//  `.</span></div><div class="line"><span class="comment">//                     /  \\|||  :  |||//  \</span></div><div class="line"><span class="comment">//                    /  _||||| -:- |||||-  \</span></div><div class="line"><span class="comment">//                    |   | \\\  -  /// |   |</span></div><div class="line"><span class="comment">//                    | \_|  ''\---/''  |   |</span></div><div class="line"><span class="comment">//                    \  .-\__  `-`  ___/-. /</span></div><div class="line"><span class="comment">//                  ___`. .'  /--.--\  `. . __</span></div><div class="line"><span class="comment">//               ."" '&lt;  `.___\_&lt;|&gt;_/___.'  &gt;'"".</span></div><div class="line"><span class="comment">//              | | :  `- \`.;`\ _ /`;.`/ - ` : | |</span></div><div class="line"><span class="comment">//              \  \ `-.   \_ __\ /__ _/   .-` /  /</span></div><div class="line"><span class="comment">//         ======`-.____`-.___\_____/___.-`____.-'======</span></div><div class="line"><span class="comment">//                            `=---='</span></div><div class="line"><span class="comment">//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span></div><div class="line"><span class="comment">//                      佛祖保佑       永无BUG</span></div><div class="line"></div><div class="line"><span class="comment">//    ┏┛┻━━━━━┛┻┓</span></div><div class="line"><span class="comment">//    ┃ 　　　　　      ┃</span></div><div class="line"><span class="comment">//    ┃ 　　　　　      ┃</span></div><div class="line"><span class="comment">//    ┃　┳┛　  ┗┳　 ┃</span></div><div class="line"><span class="comment">//    ┃ 　　　　　      ┃</span></div><div class="line"><span class="comment">//    ┃　　　┻　 　    ┃</span></div><div class="line"><span class="comment">//    ┃ 　　　　　      ┃</span></div><div class="line"><span class="comment">//    ┗━┓　　　┏━━━┛</span></div><div class="line"><span class="comment">//        ┃　　　┃   神兽保佑</span></div><div class="line"><span class="comment">//        ┃　　　┃   代码无BUG！</span></div><div class="line"><span class="comment">//        ┃　　　┗━━━━━━━━━┓</span></div><div class="line"><span class="comment">//        ┃　　　　　　　    ┣┓</span></div><div class="line"><span class="comment">//        ┃　　　　         ┏┛</span></div><div class="line"><span class="comment">//        ┗━┓ ┓ ┏━━━┳ ┓ ┏━┛</span></div><div class="line"><span class="comment">//          ┃ ┫ ┫   ┃ ┫ ┫</span></div><div class="line"><span class="comment">//          ┗━┻━┛   ┗━┻━┛</span></div><div class="line"><span class="comment">//    ━━━━━━感觉萌萌哒━━━━━━</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/*code is far away from bug with the animal protecting</span></div><div class="line"><span class="comment">    *  ┏┓　　　┏┓</span></div><div class="line"><span class="comment">    *┏┛┻━━━┛┻┓</span></div><div class="line"><span class="comment">    *┃　　　　　　　┃ 　</span></div><div class="line"><span class="comment">    *┃　　　━　　　┃</span></div><div class="line"><span class="comment">    *┃　┳┛　┗┳　┃</span></div><div class="line"><span class="comment">    *┃　　　　　　　┃</span></div><div class="line"><span class="comment">    *┃　　　┻　　　┃</span></div><div class="line"><span class="comment">    *┃　　　　　　　┃</span></div><div class="line"><span class="comment">    *┗━┓　　　┏━┛</span></div><div class="line"><span class="comment">    *　　┃　　　┃神兽保佑</span></div><div class="line"><span class="comment">    *　　┃　　　┃代码无BUG！</span></div><div class="line"><span class="comment">    *　　┃　　　┗━━━┓</span></div><div class="line"><span class="comment">    *　　┃　　　　　　　┣┓</span></div><div class="line"><span class="comment">    *　　┃　　　　　　　┏┛</span></div><div class="line"><span class="comment">    *　　┗┓┓┏━┳┓┏┛</span></div><div class="line"><span class="comment">    *　　　┃┫┫　┃┫┫</span></div><div class="line"><span class="comment">    *　　　┗┻┛　┗┻┛ </span></div><div class="line"><span class="comment">    *　　　</span></div><div class="line"><span class="comment">    */</span></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">*</span></div><div class="line"><span class="comment">*----------Dragon be here!----------/</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">　　　┏┓　　　┏┓</span></div><div class="line"><span class="comment">　　┏┛┻━━━┛┻┓</span></div><div class="line"><span class="comment">　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　┃　　　━　　　┃</span></div><div class="line"><span class="comment">　　┃　┳┛　┗┳　┃</span></div><div class="line"><span class="comment">　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　┃　　　┻　　　┃</span></div><div class="line"><span class="comment">　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　┗━┓　　　┏━┛</span></div><div class="line"><span class="comment">　　　　┃　　　┃</span></div><div class="line"><span class="comment">　　　　┃　　　┃</span></div><div class="line"><span class="comment">　　　　┃　　　┗━━━┓</span></div><div class="line"><span class="comment">　　　　┃　　　　　　　┣┓</span></div><div class="line"><span class="comment">　　　　┃　　　　　　　┏┛</span></div><div class="line"><span class="comment">　　　　┗┓┓┏━┳┓┏┛</span></div><div class="line"><span class="comment">　　　　　┃┫┫　┃┫┫</span></div><div class="line"><span class="comment">　　　　　┗┻┛　┗┻┛</span></div><div class="line"><span class="comment">━━━━━━神兽出没━━━━━━ */</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">　　　　　　　　┏┓　　　┏┓</span></div><div class="line"><span class="comment">　　　　　　　┏┛┻━━━┛┻┓</span></div><div class="line"><span class="comment">　　　　　　　┃　　　　　　　┃ 　</span></div><div class="line"><span class="comment">　　　　　　　┃　　　━　　　┃</span></div><div class="line"><span class="comment">　　　　　　　┃　＞　　　＜　┃</span></div><div class="line"><span class="comment">　　　　　　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　　　　　　┃...　⌒　...　┃</span></div><div class="line"><span class="comment">　　　　　　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　　　　　　┗━┓　　　┏━┛</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃　Code is far away from bug with the animal protecting　　　　　　　　　　</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃ 神兽保佑,代码无bug</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃　　　　　　　　　　　</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃ 　　　　　　</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃　　　　　　　　　　　</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┗━━━┓</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　　　　　┣┓</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　　　　　┏┛</span></div><div class="line"><span class="comment">　　　　　　　　　┗┓┓┏━┳┓┏┛</span></div><div class="line"><span class="comment">　　　　　　　　　　┃┫┫　┃┫┫</span></div><div class="line"><span class="comment">　　　　　　　　　　┗┻┛　┗┻┛ */</span></div><div class="line">　　　　　　　　　　</div><div class="line">　　　　　　　</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">*　　　　　　　　┏┓　　　┏┓+ +</span></div><div class="line"><span class="comment">*　　　　　　　┏┛┻━━━┛┻┓ + +</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　　　　　┃ 　</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　━　　　┃ ++ + + +</span></div><div class="line"><span class="comment">*　　　　　　 ████━████ ┃+</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　　　　　┃ +</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　┻　　　┃</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　　　　　┃ + +</span></div><div class="line"><span class="comment">*　　　　　　　┗━┓　　　┏━┛</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃　　　　　　　　　　　</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃ + + + +</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃　　　　Code is far away from bug with the animal protecting　　　　　　　</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃ + 　　　　神兽保佑,代码无bug　　</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃　　+　　　　　　　　　</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　 　　┗━━━┓ + +</span></div><div class="line"><span class="comment">*　　　　　　　　　┃ 　　　　　　　┣┓</span></div><div class="line"><span class="comment">*　　　　　　　　　┃ 　　　　　　　┏┛</span></div><div class="line"><span class="comment">*　　　　　　　　　┗┓┓┏━┳┓┏┛ + + + +</span></div><div class="line"><span class="comment">*　　　　　　　　　　┃┫┫　┃┫┫</span></div><div class="line"><span class="comment">*　　　　　　　　　　┗┻┛　┗┻┛+ + + +</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//   █████▒█    ██  ▄████▄   ██ ▄█▀       ██████╗ ██╗   ██╗ ██████╗</span></div><div class="line"><span class="comment">// ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒        ██╔══██╗██║   ██║██╔════╝</span></div><div class="line"><span class="comment">// ▒████ ░▓██  ▒██░▒▓█    ▄ ▓███▄░        ██████╔╝██║   ██║██║  ███╗</span></div><div class="line"><span class="comment">// ░▓█▒  ░▓▓█  ░██░▒▓▓▄ ▄██▒▓██ █▄        ██╔══██╗██║   ██║██║   ██║</span></div><div class="line"><span class="comment">// ░▒█░   ▒▒█████▓ ▒ ▓███▀ ░▒██▒ █▄       ██████╔╝╚██████╔╝╚██████╔╝</span></div><div class="line"><span class="comment">//  ▒ ░   ░▒▓▒ ▒ ▒ ░ ░▒ ▒  ░▒ ▒▒ ▓▒       ╚═════╝  ╚═════╝  ╚═════╝</span></div><div class="line"><span class="comment">//  ░     ░░▒░ ░ ░   ░  ▒   ░ ░▒ ▒░</span></div><div class="line"><span class="comment">//  ░ ░    ░░░ ░ ░ ░        ░ ░░ ░</span></div><div class="line"><span class="comment">//           ░     ░ ░      ░  ░</span></div><div class="line"><span class="comment">//</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
+<li><p>什么是变量<br>变量是计算机内存中存储数据的标识符，根据变量名称可以获取到内存中存储的数据</p>
+</li>
+<li><p>为什么要使用变量<br>使用变量可以方便的获取或者修改内存中的数据</p>
+</li>
+</ul>
+<h3 id="如何使用变量"><a href="#如何使用变量" class="headerlink" title="如何使用变量"></a>如何使用变量</h3><ul>
+<li><p>var声明变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age; <span class="comment">//声明未赋值 其值为未定义undefined</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>变量的赋值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age;</div><div class="line">age = <span class="number">18</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>同时声明多个变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age, name, sex;</div><div class="line">age = <span class="number">10</span>;</div><div class="line">name = <span class="string">'zs'</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>同时声明多个变量并赋值</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age = <span class="number">10</span>, name = <span class="string">'zs'</span>;</div></pre></td></tr></table></figure>
+<h3 id="变量在内存中的存储"><a href="#变量在内存中的存储" class="headerlink" title="变量在内存中的存储"></a>变量在内存中的存储</h3><p>后续通过交换值变量来演示</p>
+<h2 id="变量的命名规则与规范"><a href="#变量的命名规则与规范" class="headerlink" title="变量的命名规则与规范"></a>变量的命名规则与规范</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">命名规则（必须遵守）：</div><div class="line"><span class="number">1.</span>由字母、数字、下划线、$符号组成，开头不能是数字。</div><div class="line"><span class="number">2.</span>不能是关键字和保留字</div><div class="line"><span class="number">3.</span>区分大小写</div><div class="line">命名规范（建议遵守）：</div><div class="line"><span class="number">1.</span> 命名要有意义</div><div class="line"><span class="number">2.</span> 遵守驼峰命名法。首字母小写，后面单词的首字母需要大写。</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> userName; <span class="keyword">var</span> borderTopColor;</div></pre></td></tr></table></figure>
+<h2 id="变量练习"><a href="#变量练习" class="headerlink" title="变量练习"></a>变量练习</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">1. </span>交换两个变量的值（掌握）</div><div class="line"><span class="bullet">2. </span>不使用临时变量，交换两个数值变量的值（了解）</div></pre></td></tr></table></figure>
+<p>掌握：<br><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/04.jpg" alt=""></p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/05.jpg" alt=""><br>扩展：<br><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/06.jpg" alt=""></p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/07.jpg" alt=""></p>
+<p>tips:javascript是一种弱类型语言，不管声明什么类型的变量，都是用var，并且变量的类型是可以变化的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age = <span class="number">90</span>;</div><div class="line">age = <span class="string">"张三"</span>;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>数据类型学习目标：
+     掌握四种常用的数据类型
+</code></pre><h2 id="JavaScript中的数据类型"><a href="#JavaScript中的数据类型" class="headerlink" title="JavaScript中的数据类型"></a>JavaScript中的数据类型</h2><p><strong>简单(基本、值)数据类型</strong><br>            Number（数字类型）、String（字符串）、Boolean（布尔类型）<br>           Undefined、Null（特殊类型）</p>
+<p>  <strong>复杂(引用)数据类型（暂时了解）</strong><br>       object</p>
+<h2 id="如何查看数据类型"><a href="#如何查看数据类型" class="headerlink" title="如何查看数据类型"></a>如何查看数据类型</h2><p>使用typeof关键字查看数据类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> name;</div><div class="line"><span class="keyword">typeof</span>(name);</div></pre></td></tr></table></figure>
+<h2 id="Number类型"><a href="#Number类型" class="headerlink" title="Number类型"></a>Number类型</h2><h3 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> 十进制，我们平时使用的就是十进制，进行运算时，八进制和十六进制的值最终都会转换成十进制。</div><div class="line"><span class="number">2.</span> 八进制，<span class="number">0</span>开头的数值，数值序列：<span class="number">0</span><span class="number">-7</span></div><div class="line"><span class="number">3.</span> 十六进制，<span class="number">0</span>x开头的数值，数值序列：<span class="number">0</span><span class="number">-9</span>A-F</div><div class="line"></div><div class="line">进制了解即可，基本都是使用十进制，稍微了解一下进制之间的转换。</div></pre></td></tr></table></figure>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/08.png" alt=""></p>
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p>科学计数法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">5e+3</span>;</div><div class="line"><span class="keyword">var</span> num1 = <span class="number">5e-2</span>;</div><div class="line"><span class="comment">//如何表示0.003和20000？</span></div></pre></td></tr></table></figure>
+<p>浮点数的精度问题：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">0.1</span> + <span class="number">0.2</span> = ?</div><div class="line"><span class="number">0.07</span> * <span class="number">100</span> = ?</div></pre></td></tr></table></figure>
+<p><strong><em>浮点数在运算的时候会出现精度丢失的问题，因此在做比较运算的时候，尽量不要用小数进行比较。</em></strong></p>
+<h3 id="数值范围"><a href="#数值范围" class="headerlink" title="数值范围"></a>数值范围</h3><blockquote>
+<p>javascript不能表示世界上所有的数，因此在javascript中，数值大小是有一定限制的。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Number</span><span class="selector-class">.MIN_VALUE</span>  <span class="selector-pseudo">:5e-324</span></div><div class="line"><span class="selector-tag">Number</span><span class="selector-class">.MAX_VALUE</span>  <span class="selector-pseudo">:1.7976931348623157e+308</span></div><div class="line"><span class="selector-tag">Infinity</span>   :正无穷</div><div class="line"><span class="selector-tag">-Infinity</span>  ：负无穷</div></pre></td></tr></table></figure>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/09.png" alt=""></p>
+<h3 id="数值判断"><a href="#数值判断" class="headerlink" title="数值判断"></a>数值判断</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> <span class="literal">NaN</span>:表示一个非数值，当无法运算或者运算错误的时候，会得到一个<span class="literal">NaN</span>，<span class="literal">NaN</span>是<span class="built_in">number</span>类型，表示一个非数值。</div><div class="line"><span class="number">2.</span> <span class="literal">NaN</span>不等于<span class="literal">NaN</span></div><div class="line"><span class="number">3.</span> <span class="built_in">isNaN</span>用来判断是否是一个数字，当返回<span class="literal">true</span>的时候，表示不是一个数字，返回<span class="literal">false</span>表示是一个数字。</div></pre></td></tr></table></figure>
+<p>【案例：判断一个数据是不是数字】<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = <span class="string">"abc"</span>;</div><div class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> data == <span class="string">"number"</span>&amp;&amp;!<span class="built_in">isNaN</span>(data))&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"是数字"</span>);    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2><h3 id="字面量"><a href="#字面量" class="headerlink" title="字面量"></a>字面量</h3><p>字符串的字面量：“abc”  、 ‘abc’  字符串可以是双引号，也可以是单引号引起来。</p>
+<figure class="highlight scilab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">思考：如何打印以下字符串。</div><div class="line">我是一个<span class="string">"正直"</span>的人 </div><div class="line">我很喜欢<span class="string">"传'</span>智<span class="string">'播客"</span></div></pre></td></tr></table></figure>
+<h3 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h3><p>length属性用来获取字符串的长度</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">"abckjdlkfjd"</span>;</div><div class="line">str.length;<span class="comment">//字符串的长度</span></div></pre></td></tr></table></figure>
+<p>###字符串的不可变性<br>  <img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/10.png" alt="">  </p>
+<h3 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h3><p>拼接字符串使用+号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//思考：</span></div><div class="line"><span class="built_in">console</span>.log(<span class="number">11</span> + <span class="number">11</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"hello"</span> + <span class="string">" world"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"100"</span> + <span class="string">"100"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"11"</span> + <span class="number">11</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>两边只要有一个是字符串，那么+就是字符串拼接功能</li>
+<li>两边如果都是数字，那么就是算术功能。</li>
+</ul>
+<h2 id="boolean类型"><a href="#boolean类型" class="headerlink" title="boolean类型"></a>boolean类型</h2><p>boolean类型只有两个字面量，true和false，区分大小写。</p>
+<p>所有类型的值都可以转化成true或者false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="literal">NaN</span>、<span class="string">""</span>、<span class="literal">undefined</span>、<span class="literal">null</span>、<span class="literal">false</span>、<span class="number">0</span>  这<span class="number">6</span>个值可以转换成<span class="literal">false</span>，其余的都是<span class="literal">true</span>。</div></pre></td></tr></table></figure>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/11.jpg" alt=""></p>
+<h2 id="undefined类型与null类型"><a href="#undefined类型与null类型" class="headerlink" title="undefined类型与null类型"></a>undefined类型与null类型</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="literal">undefined</span>表示一个声明了没有赋值的变量</div><div class="line"><span class="literal">null</span>表示一个空的对象。</div><div class="line"></div><div class="line"><span class="literal">undefined</span>派生自<span class="literal">null</span>。</div><div class="line"><span class="literal">undefined</span> == <span class="literal">null</span>  ：<span class="literal">true</span></div><div class="line"><span class="literal">undefined</span> === <span class="literal">null</span> ：<span class="literal">false</span></div></pre></td></tr></table></figure>
+<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><p>如何使用谷歌浏览器，快速的查看数据类型？</p>
+<p>字符串的颜色是黑色的，数值类型是蓝色的，布尔类型也是蓝色的，undefined和null是灰色的，这个在调试过程中时非常有用的。</p>
+<h2 id="转换成字符串类型"><a href="#转换成字符串类型" class="headerlink" title="转换成字符串类型"></a>转换成字符串类型</h2><ol>
+<li>toString()</li>
+<li>String()</li>
+<li>/+ “”</li>
+</ol>
+<h2 id="转换成数值类型"><a href="#转换成数值类型" class="headerlink" title="转换成数值类型"></a>转换成数值类型</h2><ol>
+<li>Number()</li>
+<li>parseInt</li>
+<li>parseFloat</li>
+<li>+num, -0等运算</li>
+</ol>
+<h2 id="转换成布尔类型"><a href="#转换成布尔类型" class="headerlink" title="转换成布尔类型"></a>转换成布尔类型</h2><pre><code>学习目标：
+    1 转换成字符串类型
+    2 转换成数值类型
+    3 转换成布尔类型
+</code></pre><ol>
+<li>Boolean</li>
+<li>!!</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/10/白话原型和原型链/" rel="next" title="白话原型和原型链">
+                <i class="fa fa-chevron-left"></i> 白话原型和原型链
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/28/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/hanbao.jpg"
+               alt="Sunmy" />
+          <p class="site-author-name" itemprop="name">Sunmy</p>
+           
+              <p class="site-description motion-element" itemprop="description">留一片空白，随时浓墨重彩</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunmy000" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com" target="_blank" title="SegmentFault">
+                  
+                    <i class="fa fa-fw fa-meh-o"></i>
+                  
+                    
+                      SegmentFault
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://juejin.im" target="_blank" title="掘金">
+                  
+                    <i class="fa fa-fw fa-spinner"></i>
+                  
+                    
+                      掘金
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS前置知识"><span class="nav-number">1.</span> <span class="nav-text">JS前置知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器以及网站相关介绍"><span class="nav-number">1.1.</span> <span class="nav-text">浏览器以及网站相关介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1浏览器工作原理的介绍"><span class="nav-number">1.1.1.</span> <span class="nav-text">1浏览器工作原理的介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2网站工作原理的简单介绍"><span class="nav-number">1.1.2.</span> <span class="nav-text">2网站工作原理的简单介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要有js？"><span class="nav-number">1.2.</span> <span class="nav-text">为什么要有js？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是JS语言？"><span class="nav-number">1.3.</span> <span class="nav-text">什么是JS语言？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#script标签"><span class="nav-number">1.4.</span> <span class="nav-text">script标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出语句"><span class="nav-number">1.5.</span> <span class="nav-text">输入输出语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">1.6.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.7.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用变量"><span class="nav-number">1.7.1.</span> <span class="nav-text">如何使用变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量在内存中的存储"><span class="nav-number">1.7.2.</span> <span class="nav-text">变量在内存中的存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的命名规则与规范"><span class="nav-number">1.8.</span> <span class="nav-text">变量的命名规则与规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量练习"><span class="nav-number">1.9.</span> <span class="nav-text">变量练习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript中的数据类型"><span class="nav-number">1.10.</span> <span class="nav-text">JavaScript中的数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何查看数据类型"><span class="nav-number">1.11.</span> <span class="nav-text">如何查看数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Number类型"><span class="nav-number">1.12.</span> <span class="nav-text">Number类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进制"><span class="nav-number">1.12.1.</span> <span class="nav-text">进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数"><span class="nav-number">1.12.2.</span> <span class="nav-text">浮点数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值范围"><span class="nav-number">1.12.3.</span> <span class="nav-text">数值范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值判断"><span class="nav-number">1.12.4.</span> <span class="nav-text">数值判断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String类型"><span class="nav-number">1.13.</span> <span class="nav-text">String类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字面量"><span class="nav-number">1.13.1.</span> <span class="nav-text">字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串长度"><span class="nav-number">1.13.2.</span> <span class="nav-text">字符串长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串拼接"><span class="nav-number">1.13.3.</span> <span class="nav-text">字符串拼接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#boolean类型"><span class="nav-number">1.14.</span> <span class="nav-text">boolean类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined类型与null类型"><span class="nav-number">1.15.</span> <span class="nav-text">undefined类型与null类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型转换"><span class="nav-number">2.</span> <span class="nav-text">类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#转换成字符串类型"><span class="nav-number">2.1.</span> <span class="nav-text">转换成字符串类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转换成数值类型"><span class="nav-number">2.2.</span> <span class="nav-text">转换成数值类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转换成布尔类型"><span class="nav-number">2.3.</span> <span class="nav-text">转换成布尔类型</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sunmy</span>
+
+  
+</div>
+
+
+<!--  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+-->
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共14.1k字</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+</html>
+
