@@ -127,7 +127,7 @@
 <meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/canvas/10.png">
 <meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/canvas/11.png">
 <meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/canvas/12.png">
-<meta property="og:updated_time" content="2017-08-29T12:32:47.037Z">
+<meta property="og:updated_time" content="2017-08-29T13:56:03.964Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Canvas相关知识">
 <meta name="twitter:description" content="canvas 最早由Apple引入WebKit,用于Mac OS X 的 Dashboard,后来又在Safari和Google Chrome被实现。 基于 Gecko 1.8的浏览器,比如 Firefox 1.5, 同样支持这个元素。&amp;lt;canvas&amp;gt; 元素是WhatWG Web applications 1.0规范的一部分,也包含于HTML 5中。">
@@ -442,7 +442,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span> <span class="attr">width</span>=<span class="string">"600"</span> <span class="attr">height</span>=<span class="string">"400"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="Canvas坐标系"><a href="#Canvas坐标系" class="headerlink" title="Canvas坐标系"></a>Canvas坐标系</h2><p><img src="http://ou0923swf.bkt.clouddn.com/image/canvas/location.jpg" alt=""></p>
 <h2 id="通过JavaScript来绘制"><a href="#通过JavaScript来绘制" class="headerlink" title="通过JavaScript来绘制"></a>通过JavaScript来绘制</h2><p><img src="http://ou0923swf.bkt.clouddn.com/image/canvas/01.png" alt=""></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">!-</span> 为了效果明显，加了一点样式 <span class="attr">-</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    canvas&#123;</span></div><div class="line"><span class="undefined">        border: 1px solid #ccc;</span></div><div class="line"><span class="undefined">        margin: 0 auto;</span></div><div class="line"><span class="undefined">        display: block;</span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">!-</span> 为了效果明显，加了一点样式 <span class="attr">-</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    canvas&#123;</span></div><div class="line"><span class="css">        <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#ccc</span>;</span></div><div class="line"><span class="undefined">        margin: 0 auto;</span></div><div class="line"><span class="undefined">        display: block;</span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*获取元素*/</span></div><div class="line"><span class="keyword">var</span> myCanvas = <span class="built_in">document</span>.querySelector(<span class="string">'#myCanvas'</span>)</div><div class="line"><span class="comment">/*获取绘图工具（也可以叫做绘制环境）*/</span></div><div class="line"><span class="keyword">var</span> context = myCanvas.getContext(<span class="string">'2d'</span>)</div><div class="line"><span class="comment">/*设置绘图的起始位置*/</span></div><div class="line">context.moveTo(<span class="number">100</span>,<span class="number">100</span>)</div><div class="line"><span class="comment">/*绘制路径*/</span></div><div class="line">context.lineTo(<span class="number">200</span>,<span class="number">200</span>)</div><div class="line"><span class="comment">/*描边*/</span></div><div class="line">context.stroke()</div></pre></td></tr></table></figure>
 <h2 id="Canvas的基本使用"><a href="#Canvas的基本使用" class="headerlink" title="Canvas的基本使用"></a>Canvas的基本使用</h2><h3 id="图形绘制"><a href="#图形绘制" class="headerlink" title="图形绘制"></a>图形绘制</h3><p>需要理解些概念：  </p>
 <ul>
@@ -754,7 +754,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -765,7 +765,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -776,7 +776,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -916,7 +916,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共14.1k字</span>
+  <span class="post-count">博客全站共13.9k字</span>
 </div>
 
 
