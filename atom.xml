@@ -468,9 +468,9 @@ Vim gvim
     <link href="http://yoursite.com/2017/01/20/JavaScript+Standard+Style(JavaScript+%E6%A0%87%E5%87%86%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC)/"/>
     <id>http://yoursite.com/2017/01/20/JavaScript+Standard+Style(JavaScript+标准编码风格)/</id>
     <published>2017-01-20T05:00:00.000Z</published>
-    <updated>2017-09-01T11:16:51.898Z</updated>
+    <updated>2017-09-01T11:21:05.040Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="C:\Users\Administrator\Desktop\image\1.png" alt="img"><br>让我们看一看 @feross 的 <a href="https://github.com/feross/standard" target="_blank" rel="external">JavaScript 标准风格</a> ，这是一个流行的 JavaScript 风格指南。它可以帮助你减少团队之间的摩擦，增加程序员的幸福感。<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<p><img src="http://ou0923swf.bkt.clouddn.com/image/standard/1.png" alt="img"><br>让我们看一看 @feross 的 <a href="https://github.com/feross/standard" target="_blank" rel="external">JavaScript 标准风格</a> ，这是一个流行的 JavaScript 风格指南。它可以帮助你减少团队之间的摩擦，增加程序员的幸福感。<br><a id="more"></a></p>
 <p>这是 <a href="http://standardjs.com/rules.html" target="_blank" rel="external">一组规则</a> ，可以使 JavaScript 代码更加一致 ，并且可以防止类似于 tabs缩进 和 空格缩进优缺点这一类无聊的话题讨论。你可以采用多种风格之一，并且与其他 （如 <a href="http://jslint.com/" target="_blank" rel="external">JSLint</a> ， <a href="http://jshint.com/about/" target="_blank" rel="external">JSHint</a> 和 <a href="http://eslint.org/docs/rules/" target="_blank" rel="external">ESLint</a> ）是同一种类型的 JavaScript 检测器。</p>
 <p>如果你还不知道什么是linter (检查工具)，或者为什么需要，请查看我们对 <a href="http://www.css88.com/archives/7593" target="_blank" rel="external">JavaScript 检查(Linting)工具的比较</a>。</p>
 <h2 id="风格的重要性"><a href="#风格的重要性" class="headerlink" title="风格的重要性"></a>风格的重要性</h2><p>如果你已经从事编码工作有一段时间了的话，那你肯定会有一种自己喜欢的风格。当你成百上千次以特定的模式编写代码时，你会发现你的编码方式是令人愉悦的。突然间来了个人，开始把挂在行尾的大括号单起一行。你可能会发牢骚。深呼吸冷静思考一下，你放置括号的位置 或 关键字后加空格 不会让你的程序更加正确，这只是个人喜好。</p>
@@ -547,7 +547,7 @@ Vim gvim
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;C:\Users\Administrator\Desktop\image\1.png&quot; alt=&quot;img&quot;&gt;&lt;br&gt;让我们看一看 @feross 的 &lt;a href=&quot;https://github.com/feross/standard&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JavaScript 标准风格&lt;/a&gt; ，这是一个流行的 JavaScript 风格指南。它可以帮助你减少团队之间的摩擦，增加程序员的幸福感。&lt;br&gt;
+      &lt;p&gt;&lt;img src=&quot;http://ou0923swf.bkt.clouddn.com/image/standard/1.png&quot; alt=&quot;img&quot;&gt;&lt;br&gt;让我们看一看 @feross 的 &lt;a href=&quot;https://github.com/feross/standard&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JavaScript 标准风格&lt;/a&gt; ，这是一个流行的 JavaScript 风格指南。它可以帮助你减少团队之间的摩擦，增加程序员的幸福感。&lt;br&gt;
     
     </summary>
     
