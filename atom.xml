@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2017-08-28T06:31:25.995Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://sunfeat.com/"/>
+  <updated>2017-09-05T12:43:33.133Z</updated>
+  <id>http://sunfeat.com/</id>
   
   <author>
     <name>Sunmy</name>
@@ -16,219 +16,121 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>JS基础知识</title>
-    <link href="http://yoursite.com/2017/06/11/JS%E5%9F%BA%E7%A1%80/"/>
-    <id>http://yoursite.com/2017/06/11/JS基础/</id>
-    <published>2017-06-11T08:03:00.000Z</published>
-    <updated>2017-08-28T06:31:25.995Z</updated>
+    <title>HTTP API 设计指南</title>
+    <link href="http://sunfeat.com/2017/09/02/HTTP%20API%20%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97%EF%BC%88%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86%EF%BC%89/"/>
+    <id>http://sunfeat.com/2017/09/02/HTTP API 设计指南（基础部分）/</id>
+    <published>2017-09-02T07:49:30.364Z</published>
+    <updated>2017-09-05T12:43:33.133Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="JS前置知识"><a href="#JS前置知识" class="headerlink" title="JS前置知识"></a>JS前置知识</h1><h2 id="浏览器以及网站相关介绍"><a href="#浏览器以及网站相关介绍" class="headerlink" title="浏览器以及网站相关介绍"></a>浏览器以及网站相关介绍</h2><blockquote>
-<p><strong>浏览器定义</strong>：可以显示网页服务器或者文件系统的HTML文件内容，并让用户与这些文件交互的一种软件</p>
-</blockquote>
-<pre><code>我们常规使用的五大浏览器：chorme，firefox，IE，Safari以及Oprea
-从内核来看：有webkit，gecko，trident，presto
-
-1、Trident内核代表产品Internet Explorer，又称其为IE内核。Trident（又称为MSHTML），是微软开发的
-一种排版引擎。使用Trident渲染引擎的浏览器包括：IE、傲游、世界之窗浏览器、Avant、腾讯TT、Netscape 
-8、NetCaptor、Sleipnir、GOSURF、GreenBrowser和KKman等。
-2、Gecko内核代表作品Mozilla FirefoxGecko是一套开放源代码的、以C++编写的网页排版引擎。Gecko是最
-流行的排版引擎之一，仅次于Trident。使用它的最著名浏览器有Firefox、Netscape6至9。
-3、WebKit内核代表作品Safari、Chromewebkit 是一个开源项目，包含了来自KDE项目和苹果公司的一些组件
-，主要用于Mac OS系统，它的特点在于源码结构清晰、渲染速度极快。缺点是对网页代码的兼容性不高，导致一
-些编写不标准的网页无法正常显示。主要代表作品有Safari和Google的浏览器Chrome。
-4、Presto内核代表作品OperaPresto是由Opera Software开发的浏览器排版引擎，供Opera 7.0及以上使用。
-它取代了旧版Opera 4至6版本使用的Elektra排版引擎，包括加入动态功能，例如网页或其部分可随着DOM及
-Script语法的事件而重新排版。
-</code></pre><p><a href="http://www.cnblogs.com/vajoy/p/3735553.html" target="_blank" rel="external">各主流浏览器内核介绍</a></p>
-<p><a href="http://blog.csdn.net/ofsno/article/details/51164575" target="_blank" rel="external">了解四大主流浏览器内核</a></p>
-<p><a href="http://www.cnblogs.com/zichi/p/5116764.html" target="_blank" rel="external">主流浏览器内核介绍</a></p>
-<h3 id="1浏览器工作原理的介绍"><a href="#1浏览器工作原理的介绍" class="headerlink" title="1浏览器工作原理的介绍"></a>1浏览器工作原理的介绍</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/01.jpg01.jpg" alt=""><br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">说明：</div><div class="line">    1、User<span class="built_in"> Interface </span> 用户界面，我们所看到的浏览器</div><div class="line">    2、Browser engine  浏览器引擎，用来查询和操作渲染引擎</div><div class="line">    3、Rendering engine 用来显示请求的内容，负责解析HTML、CSS</div><div class="line">    4、Networking   网络，负责发送网络请求</div><div class="line">    5、JavaScript Interpreter(解析者)   JavaScript解析器，负责执行JavaScript的代码</div><div class="line">    6、UI Backend   UI后端，用来绘制类似组合框和弹出窗口</div><div class="line">    7、Data Persistence(持久化)  数据持久化，数据存储  cookie、HTML5中的sessionStorage</div></pre></td></tr></table></figure></p>
-<h3 id="2网站工作原理的简单介绍"><a href="#2网站工作原理的简单介绍" class="headerlink" title="2网站工作原理的简单介绍"></a>2网站工作原理的简单介绍</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/03.jpg03.jpg" alt=""></p>
-<h2 id="为什么要有js？"><a href="#为什么要有js？" class="headerlink" title="为什么要有js？"></a>为什么要有js？</h2><pre><code>js设计的最初目的
-    - 判断客户端表单输入验证(以前的网速慢)
-    - 后来被一度用于小广告
- js现在的意义
-    -页面特效（pc端的网页特效）
-    -移动端（移动web和app）
-    -异步和服务器交互 ajax
-    -服务器端开发（nodeJs）
-    -数据库甚至烤面包机都可以运行js了 （mongodb 嵌入式开发）
-    -另外还可以抢月饼（阿里巴巴月饼事件）
-js的历史总结：
-    - javascript诞生于1995年
-    -javascript的是由网景公司的布兰登艾奇开发的
-    -javascript的前名叫livescript
-</code></pre><h2 id="什么是JS语言？"><a href="#什么是JS语言？" class="headerlink" title="什么是JS语言？"></a>什么是JS语言？</h2><blockquote>
-<p>javascript是一种运行在<strong><em>客户端</em></strong> 的<strong><em>脚本语言</em></strong> </p>
-</blockquote>
-<p>客户端：即接受服务的一端，与服务端相对应，在前端开发中，通常客户端指的就是浏览器。</p>
-<p>脚本语言：也叫解释型语言，特点是<strong><em>执行一行，解释一行，如果发现报错，代码就停止执行</em></strong> 。</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tips：脚本语言一般会有一个宿主环境（当前脚本运行并且起作用一个环境）</div><div class="line">类似的有：<span class="keyword">as</span>（actionScript flash宿主环境）</div></pre></td></tr></table></figure>
-<blockquote>
-<p>javascript的三个组成部分：ECMAScript、BOM、DOM</p>
-</blockquote>
-<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/02.jpg02.jpg" alt=""></p>
-<p>ECMAScript：定义了javascript的语法规范，是js语法的基础核心。</p>
-<p>BOM：定义一套操作浏览器功能的API，通过这些api能够更好的操作浏览器行为。</p>
-<p>DOM：定义一套操作页面元素的API，通过使用这些api来操作页面元素。</p>
-<blockquote>
-<p>挑选一把称手的工具</p>
-</blockquote>
-<pre><code>txt,Nodpad++, Editplus
-Dreamweaver 
-Hbuilder，WebStorm,MyEclipse, Visual Studio
-Sublime，bracket,Atom,vscode
-Vim gvim
-……
-</code></pre><hr>
-<h2 id="script标签"><a href="#script标签" class="headerlink" title="script标签"></a>script标签</h2><blockquote>
-<p>书写Javascript代码有三种方式，第一种是直接在script标签中书写，第二种是将代码写在js文件中，通过script进行引入。第三种为内嵌入html结构中书写js，但不利于后期代码开发和维护，不推荐；</p>
-</blockquote>
-<p>直接在script中书写javascript代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="actionscript">	alert(<span class="string">"今天天气真好呀"</span>);</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>通过script标签引入一个JS文件，需要指定src属性</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"test.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>通过在html标签中内嵌入脚本执行<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">"alert('今天天气不错！')"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<font color="#ff7600">tips：如果script标签指定了src属性，说明是想要引入一个js文件，这个时候不能继续在script标签中写JS代码，即便写了，也不会执行。</font>
-
-
-
-<blockquote>
-<p>script标签的书写位置，原则上来说，可以在页面中的任意位置书写script标签。</p>
-</blockquote>
-<ol>
-<li>写在head标签中，style标签之后。</li>
-<li>写在&lt;//body&gt;标签的前面。</li>
-<li>写在的后面，即页面的最后面。</li>
-</ol>
-<blockquote>
-<p>script的一些属性</p>
-</blockquote>
-<ul>
-<li>language已废弃</li>
-<li>src 表示要引入的外部文件</li>
-<li>type 表示脚本语言的类型<ul>
-<li>async(了解)   async=”async”</li>
-</ul>
-</li>
-<li>值可以省略，立即异步下载外部JS下载完毕立即执行</li>
-<li>defer(了解)  defer=”defer”</li>
-<li>值可以省略，脚本延迟到文档完全被解析和显示后再执行</li>
-</ul>
-<h2 id="输入输出语句"><a href="#输入输出语句" class="headerlink" title="输入输出语句"></a>输入输出语句</h2><blockquote>
-<p>在实际开发，常用1和3，并且1在控制台输出不影响页面正常显示，不会阻塞代码运行，灵活操作，在实际开发中用于代码调试较多。</p>
-</blockquote>
-<ol>
-<li>console.log 控制台输出日志</li>
-<li>document.write 往页面中写入内容</li>
-<li>alert 弹框警告[^注释]</li>
-<li>confirm 确认框[^注释]</li>
-<li>prompt 输入框[^注释]</li>
-</ol>
-<p>[^注释]: window 是全局对象  是浏览器中的顶级对象  window.alert()中的window 可以省略不写</p>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><blockquote>
-<p>不被程序执行的代码。用于程序员标记代码，在后期的修改，以及他人的学习时有所帮助，在JS中，分为单行注释和多行注释</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这是单行注释，只能注释一行</span></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">	这是多行注释，不能嵌套</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
-<p>注释的作用：</p>
-<pre><code>1. 模块划分，方便代码查找和维护
-2. 用于解释复杂代码的逻辑，方便维护和后期开发。
-</code></pre><p>要求：写代码的时候必须要写注释 不加注释是不道德的</p>
-<p>【永无bug.js】</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//                            _ooOoo_</span></div><div class="line"><span class="comment">//                           o8888888o</span></div><div class="line"><span class="comment">//                           88" . "88</span></div><div class="line"><span class="comment">//                           (| -_- |)</span></div><div class="line"><span class="comment">//                           O\  =  /O</span></div><div class="line"><span class="comment">//                        ____/`---'\____</span></div><div class="line"><span class="comment">//                      .'  \\|     |//  `.</span></div><div class="line"><span class="comment">//                     /  \\|||  :  |||//  \</span></div><div class="line"><span class="comment">//                    /  _||||| -:- |||||-  \</span></div><div class="line"><span class="comment">//                    |   | \\\  -  /// |   |</span></div><div class="line"><span class="comment">//                    | \_|  ''\---/''  |   |</span></div><div class="line"><span class="comment">//                    \  .-\__  `-`  ___/-. /</span></div><div class="line"><span class="comment">//                  ___`. .'  /--.--\  `. . __</span></div><div class="line"><span class="comment">//               ."" '&lt;  `.___\_&lt;|&gt;_/___.'  &gt;'"".</span></div><div class="line"><span class="comment">//              | | :  `- \`.;`\ _ /`;.`/ - ` : | |</span></div><div class="line"><span class="comment">//              \  \ `-.   \_ __\ /__ _/   .-` /  /</span></div><div class="line"><span class="comment">//         ======`-.____`-.___\_____/___.-`____.-'======</span></div><div class="line"><span class="comment">//                            `=---='</span></div><div class="line"><span class="comment">//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span></div><div class="line"><span class="comment">//                      佛祖保佑       永无BUG</span></div><div class="line"></div><div class="line"><span class="comment">//    ┏┛┻━━━━━┛┻┓</span></div><div class="line"><span class="comment">//    ┃ 　　　　　      ┃</span></div><div class="line"><span class="comment">//    ┃ 　　　　　      ┃</span></div><div class="line"><span class="comment">//    ┃　┳┛　  ┗┳　 ┃</span></div><div class="line"><span class="comment">//    ┃ 　　　　　      ┃</span></div><div class="line"><span class="comment">//    ┃　　　┻　 　    ┃</span></div><div class="line"><span class="comment">//    ┃ 　　　　　      ┃</span></div><div class="line"><span class="comment">//    ┗━┓　　　┏━━━┛</span></div><div class="line"><span class="comment">//        ┃　　　┃   神兽保佑</span></div><div class="line"><span class="comment">//        ┃　　　┃   代码无BUG！</span></div><div class="line"><span class="comment">//        ┃　　　┗━━━━━━━━━┓</span></div><div class="line"><span class="comment">//        ┃　　　　　　　    ┣┓</span></div><div class="line"><span class="comment">//        ┃　　　　         ┏┛</span></div><div class="line"><span class="comment">//        ┗━┓ ┓ ┏━━━┳ ┓ ┏━┛</span></div><div class="line"><span class="comment">//          ┃ ┫ ┫   ┃ ┫ ┫</span></div><div class="line"><span class="comment">//          ┗━┻━┛   ┗━┻━┛</span></div><div class="line"><span class="comment">//    ━━━━━━感觉萌萌哒━━━━━━</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/*code is far away from bug with the animal protecting</span></div><div class="line"><span class="comment">    *  ┏┓　　　┏┓</span></div><div class="line"><span class="comment">    *┏┛┻━━━┛┻┓</span></div><div class="line"><span class="comment">    *┃　　　　　　　┃ 　</span></div><div class="line"><span class="comment">    *┃　　　━　　　┃</span></div><div class="line"><span class="comment">    *┃　┳┛　┗┳　┃</span></div><div class="line"><span class="comment">    *┃　　　　　　　┃</span></div><div class="line"><span class="comment">    *┃　　　┻　　　┃</span></div><div class="line"><span class="comment">    *┃　　　　　　　┃</span></div><div class="line"><span class="comment">    *┗━┓　　　┏━┛</span></div><div class="line"><span class="comment">    *　　┃　　　┃神兽保佑</span></div><div class="line"><span class="comment">    *　　┃　　　┃代码无BUG！</span></div><div class="line"><span class="comment">    *　　┃　　　┗━━━┓</span></div><div class="line"><span class="comment">    *　　┃　　　　　　　┣┓</span></div><div class="line"><span class="comment">    *　　┃　　　　　　　┏┛</span></div><div class="line"><span class="comment">    *　　┗┓┓┏━┳┓┏┛</span></div><div class="line"><span class="comment">    *　　　┃┫┫　┃┫┫</span></div><div class="line"><span class="comment">    *　　　┗┻┛　┗┻┛ </span></div><div class="line"><span class="comment">    *　　　</span></div><div class="line"><span class="comment">    */</span></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">*</span></div><div class="line"><span class="comment">*----------Dragon be here!----------/</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">　　　┏┓　　　┏┓</span></div><div class="line"><span class="comment">　　┏┛┻━━━┛┻┓</span></div><div class="line"><span class="comment">　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　┃　　　━　　　┃</span></div><div class="line"><span class="comment">　　┃　┳┛　┗┳　┃</span></div><div class="line"><span class="comment">　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　┃　　　┻　　　┃</span></div><div class="line"><span class="comment">　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　┗━┓　　　┏━┛</span></div><div class="line"><span class="comment">　　　　┃　　　┃</span></div><div class="line"><span class="comment">　　　　┃　　　┃</span></div><div class="line"><span class="comment">　　　　┃　　　┗━━━┓</span></div><div class="line"><span class="comment">　　　　┃　　　　　　　┣┓</span></div><div class="line"><span class="comment">　　　　┃　　　　　　　┏┛</span></div><div class="line"><span class="comment">　　　　┗┓┓┏━┳┓┏┛</span></div><div class="line"><span class="comment">　　　　　┃┫┫　┃┫┫</span></div><div class="line"><span class="comment">　　　　　┗┻┛　┗┻┛</span></div><div class="line"><span class="comment">━━━━━━神兽出没━━━━━━ */</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">　　　　　　　　┏┓　　　┏┓</span></div><div class="line"><span class="comment">　　　　　　　┏┛┻━━━┛┻┓</span></div><div class="line"><span class="comment">　　　　　　　┃　　　　　　　┃ 　</span></div><div class="line"><span class="comment">　　　　　　　┃　　　━　　　┃</span></div><div class="line"><span class="comment">　　　　　　　┃　＞　　　＜　┃</span></div><div class="line"><span class="comment">　　　　　　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　　　　　　┃...　⌒　...　┃</span></div><div class="line"><span class="comment">　　　　　　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　　　　　　┗━┓　　　┏━┛</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃　Code is far away from bug with the animal protecting　　　　　　　　　　</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃ 神兽保佑,代码无bug</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃　　　　　　　　　　　</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃ 　　　　　　</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃　　　　　　　　　　　</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┗━━━┓</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　　　　　┣┓</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　　　　　┏┛</span></div><div class="line"><span class="comment">　　　　　　　　　┗┓┓┏━┳┓┏┛</span></div><div class="line"><span class="comment">　　　　　　　　　　┃┫┫　┃┫┫</span></div><div class="line"><span class="comment">　　　　　　　　　　┗┻┛　┗┻┛ */</span></div><div class="line">　　　　　　　　　　</div><div class="line">　　　　　　　</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">*　　　　　　　　┏┓　　　┏┓+ +</span></div><div class="line"><span class="comment">*　　　　　　　┏┛┻━━━┛┻┓ + +</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　　　　　┃ 　</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　━　　　┃ ++ + + +</span></div><div class="line"><span class="comment">*　　　　　　 ████━████ ┃+</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　　　　　┃ +</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　┻　　　┃</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　　　　　┃ + +</span></div><div class="line"><span class="comment">*　　　　　　　┗━┓　　　┏━┛</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃　　　　　　　　　　　</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃ + + + +</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃　　　　Code is far away from bug with the animal protecting　　　　　　　</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃ + 　　　　神兽保佑,代码无bug　　</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃　　+　　　　　　　　　</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　 　　┗━━━┓ + +</span></div><div class="line"><span class="comment">*　　　　　　　　　┃ 　　　　　　　┣┓</span></div><div class="line"><span class="comment">*　　　　　　　　　┃ 　　　　　　　┏┛</span></div><div class="line"><span class="comment">*　　　　　　　　　┗┓┓┏━┳┓┏┛ + + + +</span></div><div class="line"><span class="comment">*　　　　　　　　　　┃┫┫　┃┫┫</span></div><div class="line"><span class="comment">*　　　　　　　　　　┗┻┛　┗┻┛+ + + +</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//   █████▒█    ██  ▄████▄   ██ ▄█▀       ██████╗ ██╗   ██╗ ██████╗</span></div><div class="line"><span class="comment">// ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒        ██╔══██╗██║   ██║██╔════╝</span></div><div class="line"><span class="comment">// ▒████ ░▓██  ▒██░▒▓█    ▄ ▓███▄░        ██████╔╝██║   ██║██║  ███╗</span></div><div class="line"><span class="comment">// ░▓█▒  ░▓▓█  ░██░▒▓▓▄ ▄██▒▓██ █▄        ██╔══██╗██║   ██║██║   ██║</span></div><div class="line"><span class="comment">// ░▒█░   ▒▒█████▓ ▒ ▓███▀ ░▒██▒ █▄       ██████╔╝╚██████╔╝╚██████╔╝</span></div><div class="line"><span class="comment">//  ▒ ░   ░▒▓▒ ▒ ▒ ░ ░▒ ▒  ░▒ ▒▒ ▓▒       ╚═════╝  ╚═════╝  ╚═════╝</span></div><div class="line"><span class="comment">//  ░     ░░▒░ ░ ░   ░  ▒   ░ ░▒ ▒░</span></div><div class="line"><span class="comment">//  ░ ░    ░░░ ░ ░ ░        ░ ░░ ░</span></div><div class="line"><span class="comment">//           ░     ░ ░      ░  ░</span></div><div class="line"><span class="comment">//</span></div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<h2 id="HTTP-API-设计指南（基础部分）"><a href="#HTTP-API-设计指南（基础部分）" class="headerlink" title="HTTP API 设计指南（基础部分）"></a>HTTP API 设计指南（基础部分）</h2><h3 id="隔离关注点"><a href="#隔离关注点" class="headerlink" title="隔离关注点"></a>隔离关注点</h3><p>设计时通过将请求和响应之间的不同部分隔离来让事情变得简单。保持简单的规则让我们能更关注在一些更大的更困难的问题上。</p>
+<p>请求和响应将解决一个特定的资源或集合。使用路径（path）来表明身份，body来传输内容（content）还有头信息（header）来传递元数据（metadata）。查询参数同样可以用来传递头信息的内容，但头信息是首选，因为他们更灵活、更能传达不同的信息。</p>
+<h3 id="强制使用安全连接（Secure-Connections）所有的访问API行为，都需要用-TLS-通过安全连接来访问。没有必要搞清或解释什么情况需要-TLS-什么情况不需要-TLS，直接强制任何访问都要通过-TLS。"><a href="#强制使用安全连接（Secure-Connections）所有的访问API行为，都需要用-TLS-通过安全连接来访问。没有必要搞清或解释什么情况需要-TLS-什么情况不需要-TLS，直接强制任何访问都要通过-TLS。" class="headerlink" title="强制使用安全连接（Secure Connections）所有的访问API行为，都需要用 TLS 通过安全连接来访问。没有必要搞清或解释什么情况需要 TLS 什么情况不需要 TLS，直接强制任何访问都要通过 TLS。"></a>强制使用安全连接（Secure Connections）所有的访问API行为，都需要用 TLS 通过安全连接来访问。没有必要搞清或解释什么情况需要 TLS 什么情况不需要 TLS，直接强制任何访问都要通过 TLS。</h3><p>理想状态下，通过拒绝所有非 TLS 请求，不响应 http 或80端口的请求以避免任何不安全的数据交换。如果现实情况中无法这样做，可以返回<code>403 Forbidden</code>响应。</p>
+<p>把非 TLS 的请求重定向(Redirect)至 TLS 连接是不明智的，这种含混/不好的客户端行为不会带来明显好处。依赖于重定向的客户端访问不仅会导致双倍的服务器负载，还会使 TLS 加密失去意义，因为在首次非 TLS 调用时，敏感信息就已经暴露出去了。</p>
+<h3 id="强制头信息-Accept-中提供版本号"><a href="#强制头信息-Accept-中提供版本号" class="headerlink" title="强制头信息 Accept 中提供版本号"></a>强制头信息 Accept 中提供版本号</h3><p>制定版本并在版本之间平缓过渡对于设计和维护一套API是个巨大的挑战。所以，最好在设计之初就使用一些方法来预防可能会遇到的问题。</p>
+<p>为了避免API的变动导致用户使用中产生意外结果或调用失败，最好强制要求所有访问都需要指定版本号。请避免提供默认版本号，一旦提供，日后想要修改它会相当困难。</p>
+<p>最适合放置版本号的位置是头信息(HTTP Headers)，在 <code>Accept</code> 段中使用自定义类型(content type)与其他元数据(metadata)一起提交。例如:</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Accept: <span class="built_in">application</span>/vnd.heroku+json; <span class="built_in">version</span>=<span class="number">3</span></div></pre></td></tr></table></figure>
+<h3 id="支持Etag缓存"><a href="#支持Etag缓存" class="headerlink" title="支持Etag缓存"></a>支持Etag缓存</h3><p>在所有返回的响应中包含<code>ETag</code>头信息，用来标识资源的版本。这让用户对资源进行缓存处理成为可能，在后续的访问请求中把<code>If-None-Match</code>头信息设置为之前得到的<code>ETag</code>值，就可以侦测到已缓存的资源是否需要更新。</p>
+<h3 id="为内省而提供-Request-Id"><a href="#为内省而提供-Request-Id" class="headerlink" title="为内省而提供 Request-Id"></a>为内省而提供 Request-Id</h3><p>为每一个请求响应包含一个<code>Request-Id</code>字段，并使用UUID作为该值。通过在客户端、服务器或任何支持服务上记录该值，它能主我们提供一种机制来跟踪、诊断和调试请求。</p>
+<h3 id="通过请求中的范围（Range）拆分大的响应"><a href="#通过请求中的范围（Range）拆分大的响应" class="headerlink" title="通过请求中的范围（Range）拆分大的响应"></a>通过请求中的范围（Range）拆分大的响应</h3><p>一个大的响应应该通过多个请求使用<code>Range</code>头信息来拆分，并指定如何取得。详细的请求和响应的头信息（header），状态码(status code)，范围(limit)，排序(ordering)和迭代(iteration)等，参考<a href="https://devcenter.heroku.com/articles/platform-api-reference#ranges" target="_blank" rel="external">Heroku Platform API discussion of Ranges</a>.</p>
+<h2 id="HTTP-API-设计指南（请求部分）"><a href="#HTTP-API-设计指南（请求部分）" class="headerlink" title="HTTP API 设计指南（请求部分）"></a>HTTP API 设计指南（请求部分）</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这篇指南介绍描述了 HTTP+JSON API 的一种设计模式，最初摘录整理自 Heroku 平台的 API 设计指引 <a href="https://devcenter.heroku.com/articles/platform-api-reference" target="_blank" rel="external">Heroku 平台 API 指引</a>。</p>
+<p>这篇指南除了详细介绍现有的 API 外，Heroku 将来新加入的内部 API 也会符合这种设计模式，我们希望非 Heroku 员工的API设计者也能感兴趣。</p>
+<p>我们的目标是保持一致性，专注业务逻辑同时避免过度设计。我们一直试图找出一种良好的、一致的、显而易见的 API 设计方法，而并不是所谓的”最终/理想模式”。</p>
+<p>我们假设你熟悉基本的 HTTP+JSON API 设计方法，所以本篇指南并不包含所有的 API 设计基础。</p>
+<p>我们欢迎你为这篇指南做<a href="https://github.com/interagent/http-api-design/blob/master/CONTRIBUTING.md" target="_blank" rel="external">贡献</a>。</p>
 <hr>
-<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
-<li><p>什么是变量<br>变量是计算机内存中存储数据的标识符，根据变量名称可以获取到内存中存储的数据</p>
-</li>
-<li><p>为什么要使用变量<br>使用变量可以方便的获取或者修改内存中的数据</p>
-</li>
-</ul>
-<h3 id="如何使用变量"><a href="#如何使用变量" class="headerlink" title="如何使用变量"></a>如何使用变量</h3><ul>
-<li><p>var声明变量</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age; <span class="comment">//声明未赋值 其值为未定义undefined</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>变量的赋值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age;</div><div class="line">age = <span class="number">18</span>;</div></pre></td></tr></table></figure>
-</li>
-<li><p>同时声明多个变量</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age, name, sex;</div><div class="line">age = <span class="number">10</span>;</div><div class="line">name = <span class="string">'zs'</span>;</div></pre></td></tr></table></figure>
-</li>
-<li><p>同时声明多个变量并赋值</p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age = <span class="number">10</span>, name = <span class="string">'zs'</span>;</div></pre></td></tr></table></figure>
-<h3 id="变量在内存中的存储"><a href="#变量在内存中的存储" class="headerlink" title="变量在内存中的存储"></a>变量在内存中的存储</h3><p>后续通过交换值变量来演示</p>
-<h2 id="变量的命名规则与规范"><a href="#变量的命名规则与规范" class="headerlink" title="变量的命名规则与规范"></a>变量的命名规则与规范</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">命名规则（必须遵守）：</div><div class="line"><span class="number">1.</span>由字母、数字、下划线、$符号组成，开头不能是数字。</div><div class="line"><span class="number">2.</span>不能是关键字和保留字</div><div class="line"><span class="number">3.</span>区分大小写</div><div class="line">命名规范（建议遵守）：</div><div class="line"><span class="number">1.</span> 命名要有意义</div><div class="line"><span class="number">2.</span> 遵守驼峰命名法。首字母小写，后面单词的首字母需要大写。</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> userName; <span class="keyword">var</span> borderTopColor;</div></pre></td></tr></table></figure>
-<h2 id="变量练习"><a href="#变量练习" class="headerlink" title="变量练习"></a>变量练习</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">1. </span>交换两个变量的值（掌握）</div><div class="line"><span class="bullet">2. </span>不使用临时变量，交换两个数值变量的值（了解）</div></pre></td></tr></table></figure>
-<p>掌握：<br><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/04.jpg" alt=""></p>
-<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/05.jpg" alt=""><br>扩展：<br><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/06.jpg" alt=""></p>
-<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/07.jpg" alt=""></p>
-<p>tips:javascript是一种弱类型语言，不管声明什么类型的变量，都是用var，并且变量的类型是可以变化的。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age = <span class="number">90</span>;</div><div class="line">age = <span class="string">"张三"</span>;</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>数据类型学习目标：
-     掌握四种常用的数据类型
-</code></pre><h2 id="JavaScript中的数据类型"><a href="#JavaScript中的数据类型" class="headerlink" title="JavaScript中的数据类型"></a>JavaScript中的数据类型</h2><p><strong>简单(基本、值)数据类型</strong><br>            Number（数字类型）、String（字符串）、Boolean（布尔类型）<br>           Undefined、Null（特殊类型）</p>
-<p>  <strong>复杂(引用)数据类型（暂时了解）</strong><br>       object</p>
-<h2 id="如何查看数据类型"><a href="#如何查看数据类型" class="headerlink" title="如何查看数据类型"></a>如何查看数据类型</h2><p>使用typeof关键字查看数据类型</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> name;</div><div class="line"><span class="keyword">typeof</span>(name);</div></pre></td></tr></table></figure>
-<h2 id="Number类型"><a href="#Number类型" class="headerlink" title="Number类型"></a>Number类型</h2><h3 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> 十进制，我们平时使用的就是十进制，进行运算时，八进制和十六进制的值最终都会转换成十进制。</div><div class="line"><span class="number">2.</span> 八进制，<span class="number">0</span>开头的数值，数值序列：<span class="number">0</span><span class="number">-7</span></div><div class="line"><span class="number">3.</span> 十六进制，<span class="number">0</span>x开头的数值，数值序列：<span class="number">0</span><span class="number">-9</span>A-F</div><div class="line"></div><div class="line">进制了解即可，基本都是使用十进制，稍微了解一下进制之间的转换。</div></pre></td></tr></table></figure>
-<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/08.png" alt=""></p>
-<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p>科学计数法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">5e+3</span>;</div><div class="line"><span class="keyword">var</span> num1 = <span class="number">5e-2</span>;</div><div class="line"><span class="comment">//如何表示0.003和20000？</span></div></pre></td></tr></table></figure>
-<p>浮点数的精度问题：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">0.1</span> + <span class="number">0.2</span> = ?</div><div class="line"><span class="number">0.07</span> * <span class="number">100</span> = ?</div></pre></td></tr></table></figure>
-<p><strong><em>浮点数在运算的时候会出现精度丢失的问题，因此在做比较运算的时候，尽量不要用小数进行比较。</em></strong></p>
-<h3 id="数值范围"><a href="#数值范围" class="headerlink" title="数值范围"></a>数值范围</h3><blockquote>
-<p>javascript不能表示世界上所有的数，因此在javascript中，数值大小是有一定限制的。</p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Number</span><span class="selector-class">.MIN_VALUE</span>  <span class="selector-pseudo">:5e-324</span></div><div class="line"><span class="selector-tag">Number</span><span class="selector-class">.MAX_VALUE</span>  <span class="selector-pseudo">:1.7976931348623157e+308</span></div><div class="line"><span class="selector-tag">Infinity</span>   :正无穷</div><div class="line"><span class="selector-tag">-Infinity</span>  ：负无穷</div></pre></td></tr></table></figure>
-<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/09.png" alt=""></p>
-<h3 id="数值判断"><a href="#数值判断" class="headerlink" title="数值判断"></a>数值判断</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> <span class="literal">NaN</span>:表示一个非数值，当无法运算或者运算错误的时候，会得到一个<span class="literal">NaN</span>，<span class="literal">NaN</span>是<span class="built_in">number</span>类型，表示一个非数值。</div><div class="line"><span class="number">2.</span> <span class="literal">NaN</span>不等于<span class="literal">NaN</span></div><div class="line"><span class="number">3.</span> <span class="built_in">isNaN</span>用来判断是否是一个数字，当返回<span class="literal">true</span>的时候，表示不是一个数字，返回<span class="literal">false</span>表示是一个数字。</div></pre></td></tr></table></figure>
-<p>【案例：判断一个数据是不是数字】<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = <span class="string">"abc"</span>;</div><div class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> data == <span class="string">"number"</span>&amp;&amp;!<span class="built_in">isNaN</span>(data))&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"是数字"</span>);    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2><h3 id="字面量"><a href="#字面量" class="headerlink" title="字面量"></a>字面量</h3><p>字符串的字面量：“abc”  、 ‘abc’  字符串可以是双引号，也可以是单引号引起来。</p>
-<figure class="highlight scilab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">思考：如何打印以下字符串。</div><div class="line">我是一个<span class="string">"正直"</span>的人 </div><div class="line">我很喜欢<span class="string">"传'</span>智<span class="string">'播客"</span></div></pre></td></tr></table></figure>
-<h3 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h3><p>length属性用来获取字符串的长度</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">"abckjdlkfjd"</span>;</div><div class="line">str.length;<span class="comment">//字符串的长度</span></div></pre></td></tr></table></figure>
-<p>###字符串的不可变性<br>  <img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/10.png" alt="">  </p>
-<h3 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h3><p>拼接字符串使用+号</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//思考：</span></div><div class="line"><span class="built_in">console</span>.log(<span class="number">11</span> + <span class="number">11</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"hello"</span> + <span class="string">" world"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"100"</span> + <span class="string">"100"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"11"</span> + <span class="number">11</span>);</div></pre></td></tr></table></figure>
+<h3 id="返回合适的状态码"><a href="#返回合适的状态码" class="headerlink" title="返回合适的状态码"></a>返回合适的状态码</h3><p>为每一次的响应返回合适的HTTP状态码。 好的响应应该使用如下的状态码:</p>
 <ul>
-<li>两边只要有一个是字符串，那么+就是字符串拼接功能</li>
-<li>两边如果都是数字，那么就是算术功能。</li>
+<li><code>200</code>: <code>GET</code>请求成功，及<code>DELETE</code>或<code>PATCH</code>同步请求完成，或者<code>PUT</code>同步更新一个已存在的资源</li>
+<li><code>201</code>: <code>POST</code> 同步请求完成，或者<code>PUT</code>同步创建一个新的资源</li>
+<li><code>202</code>: <code>POST</code>，<code>PUT</code>，<code>DELETE</code>，或<code>PATCH</code>请求接收，将被异步处理</li>
+<li><code>206</code>: <code>GET</code> 请求成功，但是只返回一部分，参考：<a href="">上文中范围分页</a></li>
 </ul>
-<h2 id="boolean类型"><a href="#boolean类型" class="headerlink" title="boolean类型"></a>boolean类型</h2><p>boolean类型只有两个字面量，true和false，区分大小写。</p>
-<p>所有类型的值都可以转化成true或者false</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="literal">NaN</span>、<span class="string">""</span>、<span class="literal">undefined</span>、<span class="literal">null</span>、<span class="literal">false</span>、<span class="number">0</span>  这<span class="number">6</span>个值可以转换成<span class="literal">false</span>，其余的都是<span class="literal">true</span>。</div></pre></td></tr></table></figure>
-<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/11.jpg" alt=""></p>
-<h2 id="undefined类型与null类型"><a href="#undefined类型与null类型" class="headerlink" title="undefined类型与null类型"></a>undefined类型与null类型</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="literal">undefined</span>表示一个声明了没有赋值的变量</div><div class="line"><span class="literal">null</span>表示一个空的对象。</div><div class="line"></div><div class="line"><span class="literal">undefined</span>派生自<span class="literal">null</span>。</div><div class="line"><span class="literal">undefined</span> == <span class="literal">null</span>  ：<span class="literal">true</span></div><div class="line"><span class="literal">undefined</span> === <span class="literal">null</span> ：<span class="literal">false</span></div></pre></td></tr></table></figure>
-<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><p>如何使用谷歌浏览器，快速的查看数据类型？</p>
-<p>字符串的颜色是黑色的，数值类型是蓝色的，布尔类型也是蓝色的，undefined和null是灰色的，这个在调试过程中时非常有用的。</p>
-<h2 id="转换成字符串类型"><a href="#转换成字符串类型" class="headerlink" title="转换成字符串类型"></a>转换成字符串类型</h2><ol>
-<li>toString()</li>
-<li>String()</li>
-<li>/+ “”</li>
-</ol>
-<h2 id="转换成数值类型"><a href="#转换成数值类型" class="headerlink" title="转换成数值类型"></a>转换成数值类型</h2><ol>
-<li>Number()</li>
-<li>parseInt</li>
-<li>parseFloat</li>
-<li>+num, -0等运算</li>
-</ol>
-<h2 id="转换成布尔类型"><a href="#转换成布尔类型" class="headerlink" title="转换成布尔类型"></a>转换成布尔类型</h2><pre><code>学习目标：
-    1 转换成字符串类型
-    2 转换成数值类型
-    3 转换成布尔类型
-</code></pre><ol>
-<li>Boolean</li>
-<li>!!</li>
-</ol>
+<p>使用身份认证（authentication）和授权（authorization）错误码时需要注意：</p>
+<ul>
+<li><code>401 Unauthorized</code>: 用户未认证，请求失败</li>
+<li><code>403 Forbidden</code>: 用户无权限访问该资源，请求失败</li>
+</ul>
+<p>当用户请求错误时，提供合适的状态码可以提供额外的信息：</p>
+<ul>
+<li><code>422 Unprocessable Entity</code>: 请求被服务器正确解析，但是包含无效字段</li>
+<li><code>429 Too Many Requests</code>: 因为访问频繁，你已经被限制访问，稍后重试</li>
+<li><code>500 Internal Server Error</code>: 服务器错误，确认状态并报告问题</li>
+</ul>
+<p>对于用户错误和服务器错误情况状态码，参考： <a href="https://tools.ietf.org/html/rfc7231#section-6" target="_blank" rel="external">HTTP response code spec</a></p>
+<h3 id="提供全部可用的资源"><a href="#提供全部可用的资源" class="headerlink" title="提供全部可用的资源"></a>提供全部可用的资源</h3><p>提供全部可显现的资源 (例如： 这个对象的所有属性) ，当响应码为200或是201时返回所有可用资源，包含 <code>PUT</code>/<code>PATCH</code> 和 <code>DELETE</code><br>请求，例如:</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ curl -X <span class="keyword">DELETE</span> \</div><div class="line">  https:<span class="comment">//service.com/apps/1f9b/domains/0fd4</span></div><div class="line"></div><div class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</div><div class="line">Content-<span class="built_in">Type</span>: application/json;charset=utf<span class="number">-8</span></div><div class="line">...</div><div class="line">&#123;</div><div class="line">  <span class="string">"created_at"</span>: <span class="string">"2012-01-01T12:00:00Z"</span>,</div><div class="line">  <span class="string">"hostname"</span>: <span class="string">"subdomain.example.com"</span>,</div><div class="line">  <span class="string">"id"</span>: <span class="string">"01234567-89ab-cdef-0123-456789abcdef"</span>,</div><div class="line">  <span class="string">"updated_at"</span>: <span class="string">"2012-01-01T12:00:00Z"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当请求状态码为202时，不返回所有可用资源，例如：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ curl -X DELETE \</div><div class="line">  <span class="symbol">https:</span>/<span class="regexp">/service.com/apps</span><span class="regexp">/1f9b/dynos</span><span class="regexp">/05bd</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">HTTP/</span><span class="number">1.1</span> <span class="number">202</span> Accepted</div><div class="line">Content-<span class="symbol">Type:</span> application/json;charset=utf-<span class="number">8</span></div><div class="line">...</div><div class="line">&#123;&#125;</div></pre></td></tr></table></figure>
+<h3 id="在请求的body体使用JSON格式数据"><a href="#在请求的body体使用JSON格式数据" class="headerlink" title="在请求的body体使用JSON格式数据"></a>在请求的body体使用JSON格式数据</h3><p>在 <code>PUT</code>/<code>PATCH</code>/<code>POST</code> 请求的正文（request bodies）中使用JSON格式数据，而不是使用 form 表单形式的数据。这与我们使用JSON格式返回请求相对应，例如:</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ curl -X POST https:<span class="string">//service.com/apps</span> \</div><div class="line">    -H <span class="string">"Content-Type: application/json"</span> \</div><div class="line">    -d '&#123;<span class="string">"name"</span>: <span class="string">"demoapp"</span>&#125;'</div><div class="line"></div><div class="line">&#123;</div><div class="line">  <span class="string">"id"</span>: <span class="string">"01234567-89ab-cdef-0123-456789abcdef"</span>,</div><div class="line">  <span class="string">"name"</span>: <span class="string">"demoapp"</span>,</div><div class="line">  <span class="string">"owner"</span>: &#123;</div><div class="line">    <span class="string">"email"</span>: <span class="string">"username@example.com"</span>,</div><div class="line">    <span class="string">"id"</span>: <span class="string">"01234567-89ab-cdef-0123-456789abcdef"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用统一的资源路径格式"><a href="#使用统一的资源路径格式" class="headerlink" title="使用统一的资源路径格式"></a>使用统一的资源路径格式</h3><h4 id="资源名（Resource-names）"><a href="#资源名（Resource-names）" class="headerlink" title="资源名（Resource names）"></a>资源名（Resource names）</h4><p>使用复数形式为资源命名，除非这个资源在系统中是单例的 (例如，在大多数系统中，给定的用户帐户只有一个)。 这种方式保持了特定资源的统一性。</p>
+<h4 id="行为（Actions）"><a href="#行为（Actions）" class="headerlink" title="行为（Actions）"></a>行为（Actions）</h4><p>好的末尾不需要为资源指定特殊的行为，但在特殊情况下，为某些资源指定行为却是必要的。为了描述清楚，在行为前加上一个标准的<code>actions</code>：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/resources/<span class="symbol">:resource/actions/</span><span class="symbol">:action</span></div></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/runs/</span>&#123;run_id&#125;<span class="regexp">/actions/</span>stop</div></pre></td></tr></table></figure>
+<h3 id="路径和属性要小写"><a href="#路径和属性要小写" class="headerlink" title="路径和属性要小写"></a>路径和属性要小写</h3><p>为了和域名命名规则保持一致，使用小写字母并用<code>-</code>分割路径名字，例如：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service-api.com/users</div><div class="line">service-api.com/app-setups</div></pre></td></tr></table></figure>
+<p>属性也使用小写字母，但是属性名要用下划线<code>_</code>分割，以便在Javascript中省略引号。 例如：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">service_class:</span> <span class="string">"first"</span></div></pre></td></tr></table></figure>
+<h3 id="支持方便的无id间接引用"><a href="#支持方便的无id间接引用" class="headerlink" title="支持方便的无id间接引用"></a>支持方便的无id间接引用</h3><p>在某些情况下，让用户提供ID去定位资源是不方便的。例如，一个用户想取得他在Heroku平台app信息，但是这个app的唯一标识是UUID。这种情况下，你应该支持接口通过名字和ID都能访问，例如:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ curl https:<span class="regexp">//</span>service.com<span class="regexp">/apps/</span>&#123;app_id_or_name&#125;</div><div class="line">$ curl https:<span class="regexp">//</span>service.com<span class="regexp">/apps/</span><span class="number">97</span>addcf0-c182</div><div class="line">$ curl https:<span class="regexp">//</span>service.com<span class="regexp">/apps/</span>www-prod</div></pre></td></tr></table></figure>
+<p>不要只接受使用名字而放弃了使用id。</p>
+<h3 id="最小化路径嵌套"><a href="#最小化路径嵌套" class="headerlink" title="最小化路径嵌套"></a>最小化路径嵌套</h3><p>在一些有父路径/子路径嵌套关系的资源数据模块中，路径可能有非常深的嵌套关系，例如:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/orgs/</span>&#123;org_id&#125;<span class="regexp">/apps/</span>&#123;app_id&#125;<span class="regexp">/dynos/</span>&#123;dyno_id&#125;</div></pre></td></tr></table></figure>
+<p>推荐在根(root)路径下指定资源来限制路径的嵌套深度。使用嵌套指定范围的资源。在上述例子中，dyno属于app，app属于org可以表示为：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="string">/orgs/</span>&#123;org_id&#125;</div><div class="line"><span class="string">/orgs/</span>&#123;org_id&#125;<span class="string">/apps</span></div><div class="line"><span class="string">/apps/</span>&#123;app_id&#125;</div><div class="line"><span class="string">/apps/</span>&#123;app_id&#125;<span class="string">/dynos</span></div><div class="line"><span class="string">/dynos/</span>&#123;dyno_id&#125;</div></pre></td></tr></table></figure>
+<h2 id="HTTP-API-设计指南（响应部分）"><a href="#HTTP-API-设计指南（响应部分）" class="headerlink" title="HTTP API 设计指南（响应部分）"></a>HTTP API 设计指南（响应部分）</h2><h3 id="前言-1"><a href="#前言-1" class="headerlink" title="前言"></a>前言</h3><p>这篇指南介绍描述了 HTTP+JSON API 的一种设计模式，最初摘录整理自 Heroku 平台的 API 设计指引 <a href="https://devcenter.heroku.com/articles/platform-api-reference" target="_blank" rel="external">Heroku 平台 API 指引</a>。</p>
+<p>这篇指南除了详细介绍现有的 API 外，Heroku 将来新加入的内部 API 也会符合这种设计模式，我们希望非 Heroku 员工的API设计者也能感兴趣。</p>
+<p>我们的目标是保持一致性，专注业务逻辑同时避免过度设计。我们一直试图找出一种良好的、一致的、显而易见的 API 设计方法，而并不是所谓的”最终/理想模式”。</p>
+<p>我们假设你熟悉基本的 HTTP+JSON API 设计方法，所以本篇指南并不包含所有的 API 设计基础。</p>
+<p>我们欢迎你为这篇指南做<a href="https://github.com/interagent/http-api-design/blob/master/CONTRIBUTING.md" target="_blank" rel="external">贡献</a>。</p>
+<hr>
+<h3 id="提供资源的-UU-ID"><a href="#提供资源的-UU-ID" class="headerlink" title="提供资源的(UU)ID"></a>提供资源的(UU)ID</h3><p>在默认情况给每一个资源一个<code>id</code>属性。除非有更好的理由，否则请使用UUID。不要使用那种在服务器上或是资源中不是全局唯一的标识，尤其是自动增长的id。</p>
+<p>生成小写的UUID格式 <code>8-4-4-4-12</code>，例如：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"id": "01234567<span class="string">-89</span>ab-cdef<span class="string">-0123</span><span class="string">-456789</span>abcdef"</div></pre></td></tr></table></figure>
+<h3 id="提供标准的时间戳"><a href="#提供标准的时间戳" class="headerlink" title="提供标准的时间戳"></a>提供标准的时间戳</h3><p>为资源提供默认的创建时间 <code>created_at</code> 和更新时间 <code>updated_at</code>，例如:</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  ...</div><div class="line">  <span class="string">"created_at"</span>: <span class="string">"2012-01-01T12:00:00Z"</span>,</div><div class="line">  <span class="string">"updated_at"</span>: <span class="string">"2012-01-01T13:00:00Z"</span>,</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>有些资源不需要使用时间戳那么就忽略这两个字段。</p>
+<h3 id="使用UTC（世界标准时间）时间，用ISO8601进行格式化"><a href="#使用UTC（世界标准时间）时间，用ISO8601进行格式化" class="headerlink" title="使用UTC（世界标准时间）时间，用ISO8601进行格式化"></a>使用UTC（世界标准时间）时间，用ISO8601进行格式化</h3><p>在接收和返回时都只使用UTC格式。ISO8601格式的数据，例如:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"<span class="selector-tag">finished_at</span>": "2012<span class="selector-tag">-01-01T12</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:00Z"</span></div></pre></td></tr></table></figure>
+<h3 id="嵌套外键关系"><a href="#嵌套外键关系" class="headerlink" title="嵌套外键关系"></a>嵌套外键关系</h3><p>使用嵌套对象序列化外键关联，例如:</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"service-production"</span>,</div><div class="line">  <span class="string">"owner"</span>: &#123;</div><div class="line">    <span class="string">"id"</span>: <span class="string">"5d8201b0..."</span></div><div class="line">  &#125;,</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而不是像这样:</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"service-production"</span>,</div><div class="line">  <span class="string">"owner_id"</span>: <span class="string">"5d8201b0..."</span>,</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种方式尽可能的把相关联的资源信息内联在一起，而不用改变资源的结构，或者引入更多的字段，例如:</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"service-production"</span>,</div><div class="line">  <span class="string">"owner"</span>: &#123;</div><div class="line">    <span class="string">"id"</span>: <span class="string">"5d8201b0..."</span>,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"Alice"</span>,</div><div class="line">    <span class="string">"email"</span>: <span class="string">"alice@heroku.com"</span></div><div class="line">  &#125;,</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="生成结构化的错误"><a href="#生成结构化的错误" class="headerlink" title="生成结构化的错误"></a>生成结构化的错误</h3><p>响应错误的时，生成统一的、结构化的错误信息。包含一个机器可读的错误 <code>id</code>，一个人类能识别的错误信息（<code>message</code>），根据情况可以添加一个<code>url</code>来告诉客户端关于这个错误的更多信息以及如何去解决它，例如:</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 <span class="number">429</span> Too Many Requests</div></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"id"</span>:      <span class="string">"rate_limit"</span>,</div><div class="line">  <span class="attr">"message"</span>: <span class="string">"Account reached its API rate limit."</span>,</div><div class="line">  <span class="attr">"url"</span>:     <span class="string">"https://docs.service.com/rate-limits"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>文档化客户端可能遇到的错误信息格式，以及这些可能的错误信息<code>id</code>。</p>
+<h3 id="显示频率限制状态"><a href="#显示频率限制状态" class="headerlink" title="显示频率限制状态"></a>显示频率限制状态</h3><p>客户端的访问速度限制可以维护服务器的良好状态，保证为其他客户端请求提供高性的服务。你可以使用<a href="http://en.wikipedia.org/wiki/Token_bucket" target="_blank" rel="external">token bucket algorithm</a>技术量化请求限制。</p>
+<p>为每一个带有<code>RateLimit-Remaining</code>响应头的请求，返回预留的请求tokens。</p>
+<h3 id="保证响应JSON最小化"><a href="#保证响应JSON最小化" class="headerlink" title="保证响应JSON最小化"></a>保证响应JSON最小化</h3><p>请求中多余的空格会增加响应大小，而且现在很多的HTTP客户端都会自己输出可读格式（”prettify”）的JSON。所以最好保证响应JSON最小化，例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"beta"</span>:<span class="literal">false</span>,<span class="attr">"email"</span>:<span class="string">"alice@heroku.com"</span>,<span class="attr">"id"</span>:<span class="string">"01234567-89ab-cdef-0123-456789abcdef"</span>,<span class="attr">"last_login"</span>:<span class="string">"2012-01-01T12:00:00Z"</span>,<span class="attr">"created_at"</span>:<span class="string">"2012-01-01T12:00:00Z"</span>,<span class="attr">"updated_at"</span>:<span class="string">"2012-01-01T12:00:00Z"</span>&#125;</div></pre></td></tr></table></figure>
+<p>而不是这样：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"beta"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="attr">"email"</span>: <span class="string">"alice@heroku.com"</span>,</div><div class="line">  <span class="attr">"id"</span>: <span class="string">"01234567-89ab-cdef-0123-456789abcdef"</span>,</div><div class="line">  <span class="attr">"last_login"</span>: <span class="string">"2012-01-01T12:00:00Z"</span>,</div><div class="line">  <span class="attr">"created_at"</span>: <span class="string">"2012-01-01T12:00:00Z"</span>,</div><div class="line">  <span class="attr">"updated_at"</span>: <span class="string">"2012-01-01T12:00:00Z"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你可以提供可选的方式为客户端提供更详细可读的响应，使用查询参数（例如：<code>?pretty=true</code>）或者通过<code>Accept</code>头信息参数（例如：<code>Accept: application/vnd.heroku+json; version=3; indent=4;</code>）</p>
+<h2 id="HTTP-API-设计指南（结尾）"><a href="#HTTP-API-设计指南（结尾）" class="headerlink" title="HTTP API 设计指南（结尾）"></a>HTTP API 设计指南（结尾）</h2><h3 id="前言-2"><a href="#前言-2" class="headerlink" title="前言"></a>前言</h3><p>这篇指南介绍描述了 HTTP+JSON API 的一种设计模式，最初摘录整理自 Heroku 平台的 API 设计指引 Heroku 平台 API 指引。</p>
+<p>这篇指南除了详细介绍现有的 API 外，Heroku 将来新加入的内部 API 也会符合这种设计模式，我们希望非 Heroku 员工的API设计者也能感兴趣。</p>
+<p>我们的目标是保持一致性，专注业务逻辑同时避免过度设计。我们一直试图找出一种良好的、一致的、显而易见的 API 设计方法，而并不是所谓的”最终/理想模式”。</p>
+<p>我们假设你熟悉基本的 HTTP+JSON API 设计方法，所以本篇指南并不包含所有的 API 设计基础。</p>
+<p>我们欢迎你为这篇指南做贡献。</p>
+<h3 id="提供机器可读的JSON模式"><a href="#提供机器可读的JSON模式" class="headerlink" title="提供机器可读的JSON模式"></a>提供机器可读的JSON模式</h3><p>提供一个机器可读的模式来恰当的表现你的API。使用<br>prmd管理你的模式，并且确保用prmd verify验证是有效的。</p>
+<h3 id="提供人类可读的文档"><a href="#提供人类可读的文档" class="headerlink" title="提供人类可读的文档"></a>提供人类可读的文档</h3><p>提供人类可读的文档让客户端开发人员可以理解你的API。</p>
+<p>如果你用prmd创建了一个概要并且按上述要求描述，你可以为所有节点很容易的使用prmd doc生成Markdown文档。</p>
+<p>除了节点信息，提供一个API概述信息:</p>
+<p>验证授权，包含如何取得和如何使用token。<br>API稳定及版本管理，包含如何选择所需要的版本。<br>一般情况下的请求和响应的头信息。<br>错误的序列化格式。<br>不同编程语言客户端使用API的例子。</p>
+<h3 id="提供可执行的例子"><a href="#提供可执行的例子" class="headerlink" title="提供可执行的例子"></a>提供可执行的例子</h3><p>提供可执行的示例让用户可以直接在终端里面看到API的调用情况，最大程度的让这些示例可以简单的使用，以减少用户尝试使用API的工作量。例如:</p>
+<p>$ export TOKEN=… # acquire from dashboard<br>$ curl -is <a href="https://$TOKEN@service.com/users" target="_blank" rel="external">https://$TOKEN@service.com/users</a><br>如果你使用prmd生成Markdown文档，每个节点都会自动获取一些示例。</p>
+<h3 id="描述稳定性"><a href="#描述稳定性" class="headerlink" title="描述稳定性"></a>描述稳定性</h3><p>描述您的API的稳定性或是它在各种各样节点环境中的完备性和稳定性，例如：加上 原型版（prototype）/开发版（development）/产品版（production）等标记。</p>
+<p>更多关于可能的稳定性和改变管理的方式，查看 Heroku API compatibility policy</p>
+<p>一旦你的API宣布产品正式版本及稳定版本时，不要在当前API版本中做一些不兼容的改变。如果你需要，请创建一个新的版本的API。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;JS前置知识&quot;&gt;&lt;a href=&quot;#JS前置知识&quot; class=&quot;headerlink&quot; title=&quot;JS前置知识&quot;&gt;&lt;/a&gt;JS前置知识&lt;/h1&gt;&lt;h2 id=&quot;浏览器以及网站相关介绍&quot;&gt;&lt;a href=&quot;#浏览器以及网站相关介绍&quot; class=&quot;header
+      &lt;h2 id=&quot;HTTP-API-设计指南（基础部分）&quot;&gt;&lt;a href=&quot;#HTTP-API-设计指南（基础部分）&quot; class=&quot;headerlink&quot; title=&quot;HTTP API 设计指南（基础部分）&quot;&gt;&lt;/a&gt;HTTP API 设计指南（基础部分）&lt;/h2&gt;&lt;h3 i
     
     </summary>
     
@@ -237,8 +139,8 @@ Vim gvim
   
   <entry>
     <title>Canvas实现的刮刮乐效果</title>
-    <link href="http://yoursite.com/2017/03/10/Canvas%E5%AE%9E%E7%8E%B0%E5%88%AE%E5%88%AE%E4%B9%90%E6%95%88%E6%9E%9C/"/>
-    <id>http://yoursite.com/2017/03/10/Canvas实现刮刮乐效果/</id>
+    <link href="http://sunfeat.com/2017/03/10/Canvas%E5%AE%9E%E7%8E%B0%E5%88%AE%E5%88%AE%E4%B9%90%E6%95%88%E6%9E%9C/"/>
+    <id>http://sunfeat.com/2017/03/10/Canvas实现刮刮乐效果/</id>
     <published>2017-03-10T05:23:00.000Z</published>
     <updated>2017-09-01T12:46:31.066Z</updated>
     
@@ -264,19 +166,19 @@ Vim gvim
     
     </summary>
     
-      <category term="canvas" scheme="http://yoursite.com/categories/canvas/"/>
+      <category term="canvas" scheme="http://sunfeat.com/categories/canvas/"/>
     
     
-      <category term="canvas" scheme="http://yoursite.com/tags/canvas/"/>
+      <category term="canvas" scheme="http://sunfeat.com/tags/canvas/"/>
     
-      <category term="刮刮乐" scheme="http://yoursite.com/tags/%E5%88%AE%E5%88%AE%E4%B9%90/"/>
+      <category term="刮刮乐" scheme="http://sunfeat.com/tags/%E5%88%AE%E5%88%AE%E4%B9%90/"/>
     
   </entry>
   
   <entry>
     <title>Canvas相关知识</title>
-    <link href="http://yoursite.com/2017/03/10/mycanvas/"/>
-    <id>http://yoursite.com/2017/03/10/mycanvas/</id>
+    <link href="http://sunfeat.com/2017/03/10/mycanvas/"/>
+    <id>http://sunfeat.com/2017/03/10/mycanvas/</id>
     <published>2017-03-10T05:00:00.000Z</published>
     <updated>2017-09-01T12:21:16.880Z</updated>
     
@@ -293,7 +195,7 @@ Vim gvim
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span> <span class="attr">width</span>=<span class="string">"600"</span> <span class="attr">height</span>=<span class="string">"400"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="Canvas坐标系"><a href="#Canvas坐标系" class="headerlink" title="Canvas坐标系"></a>Canvas坐标系</h2><p><img src="http://ou0923swf.bkt.clouddn.com/image/canvas/location.jpg" alt=""></p>
 <h2 id="通过JavaScript来绘制"><a href="#通过JavaScript来绘制" class="headerlink" title="通过JavaScript来绘制"></a>通过JavaScript来绘制</h2><p><img src="http://ou0923swf.bkt.clouddn.com/image/canvas/01.png" alt=""></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">!-</span> 为了效果明显，加了一点样式 <span class="attr">-</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    canvas&#123;</span></div><div class="line"><span class="undefined">        border: 1px solid #ccc;</span></div><div class="line"><span class="undefined">        margin: 0 auto;</span></div><div class="line"><span class="undefined">        display: block;</span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">!-</span> 为了效果明显，加了一点样式 <span class="attr">-</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    canvas&#123;</span></div><div class="line"><span class="css">        <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#ccc</span>;</span></div><div class="line"><span class="undefined">        margin: 0 auto;</span></div><div class="line"><span class="undefined">        display: block;</span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*获取元素*/</span></div><div class="line"><span class="keyword">var</span> myCanvas = <span class="built_in">document</span>.querySelector(<span class="string">'#myCanvas'</span>)</div><div class="line"><span class="comment">/*获取绘图工具（也可以叫做绘制环境）*/</span></div><div class="line"><span class="keyword">var</span> context = myCanvas.getContext(<span class="string">'2d'</span>)</div><div class="line"><span class="comment">/*设置绘图的起始位置*/</span></div><div class="line">context.moveTo(<span class="number">100</span>,<span class="number">100</span>)</div><div class="line"><span class="comment">/*绘制路径*/</span></div><div class="line">context.lineTo(<span class="number">200</span>,<span class="number">200</span>)</div><div class="line"><span class="comment">/*描边*/</span></div><div class="line">context.stroke()</div></pre></td></tr></table></figure>
 <h2 id="Canvas的基本使用"><a href="#Canvas的基本使用" class="headerlink" title="Canvas的基本使用"></a>Canvas的基本使用</h2><h3 id="图形绘制"><a href="#图形绘制" class="headerlink" title="图形绘制"></a>图形绘制</h3><p>需要理解些概念：  </p>
 <ul>
@@ -490,17 +392,17 @@ Vim gvim
     
     </summary>
     
-      <category term="canvas" scheme="http://yoursite.com/categories/canvas/"/>
+      <category term="canvas" scheme="http://sunfeat.com/categories/canvas/"/>
     
     
-      <category term="canvas" scheme="http://yoursite.com/tags/canvas/"/>
+      <category term="canvas" scheme="http://sunfeat.com/tags/canvas/"/>
     
   </entry>
   
   <entry>
     <title>JavaScript Standard Style(JavaScript 标准编码风格)</title>
-    <link href="http://yoursite.com/2017/01/20/JavaScript+Standard+Style(JavaScript+%E6%A0%87%E5%87%86%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC)/"/>
-    <id>http://yoursite.com/2017/01/20/JavaScript+Standard+Style(JavaScript+标准编码风格)/</id>
+    <link href="http://sunfeat.com/2017/01/20/JavaScript+Standard+Style(JavaScript+%E6%A0%87%E5%87%86%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC)/"/>
+    <id>http://sunfeat.com/2017/01/20/JavaScript+Standard+Style(JavaScript+标准编码风格)/</id>
     <published>2017-01-20T05:00:00.000Z</published>
     <updated>2017-09-01T11:21:05.040Z</updated>
     
@@ -585,17 +487,80 @@ Vim gvim
     
     </summary>
     
-      <category term="标准编码风格" scheme="http://yoursite.com/categories/%E6%A0%87%E5%87%86%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC/"/>
+      <category term="标准编码风格" scheme="http://sunfeat.com/categories/%E6%A0%87%E5%87%86%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC/"/>
     
     
-      <category term="标准编码风格" scheme="http://yoursite.com/tags/%E6%A0%87%E5%87%86%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC/"/>
+      <category term="标准编码风格" scheme="http://sunfeat.com/tags/%E6%A0%87%E5%87%86%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>字符串的常用方法</title>
+    <link href="http://sunfeat.com/2017/01/10/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/"/>
+    <id>http://sunfeat.com/2017/01/10/字符串的常用方法/</id>
+    <published>2017-01-10T05:11:00.000Z</published>
+    <updated>2017-09-06T13:26:09.995Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="字符串slice-截取方法-不会改变原字符串，返回新字符串"><a href="#字符串slice-截取方法-不会改变原字符串，返回新字符串" class="headerlink" title="字符串slice()截取方法(不会改变原字符串，返回新字符串)"></a>字符串slice()截取方法(不会改变原字符串，返回新字符串)</h3><blockquote>
+<p>字符串slice截取方法  MDN这样说  slice() 方法提取字符串中的一部分，并返回这个新的字符串。</p>
+</blockquote>
+<h4 id="写法1"><a href="#写法1" class="headerlink" title="写法1"></a>写法1</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'The morning is upon us.'</span>;</div><div class="line"><span class="built_in">console</span>.log(str.slice(<span class="number">2</span>,<span class="number">5</span>));  <span class="comment">//returns 'e m' 表示从索引第2个字符开始，截取到索引为5的字符包含2，不包含5;[2，5);</span></div></pre></td></tr></table></figure>
+<h4 id="写法2"><a href="#写法2" class="headerlink" title="写法2"></a>写法2</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str1 = <span class="string">'The morning is upon us.'</span>;</div><div class="line"><span class="keyword">var</span> str2 = str1.slice(<span class="number">4</span>,<span class="number">-1</span>);  <span class="comment">//[4,-1) 表示从索引第4个字符开始，截取到最后一个字符 包含4，不包含-1;</span></div><div class="line"><span class="built_in">console</span>.log(str2);  <span class="comment">//morning is upon us;</span></div></pre></td></tr></table></figure>
+<h4 id="写法3"><a href="#写法3" class="headerlink" title="写法3"></a>写法3</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str3 = <span class="string">'The morning is upon us.'</span>;</div><div class="line">str3.slice(<span class="number">-3</span>);     <span class="comment">// returns 'us.' 表示字符串从右往左数第三个字符截取到最后</span></div><div class="line">str3.slice(<span class="number">-3</span>, <span class="number">-1</span>); <span class="comment">// returns 'us'   表示字符串从右往左数第三个字符截取到最后一个字符 [3,-1);</span></div><div class="line">str3.slice(<span class="number">0</span>, <span class="number">-1</span>);  <span class="comment">// returns 'The morning is upon us' [0，-1)</span></div></pre></td></tr></table></figure>
+<h4 id="写法4"><a href="#写法4" class="headerlink" title="写法4"></a>写法4</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str4 = <span class="string">'The morning is upon us.'</span>;</div><div class="line">str4.slice(<span class="number">5</span>, <span class="number">6</span>); <span class="comment">//returns 'o'</span></div><div class="line"><span class="built_in">console</span>.log(str4.slice(<span class="number">5</span>, <span class="number">2</span>) === <span class="string">''</span>);<span class="comment">// true 返回空字符串</span></div></pre></td></tr></table></figure>
+<h3 id="字符串substr-方法-不会改变原字符串，返回新字符串"><a href="#字符串substr-方法-不会改变原字符串，返回新字符串" class="headerlink" title="字符串substr()方法(不会改变原字符串，返回新字符串)"></a>字符串substr()方法(不会改变原字符串，返回新字符串)</h3><blockquote>
+<p>字符串substr方法 MDN这样说  substr() 方法返回字符串中从指定位置开始到指定长度的子字符串</p>
+</blockquote>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">语法str.substr(<span class="built_in">start</span>[, <span class="built_in">length</span>])</div><div class="line">参数<span class="built_in">start</span></div><div class="line">开始提取字符的位置。如果为负值，则被看作 strLength + <span class="built_in">start</span>，其中 strLength 为字符串的长度（例如，如果 <span class="built_in">start</span> 为 <span class="number">-3</span>，则被看作 strLength<span class="number">-3</span>）。</div><div class="line">参数<span class="built_in">length</span></div><div class="line">可选。提取的字符数。不填则默认截取到最后一个字符。</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sstr1 = <span class="string">"abcdefghij"</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"(1,2): "</span>    + sstr1.substr(<span class="number">1</span>,<span class="number">2</span>));   <span class="comment">// (1,2): "bc"  表示从索引为1开始 截取2个字符</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"(-3,2): "</span>   + sstr1.substr(<span class="number">-3</span>,<span class="number">2</span>));  <span class="comment">// (-3,2): hi   表示从右往左数第三个开始截取 截取2个字符  （MDN说 如果 start 为 -3，则被看作 strLength-3）10-3=7 从索引为7的字符截取2个</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"(-3): "</span>     + sstr1.substr(<span class="number">-3</span>));    <span class="comment">// (-3): hij    表示从右往左数第三个开始截取 截取到最后</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"(1): "</span>      + sstr1.substr(<span class="number">1</span>));     <span class="comment">// (1): bcdefghij  表示从索引为1的数字开始 截取到最后</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"(-10,2): "</span>      + sstr1.substr(<span class="number">-10</span>,<span class="number">2</span>));     <span class="comment">// (1): ab  表示从索引为0的数字开始 截取到2个</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"(-21, 2): "</span> + sstr1.substr(<span class="number">-21</span>,<span class="number">2</span>)); <span class="comment">// (-21, 2): ab  如果 start 为负值且 abs(start) 大于字符串的长度，则 substr 使用 0 作为开始提取的索引。表示从索引为0的位置截取2个字符</span></div><div class="line"></div><div class="line"><span class="comment">//注 字符串substr方法  str.substr(start[, length])  不支持负的 start 索引  有兼容问题 解决兼容问题见MDN</span></div></pre></td></tr></table></figure>
+<h3 id="字符串substring-方法-不改变原字符串，返回新字符串"><a href="#字符串substring-方法-不改变原字符串，返回新字符串" class="headerlink" title="字符串substring()方法(不改变原字符串，返回新字符串)"></a>字符串substring()方法(不改变原字符串，返回新字符串)</h3><blockquote>
+<p>字符串substring()方法  返回字符串两个索引之间（或到字符串末尾）的子串。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">语法 <span class="selector-tag">str</span><span class="selector-class">.substring</span>(<span class="selector-tag">indexStart</span><span class="selector-attr">[, indexEnd]</span>)</div><div class="line">参数<span class="selector-tag">indexStart</span>  </div><div class="line">一个 0 到字符串长度之间的整数。</div><div class="line"><span class="selector-tag">indexEnd</span></div><div class="line">可选。一个 0 到字符串长度之间的整数。</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> anyString = <span class="string">"Mozilla"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 输出 "Moz"</span></div><div class="line"><span class="built_in">console</span>.log(anyString.substring(<span class="number">0</span>,<span class="number">3</span>)); <span class="comment">//表示从索引为0截取到索引到3的字符串 [0，3）包含索引0 不包含索引3；</span></div><div class="line"><span class="built_in">console</span>.log(anyString.substring(<span class="number">3</span>,<span class="number">0</span>)); <span class="comment">// 如果 indexStart 大于 indexEnd，则 substring 的执行效果就像两个参数调换了一样。 所以输出结果同上；</span></div><div class="line"></div><div class="line"><span class="comment">// 输出 "lla"</span></div><div class="line"><span class="built_in">console</span>.log(anyString.substring(<span class="number">4</span>,<span class="number">7</span>)); <span class="comment">//如果任一参数大于 stringName.length，则被当作 stringName.length。表示从索引为4截取到最后啦。</span></div><div class="line"><span class="built_in">console</span>.log(anyString.substring(<span class="number">7</span>,<span class="number">4</span>)); <span class="comment">// 如果 indexStart 大于 indexEnd，则 substring 的执行效果就像两个参数调换了一样。 所以输出结果同上；</span></div><div class="line"></div><div class="line"><span class="comment">// 输出 "Mozill"</span></div><div class="line"><span class="built_in">console</span>.log(anyString.substring(<span class="number">0</span>,<span class="number">6</span>)); <span class="comment">//[0，6）；</span></div><div class="line"><span class="comment">// 输出 "Mozilla"</span></div><div class="line"><span class="built_in">console</span>.log(anyString.substring(<span class="number">0</span>,<span class="number">7</span>));<span class="comment">//[0，7）</span></div><div class="line"><span class="built_in">console</span>.log(anyString.substring(<span class="number">0</span>,<span class="number">10</span>));<span class="comment">//如果任一参数大于 stringName.length，则被当作 stringName.length。</span></div><div class="line"></div><div class="line"><span class="comment">//注 如果 indexStart 等于 indexEnd，substring 返回一个空字符串。</span></div><div class="line"><span class="comment">// 如果省略 indexEnd，substring 提取字符一直到字符串末尾。</span></div><div class="line"><span class="comment">// 如果任一参数小于 0 或为 NaN，则被当作 0。</span></div><div class="line"><span class="comment">// 如果任一参数大于 stringName.length，则被当作 stringName.length。</span></div></pre></td></tr></table></figure>
+<h3 id="字符串toUpperCase-方法-不改变原字符串，返回新字符串"><a href="#字符串toUpperCase-方法-不改变原字符串，返回新字符串" class="headerlink" title="字符串toUpperCase()方法(不改变原字符串，返回新字符串)"></a>字符串toUpperCase()方法(不改变原字符串，返回新字符串)</h3><blockquote>
+<p>toUpperCase 将调用该方法的字符串值转换为大写形式，并返回。toUpperCase 方法不影响字符串本身的值。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log( <span class="string">"alphabet"</span>.toUpperCase()); <span class="comment">// "ALPHABET"</span></div></pre></td></tr></table></figure>
+<h3 id="字符串toLowerCase-方法-不改变原字符串，返回新字符串"><a href="#字符串toLowerCase-方法-不改变原字符串，返回新字符串" class="headerlink" title="字符串toLowerCase()方法(不改变原字符串，返回新字符串)"></a>字符串toLowerCase()方法(不改变原字符串，返回新字符串)</h3><blockquote>
+<p>字符串toLowerCase() 将调用该方法的字符串值转为小写形式，并返回。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log( <span class="string">"ALPHABET"</span>.toLowerCase() ); <span class="comment">// "alphabet"</span></div></pre></td></tr></table></figure>
+<h3 id="字符串split-方法-不改变原字符串，返回一个新字符串数组"><a href="#字符串split-方法-不改变原字符串，返回一个新字符串数组" class="headerlink" title="字符串split()方法(不改变原字符串，返回一个新字符串数组)"></a>字符串split()方法(不改变原字符串，返回一个新字符串数组)</h3><blockquote>
+<p>split() 方法通过把字符串分割成子字符串来把一个 String 对象分割成一个字符串数组。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">语法str.split([separator][, limit])</div><div class="line">separator  指定用来分割字符串的字符（串）。</div><div class="line">limit</div><div class="line">一个整数，限定返回的分割片段数量。split 方法仍然分割每一个匹配的 separator，但是返回的数组只会截取最多 limit 个元素。</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myString = <span class="string">"Hello World. How are you doing?"</span>;</div><div class="line"><span class="keyword">var</span> splits = myString.split(<span class="string">""</span>); <span class="comment">//如果 separator 是一个空字符串，则 str 将被转换为由字符串中字符组成的一个数组。</span></div><div class="line"><span class="built_in">console</span>.log(splits); <span class="comment">//返回结果["H", "e", "l", "l", "o", " ", "W", "o", "r", "l", "d", ".", " ", "H", "o", "w", " ", "a", "r", "e", " ", "y", "o", "u", " ", "d", "o", "i", "n", "g", "?"]  用心去体会</span></div><div class="line"><span class="built_in">console</span>.log(myString.split()) <span class="comment">// 如果忽略 separator，则返回整个字符串的数组形式。 ["Hello World. How are you doing?"]</span></div><div class="line"><span class="built_in">console</span>.log(myString.split(<span class="string">" "</span>)); <span class="comment">// 当找到一个 seperator 时，separator 会从字符串中被移除，返回存进一个数组当中的子字符串。["Hello", "World.", "How", "are", "you", "doing?"] 说白了separator就是分割元素；</span></div></pre></td></tr></table></figure>
+<h3 id="字符串indexOf-方法-不改变原字符串，返回一个number类型的值"><a href="#字符串indexOf-方法-不改变原字符串，返回一个number类型的值" class="headerlink" title="字符串indexOf() 方法(不改变原字符串，返回一个number类型的值)"></a>字符串indexOf() 方法(不改变原字符串，返回一个number类型的值)</h3><blockquote>
+<p>indexOf() 方法返回指定值在字符串对象中首次出现的位置。从 fromIndex 位置开始查找，如果不存在，则返回 -1。</p>
+</blockquote>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">语法 str.indexOf(searchValue[, fromIndex])</div><div class="line">参数</div><div class="line">searchValue</div><div class="line">一个字符串表示被查找的值。</div><div class="line">fromIndex 可选</div><div class="line">表示调用该方法的字符串中开始查找的位置。可以是任意整数。默认值为 <span class="number">0</span>。如果 fromIndex &lt; <span class="number">0</span> 则查找整个字符串（如同传进了 <span class="number">0</span>）。如果 fromIndex &gt;= str.length，则该方法返回 <span class="number">-1</span>，除非被查找的字符串是一个空字符串，此时返回 str.length。</div><div class="line">描述</div><div class="line">字符串中的字符被从左向右索引。首字符的索引（index）为 <span class="number">0</span>，字符串 stringName 的最后一个字符的索引是 stringName.length - <span class="number">1</span>。</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="string">"Blue Whale"</span>.indexOf(<span class="string">"Blue"</span>);     <span class="comment">// returns  0</span></div><div class="line"><span class="string">"Blue Whale"</span>.indexOf(<span class="string">"Blute"</span>);    <span class="comment">// returns -1</span></div><div class="line"><span class="string">"Blue Whale"</span>.indexOf(<span class="string">"Blute"</span>);    <span class="comment">// returns -1</span></div><div class="line"><span class="string">"Blue Whale"</span>.indexOf(<span class="string">"Whale"</span>, <span class="number">5</span>); <span class="comment">// returns  5</span></div><div class="line"><span class="string">"Blue Whale"</span>.indexOf(<span class="string">""</span>, <span class="number">9</span>);      <span class="comment">// returns  9</span></div><div class="line"><span class="string">"Blue Whale"</span>.indexOf(<span class="string">""</span>, <span class="number">10</span>);     <span class="comment">// returns 10</span></div><div class="line"><span class="string">"Blue Whale"</span>.indexOf(<span class="string">""</span>, <span class="number">11</span>);     <span class="comment">// returns 10</span></div></pre></td></tr></table></figure>
+<h3 id="字符串charAt-方法-不改变原字符串，返回一个字符"><a href="#字符串charAt-方法-不改变原字符串，返回一个字符" class="headerlink" title="字符串charAt()方法(不改变原字符串，返回一个字符)"></a>字符串charAt()方法(不改变原字符串，返回一个字符)</h3><blockquote>
+<p>语法 str.charAt(index)  charAt() 方法返回字符串中指定位置的字符。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> anyString = <span class="string">"Brave new world"</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"The character at index 0   is '"</span> + anyString.charAt(<span class="number">0</span>)   + <span class="string">"'"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"The character at index 1   is '"</span> + anyString.charAt(<span class="number">1</span>)   + <span class="string">"'"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"The character at index 2   is '"</span> + anyString.charAt(<span class="number">2</span>)   + <span class="string">"'"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"The character at index 3   is '"</span> + anyString.charAt(<span class="number">3</span>)   + <span class="string">"'"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"The character at index 4   is '"</span> + anyString.charAt(<span class="number">4</span>)   + <span class="string">"'"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"The character at index 999 is '"</span> + anyString.charAt(<span class="number">999</span>) + <span class="string">"'"</span>);</div><div class="line"></div><div class="line"><span class="comment">//上面代码的输出为：</span></div><div class="line"><span class="comment">//    The character at index 0 is 'B'</span></div><div class="line"><span class="comment">//    The character at index 1 is 'r'</span></div><div class="line"><span class="comment">//    The character at index 2 is 'a'</span></div><div class="line"><span class="comment">//    The character at index 3 is 'v'</span></div><div class="line"><span class="comment">//    The character at index 4 is 'e'</span></div><div class="line"><span class="comment">//    The character at index 999 is ''</span></div></pre></td></tr></table></figure>
+<h2 id="一个简单应用"><a href="#一个简单应用" class="headerlink" title="一个简单应用"></a>一个简单应用</h2><p><strong>已知有字符串foo=“get-element-by-id”,写一个function将其转化成驼峰表示法“getElementById”。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="string">'get-element-by-id'</span></div><div class="line"><span class="built_in">console</span>.log(createCamel(foo))</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createCamel</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> arr = str.split(<span class="string">'-'</span>) </div><div class="line">  <span class="keyword">var</span> str2 = <span class="string">''</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</div><div class="line">    <span class="keyword">if</span> (i) &#123;</div><div class="line">      arr[i] = arr[i].charAt(<span class="number">0</span>).toUpperCase()+arr[i].substring(<span class="number">1</span>)</div><div class="line">    &#125;</div><div class="line">    str2 += arr[i]</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> str2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;字符串slice-截取方法-不会改变原字符串，返回新字符串&quot;&gt;&lt;a href=&quot;#字符串slice-截取方法-不会改变原字符串，返回新字符串&quot; class=&quot;headerlink&quot; title=&quot;字符串slice()截取方法(不会改变原字符串，返回新字符串)&quot;&gt;&lt;
+    
+    </summary>
+    
+      <category term="字符串方法" scheme="http://sunfeat.com/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95/"/>
+    
+    
+      <category term="字符串方法" scheme="http://sunfeat.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>白话原型和原型链</title>
-    <link href="http://yoursite.com/2017/01/10/%E7%99%BD%E8%AF%9D%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
-    <id>http://yoursite.com/2017/01/10/白话原型和原型链/</id>
+    <link href="http://sunfeat.com/2017/01/10/%E7%99%BD%E8%AF%9D%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
+    <id>http://sunfeat.com/2017/01/10/白话原型和原型链/</id>
     <published>2017-01-10T05:00:00.000Z</published>
     <updated>2017-09-02T02:07:37.619Z</updated>
     
@@ -621,21 +586,21 @@ Vim gvim
     
     </summary>
     
-      <category term="原型" scheme="http://yoursite.com/categories/%E5%8E%9F%E5%9E%8B/"/>
+      <category term="原型" scheme="http://sunfeat.com/categories/%E5%8E%9F%E5%9E%8B/"/>
     
     
-      <category term="prototype" scheme="http://yoursite.com/tags/prototype/"/>
+      <category term="prototype" scheme="http://sunfeat.com/tags/prototype/"/>
     
-      <category term="原型链" scheme="http://yoursite.com/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
+      <category term="原型链" scheme="http://sunfeat.com/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
     
-      <category term="原型" scheme="http://yoursite.com/tags/%E5%8E%9F%E5%9E%8B/"/>
+      <category term="原型" scheme="http://sunfeat.com/tags/%E5%8E%9F%E5%9E%8B/"/>
     
   </entry>
   
   <entry>
     <title>JavaScript对字符串进行加密(自定义简单版)</title>
-    <link href="http://yoursite.com/2017/01/10/JavaScript%E5%AF%B9%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E5%8A%A0%E5%AF%86(%E8%87%AA%E5%AE%9A%E4%B9%89%E7%AE%80%E5%8D%95%E7%89%88)/"/>
-    <id>http://yoursite.com/2017/01/10/JavaScript对字符串进行加密(自定义简单版)/</id>
+    <link href="http://sunfeat.com/2017/01/10/JavaScript%E5%AF%B9%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E5%8A%A0%E5%AF%86(%E8%87%AA%E5%AE%9A%E4%B9%89%E7%AE%80%E5%8D%95%E7%89%88)/"/>
+    <id>http://sunfeat.com/2017/01/10/JavaScript对字符串进行加密(自定义简单版)/</id>
     <published>2017-01-10T03:00:00.000Z</published>
     <updated>2017-09-02T02:06:23.305Z</updated>
     
@@ -658,17 +623,293 @@ Vim gvim
     
     </summary>
     
-      <category term="加密" scheme="http://yoursite.com/categories/%E5%8A%A0%E5%AF%86/"/>
+      <category term="加密" scheme="http://sunfeat.com/categories/%E5%8A%A0%E5%AF%86/"/>
     
     
-      <category term="字符串加密" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86/"/>
+      <category term="字符串加密" scheme="http://sunfeat.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用SVG + CSS实现动态霓虹灯文字效果</title>
+    <link href="http://sunfeat.com/2017/01/01/%E4%BD%BF%E7%94%A8SVG%20+%20CSS%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E9%9C%93%E8%99%B9%E7%81%AF%E6%96%87%E5%AD%97%E6%95%88%E6%9E%9C/"/>
+    <id>http://sunfeat.com/2017/01/01/使用SVG + CSS实现动态霓虹灯文字效果/</id>
+    <published>2017-01-01T05:00:00.000Z</published>
+    <updated>2017-09-02T07:25:02.784Z</updated>
+    
+    <content type="html"><![CDATA[<p>早上无意间进入一个网站，看到他们的LOGO效果略屌，如图：</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/nihongdeng%E9%9C%93%E8%99%B9%E7%81%AF%E6%96%87%E5%AD%972.gif" alt="img"></p>
+<a id="more"></a>
+<p>刚开始以为是gif动画之类的，审查元素发现居然是用SVG + CSS3动画实现的，顿时激起了我的(hao)欲(qi)望(xin)，决定要一探究竟，查看代码之后，发现原理居然是如此简单：<strong>多个SVG描边动画使用不同的animation-delay即可！</strong></p>
+<hr>
+<p>对于一个形状SVG元素或文本SVG元素，可以使用stroke-dasharray来控制描边的间隔样式，并且可以用stroke-dashoffset来控制描边的偏移量，借此可以实现描边动画效果，更具体的资料可以看看张大神的《<a href="http://www.zhangxinxu.com/wordpress/2014/04/animateion-line-drawing-svg-path-%E5%8A%A8%E7%94%BB-%E8%B7%AF%E5%BE%84/" target="_blank" rel="external">纯CSS实现帅气的SVG路径描边动画效果</a>》</p>
+<p>我们先实现一个简单的文字描边动画：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"100"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">text-anchor</span>=<span class="string">"middle"</span> <span class="attr">x</span>=<span class="string">"50%"</span> <span class="attr">y</span>=<span class="string">"50%"</span> <span class="attr">class</span>=<span class="string">"text"</span>&gt;</span></div><div class="line">        segmentfault.com</div><div class="line">    <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.text</span>&#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">64px</span>;</div><div class="line">    <span class="attribute">font-weight</span>: bold;</div><div class="line">    <span class="attribute">text-transform</span>: uppercase;</div><div class="line">    <span class="attribute">fill</span>: none;</div><div class="line">    <span class="attribute">stroke</span>: <span class="number">#3498db</span>;</div><div class="line">    <span class="attribute">stroke-width</span>: <span class="number">2px</span>;</div><div class="line">    <span class="attribute">stroke-dasharray</span>: <span class="number">90</span> <span class="number">310</span>;</div><div class="line">    <span class="attribute">animation</span>: stroke <span class="number">6s</span> infinite linear;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">keyframes</span> stroke &#123;</div><div class="line">  100% &#123;</div><div class="line">    <span class="attribute">stroke-dashoffset</span>: -<span class="number">400</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>演示地址：<a href="http://output.jsbin.com/demiculoqe" target="_blank" rel="external">http://output.jsbin.com/demic…</a></p>
+<p>然后我们同时使用多个描边动画，并设置不同的animation-delay：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"100"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">text-anchor</span>=<span class="string">"middle"</span> <span class="attr">x</span>=<span class="string">"50%"</span> <span class="attr">y</span>=<span class="string">"50%"</span> <span class="attr">class</span>=<span class="string">"text text-1"</span>&gt;</span></div><div class="line">        segmentfault.com</div><div class="line">    <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">text-anchor</span>=<span class="string">"middle"</span> <span class="attr">x</span>=<span class="string">"50%"</span> <span class="attr">y</span>=<span class="string">"50%"</span> <span class="attr">class</span>=<span class="string">"text text-2"</span>&gt;</span></div><div class="line">        segmentfault.com</div><div class="line">    <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">text-anchor</span>=<span class="string">"middle"</span> <span class="attr">x</span>=<span class="string">"50%"</span> <span class="attr">y</span>=<span class="string">"50%"</span> <span class="attr">class</span>=<span class="string">"text text-3"</span>&gt;</span></div><div class="line">        segmentfault.com</div><div class="line">    <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">text-anchor</span>=<span class="string">"middle"</span> <span class="attr">x</span>=<span class="string">"50%"</span> <span class="attr">y</span>=<span class="string">"50%"</span> <span class="attr">class</span>=<span class="string">"text text-4"</span>&gt;</span></div><div class="line">        segmentfault.com</div><div class="line">    <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>注意：要使用多少种颜色，就放多少个text</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.text</span>&#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">64px</span>;</div><div class="line">    <span class="attribute">font-weight</span>: bold;</div><div class="line">    <span class="attribute">text-transform</span>: uppercase;</div><div class="line">    <span class="attribute">fill</span>: none;</div><div class="line">    <span class="attribute">stroke-width</span>: <span class="number">2px</span>;</div><div class="line">    <span class="attribute">stroke-dasharray</span>: <span class="number">90</span> <span class="number">310</span>;</div><div class="line">    <span class="attribute">animation</span>: stroke <span class="number">6s</span> infinite linear;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.text-1</span>&#123;</div><div class="line">    <span class="attribute">stroke</span>: <span class="number">#3498db</span>;</div><div class="line">    <span class="attribute">text-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="number">#3498db</span>;</div><div class="line">    <span class="attribute">animation-delay</span>: -<span class="number">1.5s</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.text-2</span>&#123;</div><div class="line">    <span class="attribute">stroke</span>: <span class="number">#f39c12</span>;</div><div class="line">    <span class="attribute">text-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="number">#f39c12</span>;</div><div class="line">    <span class="attribute">animation-delay</span>: -<span class="number">3s</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.text-3</span>&#123;</div><div class="line">    <span class="attribute">stroke</span>: <span class="number">#e74c3c</span>;</div><div class="line">    <span class="attribute">text-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="number">#e74c3c</span>;</div><div class="line">    <span class="attribute">animation-delay</span>: -<span class="number">4.5s</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.text-4</span>&#123;</div><div class="line">    <span class="attribute">stroke</span>: <span class="number">#9b59b6</span>;</div><div class="line">    <span class="attribute">text-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="number">#9b59b6</span>;</div><div class="line">    <span class="attribute">animation-delay</span>: -<span class="number">6s</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">keyframes</span> stroke &#123;</div><div class="line">  100% &#123;</div><div class="line">    <span class="attribute">stroke-dashoffset</span>: -<span class="number">400</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>大功告成，演示地址：<a href="http://output.jsbin.com/vuyuvojiro" target="_blank" rel="external">http://output.jsbin.com/vuyuv…</a></p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/nihongdeng%E9%9C%93%E8%99%B9%E7%81%AF%E6%96%87%E5%AD%97.gif" alt=""></p>
+<p>需要注意的几个点：</p>
+<ol>
+<li>各个元素的animation-delay与animation的总时长的设置要协调</li>
+<li>stroke-dashoffset与stroke-dasharray的设置要协调</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;早上无意间进入一个网站，看到他们的LOGO效果略屌，如图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ou0923swf.bkt.clouddn.com/image/nihongdeng%E9%9C%93%E8%99%B9%E7%81%AF%E6%96%87%E5%AD%972.gif&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="css案例" scheme="http://sunfeat.com/categories/css%E6%A1%88%E4%BE%8B/"/>
+    
+    
+      <category term="霓虹灯效果" scheme="http://sunfeat.com/tags/%E9%9C%93%E8%99%B9%E7%81%AF%E6%95%88%E6%9E%9C/"/>
+    
+      <category term="svg" scheme="http://sunfeat.com/tags/svg/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript基础知识</title>
+    <link href="http://sunfeat.com/2016/06/11/JS%E5%9F%BA%E7%A1%80/"/>
+    <id>http://sunfeat.com/2016/06/11/JS基础/</id>
+    <published>2016-06-11T08:03:00.000Z</published>
+    <updated>2017-09-07T11:00:43.111Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="JS前置知识"><a href="#JS前置知识" class="headerlink" title="JS前置知识"></a>JS前置知识</h1><h2 id="浏览器以及网站相关介绍"><a href="#浏览器以及网站相关介绍" class="headerlink" title="浏览器以及网站相关介绍"></a>浏览器以及网站相关介绍</h2><blockquote>
+<p><strong>浏览器定义</strong>：可以显示网页服务器或者文件系统的HTML文件内容，并让用户与这些文件交互的一种软件</p>
+</blockquote>
+<pre><code>我们常规使用的五大浏览器：chorme，firefox，IE，Safari以及Oprea
+从内核来看：有webkit，gecko，trident，presto
+
+1、Trident内核代表产品Internet Explorer，又称其为IE内核。Trident（又称为MSHTML），是微软开发的
+一种排版引擎。使用Trident渲染引擎的浏览器包括：IE、傲游、世界之窗浏览器、Avant、腾讯TT、Netscape 
+8、NetCaptor、Sleipnir、GOSURF、GreenBrowser和KKman等。
+2、Gecko内核代表作品Mozilla FirefoxGecko是一套开放源代码的、以C++编写的网页排版引擎。Gecko是最
+流行的排版引擎之一，仅次于Trident。使用它的最著名浏览器有Firefox、Netscape6至9。
+3、WebKit内核代表作品Safari、Chromewebkit 是一个开源项目，包含了来自KDE项目和苹果公司的一些组件
+，主要用于Mac OS系统，它的特点在于源码结构清晰、渲染速度极快。缺点是对网页代码的兼容性不高，导致一
+些编写不标准的网页无法正常显示。主要代表作品有Safari和Google的浏览器Chrome。
+4、Presto内核代表作品OperaPresto是由Opera Software开发的浏览器排版引擎，供Opera 7.0及以上使用。
+它取代了旧版Opera 4至6版本使用的Elektra排版引擎，包括加入动态功能，例如网页或其部分可随着DOM及
+Script语法的事件而重新排版。
+</code></pre><p><a href="http://www.cnblogs.com/vajoy/p/3735553.html" target="_blank" rel="external">各主流浏览器内核介绍</a></p>
+<p><a href="http://blog.csdn.net/ofsno/article/details/51164575" target="_blank" rel="external">了解四大主流浏览器内核</a></p>
+<p><a href="http://www.cnblogs.com/zichi/p/5116764.html" target="_blank" rel="external">主流浏览器内核介绍</a></p>
+<h3 id="1浏览器工作原理的介绍"><a href="#1浏览器工作原理的介绍" class="headerlink" title="1浏览器工作原理的介绍"></a>1浏览器工作原理的介绍</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/01.jpg01.jpg" alt=""><br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">说明：</div><div class="line">    1、User<span class="built_in"> Interface </span> 用户界面，我们所看到的浏览器</div><div class="line">    2、Browser engine  浏览器引擎，用来查询和操作渲染引擎</div><div class="line">    3、Rendering engine 用来显示请求的内容，负责解析HTML、CSS</div><div class="line">    4、Networking   网络，负责发送网络请求</div><div class="line">    5、JavaScript Interpreter(解析者)   JavaScript解析器，负责执行JavaScript的代码</div><div class="line">    6、UI Backend   UI后端，用来绘制类似组合框和弹出窗口</div><div class="line">    7、Data Persistence(持久化)  数据持久化，数据存储  cookie、HTML5中的sessionStorage</div></pre></td></tr></table></figure></p>
+<h3 id="2网站工作原理的简单介绍"><a href="#2网站工作原理的简单介绍" class="headerlink" title="2网站工作原理的简单介绍"></a>2网站工作原理的简单介绍</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/03.jpg03.jpg" alt=""></p>
+<h2 id="为什么要有js？"><a href="#为什么要有js？" class="headerlink" title="为什么要有js？"></a>为什么要有js？</h2><pre><code>js设计的最初目的
+    - 判断客户端表单输入验证(以前的网速慢)
+    - 后来被一度用于小广告
+ js现在的意义
+    -页面特效（pc端的网页特效）
+    -移动端（移动web和app）
+    -异步和服务器交互 ajax
+    -服务器端开发（nodeJs）
+    -数据库甚至烤面包机都可以运行js了 （mongodb 嵌入式开发）
+js的历史总结：
+    -javascript诞生于1995年
+    -javascript的是由网景公司的布兰登艾奇开发的
+    -javascript的前名叫livescript
+</code></pre><h2 id="什么是JS语言？"><a href="#什么是JS语言？" class="headerlink" title="什么是JS语言？"></a>什么是JS语言？</h2><blockquote>
+<p>javascript是一种运行在<strong><em>客户端</em></strong> 的<strong><em>脚本语言</em></strong> </p>
+</blockquote>
+<p>客户端：即接受服务的一端，与服务端相对应，在前端开发中，通常客户端指的就是浏览器。</p>
+<p>脚本语言：也叫解释型语言，特点是<strong><em>执行一行，解释一行，如果发现报错，代码就停止执行</em></strong> 。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tips：脚本语言一般会有一个宿主环境（当前脚本运行并且起作用一个环境）</div><div class="line">类似的有：<span class="keyword">as</span>（actionScript flash宿主环境）</div></pre></td></tr></table></figure>
+<blockquote>
+<p>javascript的三个组成部分：ECMAScript、BOM、DOM</p>
+</blockquote>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/02.jpg02.jpg" alt=""></p>
+<p>ECMAScript：定义了javascript的语法规范，是js语法的基础核心。</p>
+<p>BOM：定义一套操作浏览器功能的API，通过这些api能够更好的操作浏览器行为。</p>
+<p>DOM：定义一套操作页面元素的API，通过使用这些api来操作页面元素。</p>
+<h2 id="script标签"><a href="#script标签" class="headerlink" title="script标签"></a>script标签</h2><blockquote>
+<p>书写Javascript代码有三种方式，第一种是直接在script标签中书写，第二种是将代码写在js文件中，通过script进行引入。第三种为内嵌入html结构中书写js，但不利于后期代码开发和维护，不推荐；</p>
+</blockquote>
+<p>直接在script中书写javascript代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="actionscript">	alert(<span class="string">"今天天气真好呀"</span>);</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>通过script标签引入一个JS文件，需要指定src属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"test.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>通过在html标签中内嵌入html结构执行(但这种方式并不推荐 不利于后期代码开发和维护)<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">"alert('今天天气不错！')"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<font color="#ff7600">tips：如果script标签指定了src属性，说明是想要引入一个js文件，这个时候不能继续在script标签中写JS代码，即便写了，也不会执行。</font>
+
+
+
+<blockquote>
+<p>script标签的书写位置，原则上来说，可以在页面中的任意位置书写script标签。</p>
+</blockquote>
+<ol>
+<li>写在head标签中，style标签之后。</li>
+<li>写在&lt;//body&gt;标签的前面。</li>
+<li>写在的后面，即页面的最后面。</li>
+</ol>
+<blockquote>
+<p>script的一些属性</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">JavaScript</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>language已废弃,用于说明代码使用的脚本语言</p>
+</li>
+<li><p>src 表示要引入的外部文件</p>
+</li>
+<li><p>type 表示脚本语言的类型(type=”text/javascript” 在html5的结构可以省略不写)</p>
+<ul>
+<li>async(了解)   async=”async”</li>
+</ul>
+</li>
+<li><p>值可以省略，立即异步下载外部JS下载完毕立即执行</p>
+</li>
+<li><p>defer(了解)  defer=”defer”</p>
+</li>
+<li><p>值可以省略，脚本延迟到文档完全被解析和显示后再执行</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"myJs.js"</span> <span class="attr">async</span>=<span class="string">"async"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--async立即异步下载外部JS,JS下载完毕立即执行--&gt;</span></div><div class="line">    <span class="comment">&lt;!--defer立即异步下载外部JS,JS下载完毕延迟到最后执行--&gt;</span></div><div class="line">    <span class="comment">&lt;!--这两个属性可以省略属性值--&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="输入输出语句"><a href="#输入输出语句" class="headerlink" title="输入输出语句"></a>输入输出语句</h2><blockquote>
+<p>在实际开发，常用1和3，并且1在控制台输出不影响页面正常显示，不会阻塞代码运行，灵活操作，在实际开发中用于代码调试较多。</p>
+</blockquote>
+<ol>
+<li><p>console.log 控制台输出日志</p>
+</li>
+<li><p>document.write 往页面中写入内容</p>
+</li>
+<li><p>alert 弹框警告[^注释]</p>
+</li>
+<li><p>confirm 确认框[^注释]</p>
+</li>
+<li><p>prompt 输入框[^注释]</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">"内容"</span>);<span class="comment">//在控制台打印输出内容</span></div><div class="line"><span class="built_in">document</span>.write(<span class="string">"内容"</span>);<span class="comment">//在页面书写内容</span></div><div class="line">alert(<span class="string">"内容"</span>);<span class="comment">//弹窗显示内容</span></div><div class="line"><span class="built_in">console</span>.warn(<span class="string">"警告框 一般系统在使用"</span>);</div><div class="line"><span class="built_in">console</span>.error(<span class="string">"错误提示信息，一般系统在使用"</span>);</div><div class="line"><span class="built_in">console</span>.info(<span class="string">"输出信息"</span>);</div><div class="line">confirm(<span class="string">"请回答是或者否"</span>);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>[^注释]: window 是全局对象  是浏览器中的顶级对象  window.alert()中的window 可以省略不写</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><blockquote>
+<p>不被程序执行的代码。用于程序员标记代码，在后期的修改，以及他人的学习时有所帮助，在JS中，分为单行注释和多行注释</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这是单行注释，只能注释一行</span></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">	这是多行注释，不能嵌套</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+<p>注释的作用：</p>
+<pre><code>1. 模块划分，方便代码查找和维护
+2. 用于解释复杂代码的逻辑，方便维护和后期开发。
+</code></pre><p>【永无bug.js】</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//                            _ooOoo_</span></div><div class="line"><span class="comment">//                           o8888888o</span></div><div class="line"><span class="comment">//                           88" . "88</span></div><div class="line"><span class="comment">//                           (| -_- |)</span></div><div class="line"><span class="comment">//                           O\  =  /O</span></div><div class="line"><span class="comment">//                        ____/`---'\____</span></div><div class="line"><span class="comment">//                      .'  \\|     |//  `.</span></div><div class="line"><span class="comment">//                     /  \\|||  :  |||//  \</span></div><div class="line"><span class="comment">//                    /  _||||| -:- |||||-  \</span></div><div class="line"><span class="comment">//                    |   | \\\  -  /// |   |</span></div><div class="line"><span class="comment">//                    | \_|  ''\---/''  |   |</span></div><div class="line"><span class="comment">//                    \  .-\__  `-`  ___/-. /</span></div><div class="line"><span class="comment">//                  ___`. .'  /--.--\  `. . __</span></div><div class="line"><span class="comment">//               ."" '&lt;  `.___\_&lt;|&gt;_/___.'  &gt;'"".</span></div><div class="line"><span class="comment">//              | | :  `- \`.;`\ _ /`;.`/ - ` : | |</span></div><div class="line"><span class="comment">//              \  \ `-.   \_ __\ /__ _/   .-` /  /</span></div><div class="line"><span class="comment">//         ======`-.____`-.___\_____/___.-`____.-'======</span></div><div class="line"><span class="comment">//                            `=---='</span></div><div class="line"><span class="comment">//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span></div><div class="line"><span class="comment">//                      佛祖保佑       永无BUG</span></div><div class="line"></div><div class="line"><span class="comment">//    ┏┛┻━━━━━┛┻┓</span></div><div class="line"><span class="comment">//    ┃ 　　　　　      ┃</span></div><div class="line"><span class="comment">//    ┃ 　　　　　      ┃</span></div><div class="line"><span class="comment">//    ┃　┳┛　  ┗┳　 ┃</span></div><div class="line"><span class="comment">//    ┃ 　　　　　      ┃</span></div><div class="line"><span class="comment">//    ┃　　　┻　 　    ┃</span></div><div class="line"><span class="comment">//    ┃ 　　　　　      ┃</span></div><div class="line"><span class="comment">//    ┗━┓　　　┏━━━┛</span></div><div class="line"><span class="comment">//        ┃　　　┃   神兽保佑</span></div><div class="line"><span class="comment">//        ┃　　　┃   代码无BUG！</span></div><div class="line"><span class="comment">//        ┃　　　┗━━━━━━━━━┓</span></div><div class="line"><span class="comment">//        ┃　　　　　　　    ┣┓</span></div><div class="line"><span class="comment">//        ┃　　　　         ┏┛</span></div><div class="line"><span class="comment">//        ┗━┓ ┓ ┏━━━┳ ┓ ┏━┛</span></div><div class="line"><span class="comment">//          ┃ ┫ ┫   ┃ ┫ ┫</span></div><div class="line"><span class="comment">//          ┗━┻━┛   ┗━┻━┛</span></div><div class="line"><span class="comment">//    ━━━━━━感觉萌萌哒━━━━━━</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/*code is far away from bug with the animal protecting</span></div><div class="line"><span class="comment">    *  ┏┓　　　┏┓</span></div><div class="line"><span class="comment">    *┏┛┻━━━┛┻┓</span></div><div class="line"><span class="comment">    *┃　　　　　　　┃ 　</span></div><div class="line"><span class="comment">    *┃　　　━　　　┃</span></div><div class="line"><span class="comment">    *┃　┳┛　┗┳　┃</span></div><div class="line"><span class="comment">    *┃　　　　　　　┃</span></div><div class="line"><span class="comment">    *┃　　　┻　　　┃</span></div><div class="line"><span class="comment">    *┃　　　　　　　┃</span></div><div class="line"><span class="comment">    *┗━┓　　　┏━┛</span></div><div class="line"><span class="comment">    *　　┃　　　┃神兽保佑</span></div><div class="line"><span class="comment">    *　　┃　　　┃代码无BUG！</span></div><div class="line"><span class="comment">    *　　┃　　　┗━━━┓</span></div><div class="line"><span class="comment">    *　　┃　　　　　　　┣┓</span></div><div class="line"><span class="comment">    *　　┃　　　　　　　┏┛</span></div><div class="line"><span class="comment">    *　　┗┓┓┏━┳┓┏┛</span></div><div class="line"><span class="comment">    *　　　┃┫┫　┃┫┫</span></div><div class="line"><span class="comment">    *　　　┗┻┛　┗┻┛ </span></div><div class="line"><span class="comment">    *　　　</span></div><div class="line"><span class="comment">    */</span></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">*</span></div><div class="line"><span class="comment">*----------Dragon be here!----------/</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">　　　┏┓　　　┏┓</span></div><div class="line"><span class="comment">　　┏┛┻━━━┛┻┓</span></div><div class="line"><span class="comment">　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　┃　　　━　　　┃</span></div><div class="line"><span class="comment">　　┃　┳┛　┗┳　┃</span></div><div class="line"><span class="comment">　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　┃　　　┻　　　┃</span></div><div class="line"><span class="comment">　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　┗━┓　　　┏━┛</span></div><div class="line"><span class="comment">　　　　┃　　　┃</span></div><div class="line"><span class="comment">　　　　┃　　　┃</span></div><div class="line"><span class="comment">　　　　┃　　　┗━━━┓</span></div><div class="line"><span class="comment">　　　　┃　　　　　　　┣┓</span></div><div class="line"><span class="comment">　　　　┃　　　　　　　┏┛</span></div><div class="line"><span class="comment">　　　　┗┓┓┏━┳┓┏┛</span></div><div class="line"><span class="comment">　　　　　┃┫┫　┃┫┫</span></div><div class="line"><span class="comment">　　　　　┗┻┛　┗┻┛</span></div><div class="line"><span class="comment">━━━━━━神兽出没━━━━━━ */</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">　　　　　　　　┏┓　　　┏┓</span></div><div class="line"><span class="comment">　　　　　　　┏┛┻━━━┛┻┓</span></div><div class="line"><span class="comment">　　　　　　　┃　　　　　　　┃ 　</span></div><div class="line"><span class="comment">　　　　　　　┃　　　━　　　┃</span></div><div class="line"><span class="comment">　　　　　　　┃　＞　　　＜　┃</span></div><div class="line"><span class="comment">　　　　　　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　　　　　　┃...　⌒　...　┃</span></div><div class="line"><span class="comment">　　　　　　　┃　　　　　　　┃</span></div><div class="line"><span class="comment">　　　　　　　┗━┓　　　┏━┛</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃　Code is far away from bug with the animal protecting　　　　　　　　　　</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃ 神兽保佑,代码无bug</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃　　　　　　　　　　　</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃ 　　　　　　</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┃　　　　　　　　　　　</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　┗━━━┓</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　　　　　┣┓</span></div><div class="line"><span class="comment">　　　　　　　　　┃　　　　　　　┏┛</span></div><div class="line"><span class="comment">　　　　　　　　　┗┓┓┏━┳┓┏┛</span></div><div class="line"><span class="comment">　　　　　　　　　　┃┫┫　┃┫┫</span></div><div class="line"><span class="comment">　　　　　　　　　　┗┻┛　┗┻┛ */</span></div><div class="line">　　　　　　　　　　</div><div class="line">　　　　　　　</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">*　　　　　　　　┏┓　　　┏┓+ +</span></div><div class="line"><span class="comment">*　　　　　　　┏┛┻━━━┛┻┓ + +</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　　　　　┃ 　</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　━　　　┃ ++ + + +</span></div><div class="line"><span class="comment">*　　　　　　 ████━████ ┃+</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　　　　　┃ +</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　┻　　　┃</span></div><div class="line"><span class="comment">*　　　　　　　┃　　　　　　　┃ + +</span></div><div class="line"><span class="comment">*　　　　　　　┗━┓　　　┏━┛</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃　　　　　　　　　　　</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃ + + + +</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃　　　　Code is far away from bug with the animal protecting　　　　　　　</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃ + 　　　　神兽保佑,代码无bug　　</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　　　┃　　+　　　　　　　　　</span></div><div class="line"><span class="comment">*　　　　　　　　　┃　 　　┗━━━┓ + +</span></div><div class="line"><span class="comment">*　　　　　　　　　┃ 　　　　　　　┣┓</span></div><div class="line"><span class="comment">*　　　　　　　　　┃ 　　　　　　　┏┛</span></div><div class="line"><span class="comment">*　　　　　　　　　┗┓┓┏━┳┓┏┛ + + + +</span></div><div class="line"><span class="comment">*　　　　　　　　　　┃┫┫　┃┫┫</span></div><div class="line"><span class="comment">*　　　　　　　　　　┗┻┛　┗┻┛+ + + +</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//   █████▒█    ██  ▄████▄   ██ ▄█▀       ██████╗ ██╗   ██╗ ██████╗</span></div><div class="line"><span class="comment">// ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒        ██╔══██╗██║   ██║██╔════╝</span></div><div class="line"><span class="comment">// ▒████ ░▓██  ▒██░▒▓█    ▄ ▓███▄░        ██████╔╝██║   ██║██║  ███╗</span></div><div class="line"><span class="comment">// ░▓█▒  ░▓▓█  ░██░▒▓▓▄ ▄██▒▓██ █▄        ██╔══██╗██║   ██║██║   ██║</span></div><div class="line"><span class="comment">// ░▒█░   ▒▒█████▓ ▒ ▓███▀ ░▒██▒ █▄       ██████╔╝╚██████╔╝╚██████╔╝</span></div><div class="line"><span class="comment">//  ▒ ░   ░▒▓▒ ▒ ▒ ░ ░▒ ▒  ░▒ ▒▒ ▓▒       ╚═════╝  ╚═════╝  ╚═════╝</span></div><div class="line"><span class="comment">//  ░     ░░▒░ ░ ░   ░  ▒   ░ ░▒ ▒░</span></div><div class="line"><span class="comment">//  ░ ░    ░░░ ░ ░ ░        ░ ░░ ░</span></div><div class="line"><span class="comment">//           ░     ░ ░      ░  ░</span></div><div class="line"><span class="comment">//</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
+<li><p>什么是变量<br>变量是计算机内存中存储数据的标识符，根据变量名称可以获取到内存中存储的数据</p>
+</li>
+<li><p>为什么要使用变量<br>使用变量可以方便的获取或者修改内存中的数据</p>
+</li>
+</ul>
+<h3 id="如何使用变量"><a href="#如何使用变量" class="headerlink" title="如何使用变量"></a>如何使用变量</h3><ul>
+<li><p>var声明变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age; <span class="comment">//声明未赋值 其值为未定义undefined</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>变量的赋值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age;</div><div class="line">age = <span class="number">18</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>同时声明多个变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age, name, sex;</div><div class="line">age = <span class="number">10</span>;</div><div class="line">name = <span class="string">'zs'</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>同时声明多个变量并赋值</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age = <span class="number">10</span>, name = <span class="string">'zs'</span>;</div></pre></td></tr></table></figure>
+<h3 id="变量在内存中的存储"><a href="#变量在内存中的存储" class="headerlink" title="变量在内存中的存储"></a>变量在内存中的存储</h3><p>后续通过交换值变量来演示</p>
+<h2 id="变量的命名规则与规范"><a href="#变量的命名规则与规范" class="headerlink" title="变量的命名规则与规范"></a>变量的命名规则与规范</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">命名规则（必须遵守）：</div><div class="line"><span class="number">1.</span>由字母、数字、下划线、$符号组成，开头不能是数字。</div><div class="line"><span class="number">2.</span>不能是关键字和保留字</div><div class="line"><span class="number">3.</span>区分大小写</div><div class="line">命名规范（建议遵守）：</div><div class="line"><span class="number">1.</span> 命名要有意义</div><div class="line"><span class="number">2.</span> 遵守驼峰命名法。首字母小写，后面单词的首字母需要大写。</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> userName; <span class="keyword">var</span> borderTopColor;</div></pre></td></tr></table></figure>
+<h2 id="变量练习"><a href="#变量练习" class="headerlink" title="变量练习"></a>变量练习</h2><h3 id="第一种方式：普通临时变量交换方式"><a href="#第一种方式：普通临时变量交换方式" class="headerlink" title="第一种方式：普通临时变量交换方式"></a>第一种方式：普通临时变量交换方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">  适用性: 适用于所有类型</span></div><div class="line"><span class="comment">  简要说明:</span></div><div class="line"><span class="comment">  这是用到的最广泛的一种方式，经实战测试分析，性能也很高</span></div><div class="line"><span class="comment">  (在JS中,这种方式效率确实很高，而且就算是其它语言中，只要tmp变量提前创建，性能也不会很低，反而是一些杂技派和少数派性能方面很低)</span></div><div class="line"><span class="comment">  基本上可以说: 经典的才是最优雅的</span></div><div class="line"><span class="comment">*/</span></div><div class="line">tmp = a</div><div class="line">a = b</div><div class="line">b = tmp</div></pre></td></tr></table></figure>
+<h3 id="第二种-利用一个新的对象来进行数据交换"><a href="#第二种-利用一个新的对象来进行数据交换" class="headerlink" title="第二种:利用一个新的对象来进行数据交换"></a>第二种:利用一个新的对象来进行数据交换</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">  适用性: 适用于所有类型</span></div><div class="line"><span class="comment">  简要说明:</span></div><div class="line"><span class="comment">这种方式在实战中应用的很少</span></div><div class="line"><span class="comment">*/</span></div><div class="line">a = &#123;<span class="attr">a</span> : b, <span class="attr">b</span> : a&#125;</div><div class="line">b = a.b</div><div class="line">a = a.a</div></pre></td></tr></table></figure>
+<h3 id="第三种-利用一个新的数组来进行数据交换"><a href="#第三种-利用一个新的数组来进行数据交换" class="headerlink" title="第三种:利用一个新的数组来进行数据交换"></a>第三种:利用一个新的数组来进行数据交换</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">  适用性: 适用于所有类型</span></div><div class="line"><span class="comment">  简要说明:</span></div><div class="line"><span class="comment">这种方式在各大论坛中都有看到有人使用，但经测试实际性能并不高</span></div><div class="line"><span class="comment">*/</span></div><div class="line">a = [b, b=a][<span class="number">0</span>]</div></pre></td></tr></table></figure>
+<h3 id="第四种-利用数组交换变量-需EJS支持"><a href="#第四种-利用数组交换变量-需EJS支持" class="headerlink" title="第四种:利用数组交换变量(需EJS支持)"></a>第四种:利用数组交换变量(需EJS支持)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">  适用性: 适用于所有类型</span></div><div class="line"><span class="comment">  简要说明:</span></div><div class="line"><span class="comment">这也是在ES6出来后看到有人用的，实际在现有的浏览器中测试，性能很低</span></div><div class="line"><span class="comment">*/</span></div><div class="line">[a, b] = [b, a]</div></pre></td></tr></table></figure>
+<h3 id="第五种-利用try-catch交换"><a href="#第五种-利用try-catch交换" class="headerlink" title="第五种:利用try catch交换"></a>第五种:利用try catch交换</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">  适用性: 适用于所有类型</span></div><div class="line"><span class="comment">  简要说明:</span></div><div class="line"><span class="comment">这种方法应该是基本没人使用的，也没有什么实用性，而且性能也是属于在各种方法中垫底的</span></div><div class="line"><span class="comment">*/</span></div><div class="line">a=(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">try</span>&#123;<span class="keyword">return</span> b&#125;</div><div class="line">    <span class="keyword">finally</span>&#123;b=a&#125;&#125;</div><div class="line">)()</div></pre></td></tr></table></figure>
+<h3 id="第六种-异或操作交换变量第一种方式"><a href="#第六种-异或操作交换变量第一种方式" class="headerlink" title="第六种:异或操作交换变量第一种方式"></a>第六种:异或操作交换变量第一种方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">  适用性: 适用于数字或字符串</span></div><div class="line"><span class="comment">  简要说明:</span></div><div class="line"><span class="comment">异或方法在数字或字符串时用到的比较普遍，而且性能也不低</span></div><div class="line"><span class="comment">*/</span></div><div class="line">a = (b = (a ^= b) ^ b) ^ a</div></pre></td></tr></table></figure>
+<h3 id="第七种-异或操作交换变量第二种方式"><a href="#第七种-异或操作交换变量第二种方式" class="headerlink" title="第七种:异或操作交换变量第二种方式"></a>第七种:异或操作交换变量第二种方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">  适用性: 适用于数字或字符串</span></div><div class="line"><span class="comment">  简要说明:</span></div><div class="line"><span class="comment">异或方法在数字或字符串时用到的比较普遍，而且性能也不低</span></div><div class="line"><span class="comment">*/</span></div><div class="line">a ^=b</div><div class="line">b ^=a</div><div class="line">a ^=b</div></pre></td></tr></table></figure>
+<h3 id="第八种-数字之间的加减运算来实现，第一种加减方式"><a href="#第八种-数字之间的加减运算来实现，第一种加减方式" class="headerlink" title="第八种:数字之间的加减运算来实现，第一种加减方式"></a>第八种:数字之间的加减运算来实现，第一种加减方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">  适用性: 仅适用于数字</span></div><div class="line"><span class="comment">  简要说明:</span></div><div class="line"><span class="comment">这种用法在只用于数字间的交换时，性能也不弱</span></div><div class="line"><span class="comment">*/</span></div><div class="line">a = a + b;</div><div class="line">b = a - b; </div><div class="line">a = a - b;</div></pre></td></tr></table></figure>
+<h3 id="第九种-数字之间的加减运算来实现，第一种加减方式"><a href="#第九种-数字之间的加减运算来实现，第一种加减方式" class="headerlink" title="第九种:数字之间的加减运算来实现，第一种加减方式"></a>第九种:数字之间的加减运算来实现，第一种加减方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">  适用性: 仅适用于数字</span></div><div class="line"><span class="comment">  简要说明:</span></div><div class="line"><span class="comment">这种用法在只用于数字间的交换时，性能也不弱</span></div><div class="line"><span class="comment">*/</span></div><div class="line">a = b -a +(b = a)</div></pre></td></tr></table></figure>
+<h3 id="第十种-利用eval计算"><a href="#第十种-利用eval计算" class="headerlink" title="第十种:利用eval计算"></a>第十种:利用eval计算</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">  适用性: 仅适用于数字和字符串</span></div><div class="line"><span class="comment">  简要说明:</span></div><div class="line"><span class="comment">这种方式仅用于研究，实战慎用</span></div><div class="line"><span class="comment">这种模式执行一万次耗时等于其它执行一亿次...</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="built_in">eval</span>(<span class="string">"a="</span>+b+<span class="string">";b="</span>+a);</div></pre></td></tr></table></figure>
+<h3 id="第十一种-数组中，利用splice交换两个元素的位置"><a href="#第十一种-数组中，利用splice交换两个元素的位置" class="headerlink" title="第十一种:数组中，利用splice交换两个元素的位置"></a>第十一种:数组中，利用splice交换两个元素的位置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">  适用性: 仅适用于数组元素</span></div><div class="line"><span class="comment">  简要说明:</span></div><div class="line"><span class="comment">这种方式看起来挺优雅的，但实际上性能远远比不上临时变量那种</span></div><div class="line"><span class="comment">*/</span></div><div class="line">arr[<span class="number">0</span>] = arr.splice(<span class="number">2</span>, <span class="number">1</span>, arr[<span class="number">0</span>])[<span class="number">0</span>]</div></pre></td></tr></table></figure>
+<h3 id="各种交换方式的性能对比"><a href="#各种交换方式的性能对比" class="headerlink" title="各种交换方式的性能对比"></a>各种交换方式的性能对比</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">上述列举了几种方式都有一一做过对比分析，基本上可以得出的结论是:</div><div class="line"></div><div class="line">还是老老实实的用回临时变量交换吧，经典，优雅，而且保证不会出什么幺蛾子</div><div class="line"></div><div class="line">在chrome中运行了一亿次后得出的结论<span class="comment">(每次运行100万次,一共100个循环，得到的分析结果)</span></div><div class="line">可以看出,tmp变量交换最快,try catch最慢</div><div class="line"></div><div class="line">在chrome <span class="comment">(支持es6)</span>中运行了<span class="number">100</span>万次后得出的结论<span class="comment">(每次运行1万次,一共100个循环，得到的分析结果)</span></div><div class="line">可以看出,eval最慢,splice性能较低，tmp变量交换很稳定</div></pre></td></tr></table></figure>
+<p><a href="https://jsperf.com/exchange-variables-gracefully/2" target="_blank" rel="external">Exchange Variables Gracefully</a></p>
+<p>tips:javascript是一种弱类型语言，不管声明什么类型的变量，都是用var，并且变量的类型是可以变化的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age = <span class="number">90</span>;</div><div class="line">age = <span class="string">"张三"</span>;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="JavaScript中的数据类型"><a href="#JavaScript中的数据类型" class="headerlink" title="JavaScript中的数据类型"></a>JavaScript中的数据类型</h2><p><strong>简单(基本、值)数据类型</strong><br>            Number（数字类型）、String（字符串）、Boolean（布尔类型）<br>           Undefined、Null（特殊类型）</p>
+<p>  <strong>复杂(引用)数据类型</strong><br>       object</p>
+<h2 id="如何查看数据类型"><a href="#如何查看数据类型" class="headerlink" title="如何查看数据类型"></a>如何查看数据类型</h2><p>使用typeof关键字查看数据类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> name;</div><div class="line"><span class="keyword">typeof</span>(name);</div></pre></td></tr></table></figure>
+<h2 id="Number类型"><a href="#Number类型" class="headerlink" title="Number类型"></a>Number类型</h2><h3 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> 十进制，我们平时使用的就是十进制，进行运算时，八进制和十六进制的值最终都会转换成十进制。</div><div class="line"><span class="number">2.</span> 八进制，<span class="number">0</span>开头的数值，数值序列：<span class="number">0</span><span class="number">-7</span></div><div class="line"><span class="number">3.</span> 十六进制，<span class="number">0</span>x开头的数值，数值序列：<span class="number">0</span><span class="number">-9</span>A-F</div><div class="line"></div><div class="line">进制了解即可，基本都是使用十进制，稍微了解一下进制之间的转换。</div></pre></td></tr></table></figure>
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p>科学计数法：</p>
+<p>科学记数法是指把一个数表示成a×10的n次幂的形式（1≤a&lt;10，n 为整数。）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">5e+3</span>; <span class="comment">//5000</span></div><div class="line"><span class="keyword">var</span> num1 = <span class="number">5e-2</span>; <span class="comment">//0.05</span></div></pre></td></tr></table></figure>
+<p>浮点数的精度问题：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">0.1</span> + <span class="number">0.2</span> = ? <span class="comment">//0.30000000000000004</span></div><div class="line"><span class="number">0.07</span> * <span class="number">100</span> = ? <span class="comment">//7.000000000000001</span></div></pre></td></tr></table></figure>
+<p><strong><em>浮点数在运算的时候会出现精度丢失的问题，因此在做比较运算的时候，尽量不要用小数进行比较。</em></strong></p>
+<h3 id="数值范围"><a href="#数值范围" class="headerlink" title="数值范围"></a>数值范围</h3><blockquote>
+<p>javascript不能表示世界上所有的数，因此在javascript中，数值大小是有一定限制的。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Number</span><span class="selector-class">.MIN_VALUE</span>  <span class="selector-pseudo">:5e-324</span></div><div class="line"><span class="selector-tag">Number</span><span class="selector-class">.MAX_VALUE</span>  <span class="selector-pseudo">:1.7976931348623157e+308</span></div><div class="line"><span class="selector-tag">Infinity</span>   :正无穷</div><div class="line"><span class="selector-tag">-Infinity</span>  :负无穷</div></pre></td></tr></table></figure>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/09.png" alt=""></p>
+<h3 id="数值判断"><a href="#数值判断" class="headerlink" title="数值判断"></a>数值判断</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> <span class="literal">NaN</span>:表示一个非数值，当无法运算或者运算错误的时候，会得到一个<span class="literal">NaN</span>，<span class="literal">NaN</span>是<span class="built_in">number</span>类型，表示一个非数值。</div><div class="line"><span class="number">2.</span> <span class="literal">NaN</span>不等于<span class="literal">NaN</span></div><div class="line"><span class="number">3.</span> <span class="built_in">isNaN</span>用来判断是否是一个数字，当返回<span class="literal">true</span>的时候，表示不是一个数字，返回<span class="literal">false</span>表示是一个数字。</div></pre></td></tr></table></figure>
+<p>【要求：判断一个数据是不是数字】<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = <span class="string">"abc"</span>;</div><div class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> data == <span class="string">"number"</span>&amp;&amp;!<span class="built_in">isNaN</span>(data))&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"是数字"</span>);    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2><h3 id="字面量"><a href="#字面量" class="headerlink" title="字面量"></a>字面量</h3><p>字符串的字面量：“abc”  、 ‘abc’  字符串可以是双引号，也可以是单引号引起来。单双引号可以嵌套使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//我是一个"正直"的人 </span></div><div class="line"><span class="comment">//我很喜欢"传'智'播客"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'我是一个"正直"的人'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'我很喜欢吃"好吃\'的\'东西"'</span>);</div></pre></td></tr></table></figure>
+<h3 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h3><p>length属性用来获取字符串的长度</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">"abckjdlkfjd"</span>;</div><div class="line">str.length;<span class="comment">//字符串的长度</span></div></pre></td></tr></table></figure>
+<p>###字符串的不可变性<br>  <img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/10.png" alt=""></p>
+<h4 id="什么是不可变性-Immutability-？"><a href="#什么是不可变性-Immutability-？" class="headerlink" title="什么是不可变性(Immutability)？"></a>什么是不可变性(Immutability)？</h4><p>还是先来看看关于可变性(Mutability)的教条式定义：“liable or subject to change or alteration(译者注：真他妈难翻，就简单理解成’易于改变的’吧)”。在编程领域里，我们用可变性(Mutability)来描述这样一种对象，它在创建之后状态依旧可被改变。那当我们说不可变(Immutable)时，就是可变(Mutable)的对立面了(译者注：原谅我翻的废话又多起来) － 意思是，创建之后，就再也不能被修改了。</p>
+<p>如果我说的又让你感到诡异了，原谅我小小的提醒一下，其实我们平时使用的很多东西事实上都是不可变的哦！</p>
+<p>var statement = ‘I am an immutable value’;<br>var otherStr = statement.slice(8, 17);<br>我猜没人会吃惊，statement.slice(8, 17)并没有改变statement变量吧(译者注：如果你吃惊了，赶紧去补基本知识吧)？事实上，string对象上的所有方法里，没有一个会修改原string，它们一律返回新的string。原因简单了，因为string就是是不可变的(Immutable) - 它们不能被修改，我们能做的就是基于原string操作后得到一个新string。</p>
+<p>注意了，string可不是javascript里唯一内置的不可变(Immutable)数据类型哦。number也是不可变(Immutable)的。否则的话，你试想下这个表达式2 + 3，如果2的含义能被修改，那代码该怎么写啊|_|。听起来荒谬吧，但我们在编程中却常常对object和array做出这种事儿。</p>
+<h3 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h3><p>拼接字符串使用+号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//思考：</span></div><div class="line"><span class="built_in">console</span>.log(<span class="number">11</span> + <span class="number">11</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"hello"</span> + <span class="string">" world"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"100"</span> + <span class="string">"100"</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"11"</span> + <span class="number">11</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>两边只要有一个是字符串，那么+就是字符串拼接功能</li>
+<li>两边如果都是数字，那么就是算术功能。</li>
+</ul>
+<h2 id="boolean类型"><a href="#boolean类型" class="headerlink" title="boolean类型"></a>boolean类型</h2><p>boolean类型只有两个字面量，true和false，区分大小写。</p>
+<p>所有类型的值都可以转化成true或者false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="literal">NaN</span>、<span class="string">""</span>、<span class="literal">undefined</span>、<span class="literal">null</span>、<span class="literal">false</span>、<span class="number">0</span>  这<span class="number">6</span>个值可以转换成<span class="literal">false</span>，其余的都是<span class="literal">true</span>。</div></pre></td></tr></table></figure>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/11.jpg" alt=""></p>
+<h2 id="undefined类型与null类型"><a href="#undefined类型与null类型" class="headerlink" title="undefined类型与null类型"></a>undefined类型与null类型</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="literal">undefined</span>表示一个声明了没有赋值的变量</div><div class="line"><span class="literal">null</span>表示一个空的对象。</div><div class="line"></div><div class="line"><span class="literal">undefined</span>派生自<span class="literal">null</span>。</div><div class="line"><span class="literal">undefined</span> == <span class="literal">null</span>  ：<span class="literal">true</span></div><div class="line"><span class="literal">undefined</span> === <span class="literal">null</span> ：<span class="literal">false</span></div></pre></td></tr></table></figure>
+<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><p>如何使用谷歌浏览器，快速的查看数据类型？</p>
+<p>字符串的颜色是黑色的，数值类型是蓝色的，布尔类型也是蓝色的，undefined和null是灰色的，这个在调试过程中时非常有用的。</p>
+<h2 id="转换成字符串类型"><a href="#转换成字符串类型" class="headerlink" title="转换成字符串类型"></a>转换成字符串类型</h2><ol>
+<li>toString() (undefined和null无法使用此方法)</li>
+<li>String()</li>
+<li>/+ “”</li>
+</ol>
+<h2 id="转换成数值类型"><a href="#转换成数值类型" class="headerlink" title="转换成数值类型"></a>转换成数值类型</h2><ol>
+<li>Number() (尝试将任何数据类型进行转换 如果转不了 返回一个NaN)</li>
+<li>parseInt</li>
+<li>parseFloat</li>
+<li>+num, -0等运算 (隐式转换)</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//10进制转为16进制</span></div><div class="line">(<span class="number">10</span>).toString(<span class="number">16</span>) <span class="comment">// =&gt;"a"</span></div><div class="line"><span class="comment">//8进制转为16进制</span></div><div class="line">(<span class="number">012</span>).toString(<span class="number">16</span>) <span class="comment">// =&gt;"a"</span></div><div class="line"><span class="comment">//16进制转为10进制</span></div><div class="line">(<span class="number">0x16</span>).toString(<span class="number">10</span>) <span class="comment">// =&gt;"22"</span></div><div class="line"><span class="comment">//16进制转为8进制</span></div><div class="line">(<span class="number">0x16</span>).toString(<span class="number">8</span>) <span class="comment">// =&gt;"26"</span></div><div class="line"><span class="comment">//10进制转为2进制 //=&gt;</span></div><div class="line">(<span class="number">1111</span>).toString(<span class="number">2</span>) <span class="comment">// =&gt; "10001010111"</span></div><div class="line"><span class="comment">//8进制转为2进制 //=&gt;</span></div><div class="line">(<span class="number">01111</span>).toString(<span class="number">2</span>) <span class="comment">//=&gt;"1001001001"</span></div><div class="line"><span class="comment">//16进制转为2进制 //=&gt;</span></div><div class="line">(<span class="number">0x16</span>).toString(<span class="number">2</span>) <span class="comment">// =&gt; "10110"</span></div><div class="line"></div><div class="line"><span class="comment">//2进制到10进制；</span></div><div class="line"><span class="built_in">parseInt</span>(<span class="number">10</span>,<span class="number">2</span>) <span class="comment">//=&gt;2</span></div><div class="line"><span class="comment">//2进制到10进制；</span></div><div class="line"><span class="built_in">parseInt</span>(<span class="number">100</span>,<span class="number">2</span>) <span class="comment">//=&gt;4</span></div><div class="line"><span class="comment">//16进制到10进制</span></div><div class="line"><span class="built_in">parseInt</span>(<span class="number">12</span>, <span class="number">16</span>) <span class="comment">//=&gt;18</span></div><div class="line"><span class="comment">//8进制到10进制</span></div><div class="line"><span class="built_in">parseInt</span>(<span class="number">12</span>,<span class="number">8</span>); <span class="comment">//=&gt;10</span></div></pre></td></tr></table></figure>
+<h2 id="转换成布尔类型"><a href="#转换成布尔类型" class="headerlink" title="转换成布尔类型"></a>转换成布尔类型</h2><ol>
+<li>Boolean (强制类型转换)</li>
+<li>!! (隐式类型转换)</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;JS前置知识&quot;&gt;&lt;a href=&quot;#JS前置知识&quot; class=&quot;headerlink&quot; title=&quot;JS前置知识&quot;&gt;&lt;/a&gt;JS前置知识&lt;/h1&gt;&lt;h2 id=&quot;浏览器以及网站相关介绍&quot;&gt;&lt;a href=&quot;#浏览器以及网站相关介绍&quot; class=&quot;header
+    
+    </summary>
+    
     
   </entry>
   
   <entry>
     <title>JS基础01</title>
-    <link href="http://yoursite.com/2016/02/10/js%E5%9F%BA%E7%A1%8001/"/>
-    <id>http://yoursite.com/2016/02/10/js基础01/</id>
+    <link href="http://sunfeat.com/2016/02/10/js%E5%9F%BA%E7%A1%8001/"/>
+    <id>http://sunfeat.com/2016/02/10/js基础01/</id>
     <published>2016-02-10T05:00:00.000Z</published>
     <updated>2017-09-01T02:22:30.498Z</updated>
     
@@ -719,9 +960,9 @@ Vim gvim
 <h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a><strong>操作符</strong></h2><p><strong>@运算符</strong></p>
 <h3 id="一元运算符"><a href="#一元运算符" class="headerlink" title="一元运算符"></a><strong>一元运算符</strong></h3><p><strong>@递增和递减</strong><br>递增++ 递减–<br>a++ 先参与运算 后自加<br>++a 先自加 后参与运算</p>
 <h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a><strong>逻辑运算符</strong></h3><p><strong>@逻辑运算符</strong><br><strong>逻辑运算</strong><br>&amp;&amp;和||都采取短路运算，即<strong>第一个能够决定结果就不再看第二个</strong>了<br>&amp;&amp; 的要求比较严格 要<strong>两个都是true才是true</strong> 所以看到第一个是false就没有必要继续完后看了</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.<span class="built_in">log</span>(false <span class="meta">&amp;&amp; 不管了);</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> &amp;&amp; 不管了);</div></pre></td></tr></table></figure>
 <p>||   的要求比较宽松  要<strong>两个都是false才是false</strong> 所以看到第一个是true就没有必要继续完后看了</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.<span class="built_in">log</span>(true <span class="string">|| 不管了);</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> || 不管了);</div></pre></td></tr></table></figure>
 <p><strong>短路运算（了解）</strong><br>&amp;&amp;和||不但可以操作布尔类型的值，对<strong>其他类型的值</strong>也可以进行操作，并<strong>返回可以决定表达式结果的那个值</strong>。</p>
 <h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a><strong>赋值运算符</strong></h3><p><strong>@赋值运算符</strong></p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">a</span>+=b 等价于 <span class="keyword">a</span>=<span class="keyword">a</span>+b</div></pre></td></tr></table></figure>
@@ -759,7 +1000,7 @@ Vim gvim
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">do</span> &#123;<span class="keyword">statement</span>&#125; <span class="keyword">while</span> (expression);</div></pre></td></tr></table></figure>
 <p><strong>@循环语句while</strong></p>
 <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a><strong>数组</strong></h2><h3 id="数组的声明"><a href="#数组的声明" class="headerlink" title="数组的声明"></a><strong>数组的声明</strong></h3><p>通过构造函数声明（更加通用）</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="type">Array</span>(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>)</div></pre></td></tr></table></figure>
 <p>通过字面量声明（更加简便）</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var arr</span> = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>];</div></pre></td></tr></table></figure>
 <h3 id="数组的赋值和取值"><a href="#数组的赋值和取值" class="headerlink" title="数组的赋值和取值"></a><strong>数组的赋值和取值</strong></h3><p><strong>赋值</strong></p>
@@ -792,31 +1033,31 @@ Vim gvim
 <p><strong>@函数的参数</strong></p>
 <h3 id="函数的返回值"><a href="#函数的返回值" class="headerlink" title="函数的返回值"></a><strong>函数的返回值</strong></h3><p>在函数中通过return关键字将要返回值返回</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> 要返回的值;</div></pre></td></tr></table></figure>
-<h3 id="函数高级概念"><a href="#函数高级概念" class="headerlink" title="函数高级概念"></a><strong>函数高级概念</strong></h3><p><strong>@参数详解</strong><br>在JS中实参的个数和形参的个数可以不一致<br><strong>@返回值详解</strong><br>函数的返回值是什么，调用这个函数就相当于调用什么，如果没有回值则为undefined<br>函数在执行完成return语句后便会退出函数，后面的代码不会执行<br><strong>@两种定义方式</strong><br>函数声明<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span><span class="params">()</span> </span>&#123;</div><div class="line">           <span class="comment">//函数体</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="函数高级概念"><a href="#函数高级概念" class="headerlink" title="函数高级概念"></a><strong>函数高级概念</strong></h3><p><strong>@参数详解</strong><br>在JS中实参的个数和形参的个数可以不一致<br><strong>@返回值详解</strong><br>函数的返回值是什么，调用这个函数就相当于调用什么，如果没有回值则为undefined<br>函数在执行完成return语句后便会退出函数，后面的代码不会执行<br><strong>@两种定义方式</strong><br>函数声明<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">           <span class="comment">//函数体</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>函数表达式<br>        var fn2 = function () {<br>            //函数体<br>        };<br><strong>@匿名函数</strong><br>匿名函数（没有名字的函数）<br>     function () {<br>        //函数体<br>     }<br><strong>@递归调用</strong><br>程序调用自身的编程技巧称为递归<br><strong>@回调函数</strong><br>函数也是一种普通的数据类型<br>因此函数也可以被当作参数传递<br>被当作参数传递的函数叫做回调函数</p>
 <h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a><strong>对象</strong></h2><p>从宏观的角度讲，对象是对客观事物的抽象，事物的特征可以用<strong>属性</strong>表示，事物的行为可以用<strong>方法</strong>表示<br>从微观的角度讲，对象就是一种数据类型，通过对象可以方便地对<strong>变量</strong>和<strong>函数</strong>进行管理<br>初期我们甚至可以把他简单地理解为一个工具箱</p>
 <h3 id="1-2-1-键值对"><a href="#1-2-1-键值对" class="headerlink" title="1.2.1. 键值对"></a>1.2.1. <strong>键值对</strong></h3><p>键值对就是一种对应关系，通过键能够方便地找到值</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">键:值    <span class="selector-tag">key</span><span class="selector-pseudo">:value</span>    <span class="selector-tag">k</span><span class="selector-pseudo">:v</span></div></pre></td></tr></table></figure>
 <h3 id="对象的声明"><a href="#对象的声明" class="headerlink" title="对象的声明"></a><strong>对象的声明</strong></h3><p>通过构造函数声明（更加通用）</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj= <span class="keyword">new</span> <span class="built_in">Object</span>();</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj= <span class="keyword">new</span> <span class="built_in">Object</span>();</div></pre></td></tr></table></figure>
 <p>通过字面量声明（更加简便）</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var obj</span>= &#123;&#125;;</div></pre></td></tr></table></figure>
 <p>对象具有属性和方法<br>属性 用来描述对象的特征 一般是名词 对应变量<br>方法 用来描述对象的行为 一般是动词 对应函数</p>
 <h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a><strong>属性</strong></h3><p>属性的定义<br><figure class="highlight fix"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">对象.属性名 </span>=<span class="string"> 值</span></div></pre></td></tr></table></figure></p>
 <p>属性的调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.属性名</div></pre></td></tr></table></figure></p>
 <h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a><strong>方法</strong></h3><p>方法的定义</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.方法名 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123; <span class="comment">//函数体 &#125;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.方法名 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//函数体 &#125;</span></div></pre></td></tr></table></figure>
 <p>方法的调用</p>
 <figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.方法名<span class="comment">()</span></div></pre></td></tr></table></figure>
 <p><strong>@找对象练习</strong></p>
 <h2 id="其他概念"><a href="#其他概念" class="headerlink" title="其他概念"></a><strong>其他概念</strong></h2><h3 id="对象字面量"><a href="#对象字面量" class="headerlink" title="对象字面量"></a><strong>对象字面量</strong></h3><p><strong>@对象字面量</strong><br>        var o = {<br>          name : “zs”,<br>            age : 18,<br>            sayHi : function() {<br>                console.log(this.name);<br>            }<br>        };</p>
 <h3 id="对象标记法"><a href="#对象标记法" class="headerlink" title="对象标记法"></a><strong>对象标记法</strong></h3><p><strong>@对象标记法</strong><br>JavaScript Object Notation（JavaScript对象标记法）是仿照JS中对象字面量的格式去书写的一串用来记录对象数据的<strong>字符串</strong>，可以用于数据传输。将来学习AJAX会详细学习。</p>
 <h3 id="访问属性的两种方式"><a href="#访问属性的两种方式" class="headerlink" title="访问属性的两种方式"></a><strong>访问属性的两种方式</strong></h3><p><strong>@访问属性的两种方式</strong><br>点语法（简单）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.属性名</div></pre></td></tr></table></figure></p>
-<p>中括号（灵活）<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象<span class="string">[“属性名”]</span></div></pre></td></tr></table></figure></p>
-<h3 id="遍历的两种方式"><a href="#遍历的两种方式" class="headerlink" title="遍历的两种方式"></a><strong>遍历的两种方式</strong></h3><p><strong>@遍历的两种方式</strong><br>通过for可以对集合进行有序的遍历<br>通过forin可以对集合进行有序的遍历<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> json) &#123; 语句 &#125;</div></pre></td></tr></table></figure></p>
+<p>中括号（灵活）<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象<span class="selector-attr">[“属性名”]</span></div></pre></td></tr></table></figure></p>
+<h3 id="遍历的两种方式"><a href="#遍历的两种方式" class="headerlink" title="遍历的两种方式"></a><strong>遍历的两种方式</strong></h3><p><strong>@遍历的两种方式</strong><br>通过for可以对集合进行有序的遍历<br>通过forin可以对集合进行有序的遍历<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> json) &#123; 语句 &#125;</div></pre></td></tr></table></figure></p>
 <p>k变量代表的是json中的各个属性（key）和 var i = 0中的i是一个意思 名字不同而已</p>
 <h2 id="对象-1"><a href="#对象-1" class="headerlink" title="对象"></a><strong>对象</strong></h2><h3 id="对象的声明和使用"><a href="#对象的声明和使用" class="headerlink" title="对象的声明和使用"></a><strong>对象的声明和使用</strong></h3><p>通过构造函数声明（更加通用）</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj= <span class="keyword">new</span> <span class="built_in">Object</span>();</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj= <span class="keyword">new</span> <span class="built_in">Object</span>();</div></pre></td></tr></table></figure>
 <p>通过字面量声明（更加简便）</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var obj</span>= &#123;&#125;;</div></pre></td></tr></table></figure>
 <p>对象具有属性和方法<br>属性 用来描述对象的特征 一般是名词 对应变量<br>方法 用来描述对象的行为 一般是动词 对应函数<br><strong>属性</strong><br>属性的定义</p>
@@ -824,7 +1065,7 @@ Vim gvim
 <p>属性的调用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.属性名</div></pre></td></tr></table></figure>
 <p><strong>方法</strong><br>方法的定义</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.方法名 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123; <span class="comment">//函数体 &#125;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.方法名 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//函数体 &#125;</span></div></pre></td></tr></table></figure>
 <p>方法的调用</p>
 <figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.方法名<span class="comment">()</span></div></pre></td></tr></table></figure>
 <h2 id="关于this的指向"><a href="#关于this的指向" class="headerlink" title="关于this的指向"></a><strong>关于this的指向</strong></h2><h3 id="全局上下文"><a href="#全局上下文" class="headerlink" title="全局上下文"></a><strong>全局上下文</strong></h3><p>全局运行上下文中（在任何函数体外部），this 指代全局对象</p>
@@ -845,19 +1086,19 @@ Vim gvim
     
     </summary>
     
-      <category term="js基础" scheme="http://yoursite.com/categories/js%E5%9F%BA%E7%A1%80/"/>
+      <category term="js基础" scheme="http://sunfeat.com/categories/js%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="js基础" scheme="http://yoursite.com/tags/js%E5%9F%BA%E7%A1%80/"/>
+      <category term="js基础" scheme="http://sunfeat.com/tags/js%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
   <entry>
     <title>模块化开发</title>
-    <link href="http://yoursite.com/2016/01/10/%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/"/>
-    <id>http://yoursite.com/2016/01/10/模块化开发/</id>
+    <link href="http://sunfeat.com/2016/01/10/%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/"/>
+    <id>http://sunfeat.com/2016/01/10/模块化开发/</id>
     <published>2016-01-10T05:00:00.000Z</published>
-    <updated>2017-08-28T03:20:57.079Z</updated>
+    <updated>2017-09-06T10:41:42.994Z</updated>
     
     <content type="html"><![CDATA[<p>在前端开发中，起初只需要在<code>&lt;script&gt;&lt;/script&gt;</code>加入很少的代码来实现一些基本的交互效果，后来随着js得到了越发的重视之后，使得前端项目也变得越来越来复杂，需要更好的组织形式来分类、实现业务逻辑，然而，JavaScript本身是没有类（class）的概念的，当然也就没有模块（module）的概念了。  </p>
 <p>一个模块就是实现特定功能的文件，有了模块，我们就可以更方便地使用别人的代码，想要什么功能，就加载什么模块。模块开发需要遵循一定的规范，否则就都乱套了。</p>
@@ -963,10 +1204,10 @@ Vim gvim
     
     </summary>
     
-      <category term="模块化开发" scheme="http://yoursite.com/categories/%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/"/>
+      <category term="模块化开发" scheme="http://sunfeat.com/categories/%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="模块化开发" scheme="http://yoursite.com/tags/%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/"/>
+      <category term="模块化开发" scheme="http://sunfeat.com/tags/%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   

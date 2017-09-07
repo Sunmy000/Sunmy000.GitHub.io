@@ -108,7 +108,7 @@
 <meta name="keywords" content="js基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS基础01">
-<meta property="og:url" content="http://yoursite.com/2016/02/10/js基础01/index.html">
+<meta property="og:url" content="http://sunfeat.com/2016/02/10/js基础01/index.html">
 <meta property="og:site_name" content="孙梦尧的博客">
 <meta property="og:description" content="介绍输出语句@常用输出语句  代码注释@代码注释//单行注释/ 多行注释 /书写多行注释的时候注意不要发生嵌套/** + 回车 用于函数的说明 书写位置@书写位置可以写在HTML页面内的任意位置或者从外部引用（可以类比样式代码的书写位置） 标签属性@script标签的属性type类型 src 地址async异步加载，加载完成立即执行 defer异步加载，页面上的东西都执行完了才执行（了解即可!!!">
 <meta property="og:locale" content="zh-Hans">
@@ -157,7 +157,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/02/10/js基础01/"/>
+  <link rel="canonical" href="http://sunfeat.com/2016/02/10/js基础01/"/>
 
 
 
@@ -173,7 +173,7 @@
 
 
 
-</head>
+<link rel="stylesheet" href="/css/prism-pojoaque.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -336,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/10/js基础01/">
+    <link itemprop="mainEntityOfPage" href="http://sunfeat.com/2016/02/10/js基础01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sunmy">
@@ -472,9 +472,9 @@
 <h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a><strong>操作符</strong></h2><p><strong>@运算符</strong></p>
 <h3 id="一元运算符"><a href="#一元运算符" class="headerlink" title="一元运算符"></a><strong>一元运算符</strong></h3><p><strong>@递增和递减</strong><br>递增++ 递减–<br>a++ 先参与运算 后自加<br>++a 先自加 后参与运算</p>
 <h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a><strong>逻辑运算符</strong></h3><p><strong>@逻辑运算符</strong><br><strong>逻辑运算</strong><br>&amp;&amp;和||都采取短路运算，即<strong>第一个能够决定结果就不再看第二个</strong>了<br>&amp;&amp; 的要求比较严格 要<strong>两个都是true才是true</strong> 所以看到第一个是false就没有必要继续完后看了</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.<span class="built_in">log</span>(false <span class="meta">&amp;&amp; 不管了);</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> &amp;&amp; 不管了);</div></pre></td></tr></table></figure>
 <p>||   的要求比较宽松  要<strong>两个都是false才是false</strong> 所以看到第一个是true就没有必要继续完后看了</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.<span class="built_in">log</span>(true <span class="string">|| 不管了);</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> || 不管了);</div></pre></td></tr></table></figure>
 <p><strong>短路运算（了解）</strong><br>&amp;&amp;和||不但可以操作布尔类型的值，对<strong>其他类型的值</strong>也可以进行操作，并<strong>返回可以决定表达式结果的那个值</strong>。</p>
 <h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a><strong>赋值运算符</strong></h3><p><strong>@赋值运算符</strong></p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">a</span>+=b 等价于 <span class="keyword">a</span>=<span class="keyword">a</span>+b</div></pre></td></tr></table></figure>
@@ -512,7 +512,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">do</span> &#123;<span class="keyword">statement</span>&#125; <span class="keyword">while</span> (expression);</div></pre></td></tr></table></figure>
 <p><strong>@循环语句while</strong></p>
 <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a><strong>数组</strong></h2><h3 id="数组的声明"><a href="#数组的声明" class="headerlink" title="数组的声明"></a><strong>数组的声明</strong></h3><p>通过构造函数声明（更加通用）</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="type">Array</span>(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>)</div></pre></td></tr></table></figure>
 <p>通过字面量声明（更加简便）</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var arr</span> = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>];</div></pre></td></tr></table></figure>
 <h3 id="数组的赋值和取值"><a href="#数组的赋值和取值" class="headerlink" title="数组的赋值和取值"></a><strong>数组的赋值和取值</strong></h3><p><strong>赋值</strong></p>
@@ -545,31 +545,31 @@
 <p><strong>@函数的参数</strong></p>
 <h3 id="函数的返回值"><a href="#函数的返回值" class="headerlink" title="函数的返回值"></a><strong>函数的返回值</strong></h3><p>在函数中通过return关键字将要返回值返回</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> 要返回的值;</div></pre></td></tr></table></figure>
-<h3 id="函数高级概念"><a href="#函数高级概念" class="headerlink" title="函数高级概念"></a><strong>函数高级概念</strong></h3><p><strong>@参数详解</strong><br>在JS中实参的个数和形参的个数可以不一致<br><strong>@返回值详解</strong><br>函数的返回值是什么，调用这个函数就相当于调用什么，如果没有回值则为undefined<br>函数在执行完成return语句后便会退出函数，后面的代码不会执行<br><strong>@两种定义方式</strong><br>函数声明<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span><span class="params">()</span> </span>&#123;</div><div class="line">           <span class="comment">//函数体</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="函数高级概念"><a href="#函数高级概念" class="headerlink" title="函数高级概念"></a><strong>函数高级概念</strong></h3><p><strong>@参数详解</strong><br>在JS中实参的个数和形参的个数可以不一致<br><strong>@返回值详解</strong><br>函数的返回值是什么，调用这个函数就相当于调用什么，如果没有回值则为undefined<br>函数在执行完成return语句后便会退出函数，后面的代码不会执行<br><strong>@两种定义方式</strong><br>函数声明<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">           <span class="comment">//函数体</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>函数表达式<br>        var fn2 = function () {<br>            //函数体<br>        };<br><strong>@匿名函数</strong><br>匿名函数（没有名字的函数）<br>     function () {<br>        //函数体<br>     }<br><strong>@递归调用</strong><br>程序调用自身的编程技巧称为递归<br><strong>@回调函数</strong><br>函数也是一种普通的数据类型<br>因此函数也可以被当作参数传递<br>被当作参数传递的函数叫做回调函数</p>
 <h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a><strong>对象</strong></h2><p>从宏观的角度讲，对象是对客观事物的抽象，事物的特征可以用<strong>属性</strong>表示，事物的行为可以用<strong>方法</strong>表示<br>从微观的角度讲，对象就是一种数据类型，通过对象可以方便地对<strong>变量</strong>和<strong>函数</strong>进行管理<br>初期我们甚至可以把他简单地理解为一个工具箱</p>
 <h3 id="1-2-1-键值对"><a href="#1-2-1-键值对" class="headerlink" title="1.2.1. 键值对"></a>1.2.1. <strong>键值对</strong></h3><p>键值对就是一种对应关系，通过键能够方便地找到值</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">键:值    <span class="selector-tag">key</span><span class="selector-pseudo">:value</span>    <span class="selector-tag">k</span><span class="selector-pseudo">:v</span></div></pre></td></tr></table></figure>
 <h3 id="对象的声明"><a href="#对象的声明" class="headerlink" title="对象的声明"></a><strong>对象的声明</strong></h3><p>通过构造函数声明（更加通用）</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj= <span class="keyword">new</span> <span class="built_in">Object</span>();</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj= <span class="keyword">new</span> <span class="built_in">Object</span>();</div></pre></td></tr></table></figure>
 <p>通过字面量声明（更加简便）</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var obj</span>= &#123;&#125;;</div></pre></td></tr></table></figure>
 <p>对象具有属性和方法<br>属性 用来描述对象的特征 一般是名词 对应变量<br>方法 用来描述对象的行为 一般是动词 对应函数</p>
 <h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a><strong>属性</strong></h3><p>属性的定义<br><figure class="highlight fix"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">对象.属性名 </span>=<span class="string"> 值</span></div></pre></td></tr></table></figure></p>
 <p>属性的调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.属性名</div></pre></td></tr></table></figure></p>
 <h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a><strong>方法</strong></h3><p>方法的定义</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.方法名 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123; <span class="comment">//函数体 &#125;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.方法名 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//函数体 &#125;</span></div></pre></td></tr></table></figure>
 <p>方法的调用</p>
 <figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.方法名<span class="comment">()</span></div></pre></td></tr></table></figure>
 <p><strong>@找对象练习</strong></p>
 <h2 id="其他概念"><a href="#其他概念" class="headerlink" title="其他概念"></a><strong>其他概念</strong></h2><h3 id="对象字面量"><a href="#对象字面量" class="headerlink" title="对象字面量"></a><strong>对象字面量</strong></h3><p><strong>@对象字面量</strong><br>        var o = {<br>          name : “zs”,<br>            age : 18,<br>            sayHi : function() {<br>                console.log(this.name);<br>            }<br>        };</p>
 <h3 id="对象标记法"><a href="#对象标记法" class="headerlink" title="对象标记法"></a><strong>对象标记法</strong></h3><p><strong>@对象标记法</strong><br>JavaScript Object Notation（JavaScript对象标记法）是仿照JS中对象字面量的格式去书写的一串用来记录对象数据的<strong>字符串</strong>，可以用于数据传输。将来学习AJAX会详细学习。</p>
 <h3 id="访问属性的两种方式"><a href="#访问属性的两种方式" class="headerlink" title="访问属性的两种方式"></a><strong>访问属性的两种方式</strong></h3><p><strong>@访问属性的两种方式</strong><br>点语法（简单）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.属性名</div></pre></td></tr></table></figure></p>
-<p>中括号（灵活）<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象<span class="string">[“属性名”]</span></div></pre></td></tr></table></figure></p>
-<h3 id="遍历的两种方式"><a href="#遍历的两种方式" class="headerlink" title="遍历的两种方式"></a><strong>遍历的两种方式</strong></h3><p><strong>@遍历的两种方式</strong><br>通过for可以对集合进行有序的遍历<br>通过forin可以对集合进行有序的遍历<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> json) &#123; 语句 &#125;</div></pre></td></tr></table></figure></p>
+<p>中括号（灵活）<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象<span class="selector-attr">[“属性名”]</span></div></pre></td></tr></table></figure></p>
+<h3 id="遍历的两种方式"><a href="#遍历的两种方式" class="headerlink" title="遍历的两种方式"></a><strong>遍历的两种方式</strong></h3><p><strong>@遍历的两种方式</strong><br>通过for可以对集合进行有序的遍历<br>通过forin可以对集合进行有序的遍历<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> json) &#123; 语句 &#125;</div></pre></td></tr></table></figure></p>
 <p>k变量代表的是json中的各个属性（key）和 var i = 0中的i是一个意思 名字不同而已</p>
 <h2 id="对象-1"><a href="#对象-1" class="headerlink" title="对象"></a><strong>对象</strong></h2><h3 id="对象的声明和使用"><a href="#对象的声明和使用" class="headerlink" title="对象的声明和使用"></a><strong>对象的声明和使用</strong></h3><p>通过构造函数声明（更加通用）</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj= <span class="keyword">new</span> <span class="built_in">Object</span>();</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj= <span class="keyword">new</span> <span class="built_in">Object</span>();</div></pre></td></tr></table></figure>
 <p>通过字面量声明（更加简便）</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var obj</span>= &#123;&#125;;</div></pre></td></tr></table></figure>
 <p>对象具有属性和方法<br>属性 用来描述对象的特征 一般是名词 对应变量<br>方法 用来描述对象的行为 一般是动词 对应函数<br><strong>属性</strong><br>属性的定义</p>
@@ -577,7 +577,7 @@
 <p>属性的调用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.属性名</div></pre></td></tr></table></figure>
 <p><strong>方法</strong><br>方法的定义</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.方法名 = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123; <span class="comment">//函数体 &#125;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.方法名 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//函数体 &#125;</span></div></pre></td></tr></table></figure>
 <p>方法的调用</p>
 <figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">对象.方法名<span class="comment">()</span></div></pre></td></tr></table></figure>
 <h2 id="关于this的指向"><a href="#关于this的指向" class="headerlink" title="关于this的指向"></a><strong>关于this的指向</strong></h2><h3 id="全局上下文"><a href="#全局上下文" class="headerlink" title="全局上下文"></a><strong>全局上下文</strong></h3><p>全局运行上下文中（在任何函数体外部），this 指代全局对象</p>
@@ -630,8 +630,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/10/JavaScript对字符串进行加密(自定义简单版)/" rel="prev" title="JavaScript对字符串进行加密(自定义简单版)">
-                JavaScript对字符串进行加密(自定义简单版) <i class="fa fa-chevron-right"></i>
+              <a href="/2016/06/11/JS基础/" rel="prev" title="JavaScript基础知识">
+                JavaScript基础知识 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -711,7 +711,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -722,7 +722,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -733,7 +733,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -873,7 +873,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共17.0k字</span>
+  <span class="post-count">博客全站共24.6k字</span>
 </div>
 
 

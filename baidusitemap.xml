@@ -3,9 +3,101 @@
 
 
     
+  <url>
+    <loc>http://sunfeat.com/2016/06/11/JS%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2017-09-07T11:00:43.111Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript基础知识</title>
+        <pubTime>2016-06-11T08:03:00.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
     
   <url>
-    <loc>http://yoursite.com/2017/01/10/%E7%99%BD%E8%AF%9D%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/</loc>
+    <loc>http://sunfeat.com/2017/01/10/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2017-09-06T13:26:09.995Z</lastmod>
+    <data>
+        <display>
+        <title>字符串的常用方法</title>
+        <pubTime>2017-01-10T05:11:00.000Z</pubTime>
+        
+        <tag>字符串方法</tag>
+         
+         
+           
+             
+              <breadCrumb title="字符串方法" url="http://sunfeat.com/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunfeat.com/2016/01/10/%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2017-09-06T10:41:42.994Z</lastmod>
+    <data>
+        <display>
+        <title>模块化开发</title>
+        <pubTime>2016-01-10T05:00:00.000Z</pubTime>
+        
+        <tag>模块化开发</tag>
+         
+         
+           
+             
+              <breadCrumb title="模块化开发" url="http://sunfeat.com/categories/%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunfeat.com/2017/09/02/HTTP%20API%20%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97%EF%BC%88%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86%EF%BC%89/</loc>
+    <lastmod>2017-09-05T12:43:33.133Z</lastmod>
+    <data>
+        <display>
+        <title>HTTP API 设计指南</title>
+        <pubTime>2017-09-02T07:49:30.364Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunfeat.com/2017/01/01/%E4%BD%BF%E7%94%A8SVG%20+%20CSS%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E9%9C%93%E8%99%B9%E7%81%AF%E6%96%87%E5%AD%97%E6%95%88%E6%9E%9C/</loc>
+    <lastmod>2017-09-02T07:25:02.784Z</lastmod>
+    <data>
+        <display>
+        <title>使用SVG + CSS实现动态霓虹灯文字效果</title>
+        <pubTime>2017-01-01T05:00:00.000Z</pubTime>
+        
+        <tag>霓虹灯效果</tag>
+         
+        <tag>svg</tag>
+         
+         
+           
+             
+              <breadCrumb title="css案例" url="http://sunfeat.com/categories/css%E6%A1%88%E4%BE%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://sunfeat.com/2017/01/10/%E7%99%BD%E8%AF%9D%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/</loc>
     <lastmod>2017-09-02T02:07:37.619Z</lastmod>
     <data>
         <display>
@@ -21,7 +113,7 @@
          
            
              
-              <breadCrumb title="原型" url="http://yoursite.com/categories/%E5%8E%9F%E5%9E%8B/"/>
+              <breadCrumb title="原型" url="http://sunfeat.com/categories/%E5%8E%9F%E5%9E%8B/"/>
           
         </display>
     </data>
@@ -29,7 +121,7 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/01/10/JavaScript%E5%AF%B9%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E5%8A%A0%E5%AF%86(%E8%87%AA%E5%AE%9A%E4%B9%89%E7%AE%80%E5%8D%95%E7%89%88)/</loc>
+    <loc>http://sunfeat.com/2017/01/10/JavaScript%E5%AF%B9%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E5%8A%A0%E5%AF%86(%E8%87%AA%E5%AE%9A%E4%B9%89%E7%AE%80%E5%8D%95%E7%89%88)/</loc>
     <lastmod>2017-09-02T02:06:23.305Z</lastmod>
     <data>
         <display>
@@ -41,7 +133,7 @@
          
            
              
-              <breadCrumb title="加密" url="http://yoursite.com/categories/%E5%8A%A0%E5%AF%86/"/>
+              <breadCrumb title="加密" url="http://sunfeat.com/categories/%E5%8A%A0%E5%AF%86/"/>
           
         </display>
     </data>
@@ -49,7 +141,7 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/03/10/Canvas%E5%AE%9E%E7%8E%B0%E5%88%AE%E5%88%AE%E4%B9%90%E6%95%88%E6%9E%9C/</loc>
+    <loc>http://sunfeat.com/2017/03/10/Canvas%E5%AE%9E%E7%8E%B0%E5%88%AE%E5%88%AE%E4%B9%90%E6%95%88%E6%9E%9C/</loc>
     <lastmod>2017-09-01T12:46:31.066Z</lastmod>
     <data>
         <display>
@@ -63,7 +155,7 @@
          
            
              
-              <breadCrumb title="canvas" url="http://yoursite.com/categories/canvas/"/>
+              <breadCrumb title="canvas" url="http://sunfeat.com/categories/canvas/"/>
           
         </display>
     </data>
@@ -71,7 +163,7 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/03/10/mycanvas/</loc>
+    <loc>http://sunfeat.com/2017/03/10/mycanvas/</loc>
     <lastmod>2017-09-01T12:21:16.880Z</lastmod>
     <data>
         <display>
@@ -83,7 +175,7 @@
          
            
              
-              <breadCrumb title="canvas" url="http://yoursite.com/categories/canvas/"/>
+              <breadCrumb title="canvas" url="http://sunfeat.com/categories/canvas/"/>
           
         </display>
     </data>
@@ -91,7 +183,7 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/01/20/JavaScript+Standard+Style(JavaScript+%E6%A0%87%E5%87%86%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC)/</loc>
+    <loc>http://sunfeat.com/2017/01/20/JavaScript+Standard+Style(JavaScript+%E6%A0%87%E5%87%86%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC)/</loc>
     <lastmod>2017-09-01T11:21:05.040Z</lastmod>
     <data>
         <display>
@@ -103,7 +195,7 @@
          
            
              
-              <breadCrumb title="标准编码风格" url="http://yoursite.com/categories/%E6%A0%87%E5%87%86%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC/"/>
+              <breadCrumb title="标准编码风格" url="http://sunfeat.com/categories/%E6%A0%87%E5%87%86%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC/"/>
           
         </display>
     </data>
@@ -111,7 +203,7 @@
 
     
   <url>
-    <loc>http://yoursite.com/2016/02/10/js%E5%9F%BA%E7%A1%8001/</loc>
+    <loc>http://sunfeat.com/2016/02/10/js%E5%9F%BA%E7%A1%8001/</loc>
     <lastmod>2017-09-01T02:22:30.498Z</lastmod>
     <data>
         <display>
@@ -123,42 +215,7 @@
          
            
              
-              <breadCrumb title="js基础" url="http://yoursite.com/categories/js%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/11/JS%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2017-08-28T06:31:25.995Z</lastmod>
-    <data>
-        <display>
-        <title>JS基础知识</title>
-        <pubTime>2017-06-11T08:03:00.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2016/01/10/%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2017-08-28T03:20:57.079Z</lastmod>
-    <data>
-        <display>
-        <title>模块化开发</title>
-        <pubTime>2016-01-10T05:00:00.000Z</pubTime>
-        
-        <tag>模块化开发</tag>
-         
-         
-           
-             
-              <breadCrumb title="模块化开发" url="http://yoursite.com/categories/%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/"/>
+              <breadCrumb title="js基础" url="http://sunfeat.com/categories/js%E5%9F%BA%E7%A1%80/"/>
           
         </display>
     </data>

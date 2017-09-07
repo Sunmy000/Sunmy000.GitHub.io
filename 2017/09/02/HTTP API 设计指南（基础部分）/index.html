@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="孙梦尧, 孙梦尧的博客" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="孙梦尧的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="HTTP API 设计指南（基础部分）隔离关注点设计时通过将请求和响应之间的不同部分隔离来让事情变得简单。保持简单的规则让我们能更关注在一些更大的更困难的问题上。 请求和响应将解决一个特定的资源或集合。使用路径（path）来表明身份，body来传输内容（content）还有头信息（header）来传递元数据（metadata）。查询参数同样可以用来传递头信息的内容，但头信息是首选，因为他们更灵活、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP API 设计指南">
+<meta property="og:url" content="http://sunfeat.com/2017/09/02/HTTP API 设计指南（基础部分）/index.html">
+<meta property="og:site_name" content="孙梦尧的博客">
+<meta property="og:description" content="HTTP API 设计指南（基础部分）隔离关注点设计时通过将请求和响应之间的不同部分隔离来让事情变得简单。保持简单的规则让我们能更关注在一些更大的更困难的问题上。 请求和响应将解决一个特定的资源或集合。使用路径（path）来表明身份，body来传输内容（content）还有头信息（header）来传递元数据（metadata）。查询参数同样可以用来传递头信息的内容，但头信息是首选，因为他们更灵活、">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-05T12:43:33.133Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP API 设计指南">
+<meta name="twitter:description" content="HTTP API 设计指南（基础部分）隔离关注点设计时通过将请求和响应之间的不同部分隔离来让事情变得简单。保持简单的规则让我们能更关注在一些更大的更困难的问题上。 请求和响应将解决一个特定的资源或集合。使用路径（path）来表明身份，body来传输内容（content）还有头信息（header）来传递元数据（metadata）。查询参数同样可以用来传递头信息的内容，但头信息是首选，因为他们更灵活、">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://sunfeat.com/2017/09/02/HTTP API 设计指南（基础部分）/"/>
+
+
+
+
+
+  <title>HTTP API 设计指南 | 孙梦尧的博客</title>
+  
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/prism-pojoaque.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/sunmy000"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    
+	<header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">孙梦尧的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://sunfeat.com/2017/09/02/HTTP API 设计指南（基础部分）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sunmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/hanbao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孙梦尧的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTTP API 设计指南</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-02T15:49:30+08:00">
+                2017-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="HTTP-API-设计指南（基础部分）"><a href="#HTTP-API-设计指南（基础部分）" class="headerlink" title="HTTP API 设计指南（基础部分）"></a>HTTP API 设计指南（基础部分）</h2><h3 id="隔离关注点"><a href="#隔离关注点" class="headerlink" title="隔离关注点"></a>隔离关注点</h3><p>设计时通过将请求和响应之间的不同部分隔离来让事情变得简单。保持简单的规则让我们能更关注在一些更大的更困难的问题上。</p>
+<p>请求和响应将解决一个特定的资源或集合。使用路径（path）来表明身份，body来传输内容（content）还有头信息（header）来传递元数据（metadata）。查询参数同样可以用来传递头信息的内容，但头信息是首选，因为他们更灵活、更能传达不同的信息。</p>
+<h3 id="强制使用安全连接（Secure-Connections）所有的访问API行为，都需要用-TLS-通过安全连接来访问。没有必要搞清或解释什么情况需要-TLS-什么情况不需要-TLS，直接强制任何访问都要通过-TLS。"><a href="#强制使用安全连接（Secure-Connections）所有的访问API行为，都需要用-TLS-通过安全连接来访问。没有必要搞清或解释什么情况需要-TLS-什么情况不需要-TLS，直接强制任何访问都要通过-TLS。" class="headerlink" title="强制使用安全连接（Secure Connections）所有的访问API行为，都需要用 TLS 通过安全连接来访问。没有必要搞清或解释什么情况需要 TLS 什么情况不需要 TLS，直接强制任何访问都要通过 TLS。"></a>强制使用安全连接（Secure Connections）所有的访问API行为，都需要用 TLS 通过安全连接来访问。没有必要搞清或解释什么情况需要 TLS 什么情况不需要 TLS，直接强制任何访问都要通过 TLS。</h3><p>理想状态下，通过拒绝所有非 TLS 请求，不响应 http 或80端口的请求以避免任何不安全的数据交换。如果现实情况中无法这样做，可以返回<code>403 Forbidden</code>响应。</p>
+<p>把非 TLS 的请求重定向(Redirect)至 TLS 连接是不明智的，这种含混/不好的客户端行为不会带来明显好处。依赖于重定向的客户端访问不仅会导致双倍的服务器负载，还会使 TLS 加密失去意义，因为在首次非 TLS 调用时，敏感信息就已经暴露出去了。</p>
+<h3 id="强制头信息-Accept-中提供版本号"><a href="#强制头信息-Accept-中提供版本号" class="headerlink" title="强制头信息 Accept 中提供版本号"></a>强制头信息 Accept 中提供版本号</h3><p>制定版本并在版本之间平缓过渡对于设计和维护一套API是个巨大的挑战。所以，最好在设计之初就使用一些方法来预防可能会遇到的问题。</p>
+<p>为了避免API的变动导致用户使用中产生意外结果或调用失败，最好强制要求所有访问都需要指定版本号。请避免提供默认版本号，一旦提供，日后想要修改它会相当困难。</p>
+<p>最适合放置版本号的位置是头信息(HTTP Headers)，在 <code>Accept</code> 段中使用自定义类型(content type)与其他元数据(metadata)一起提交。例如:</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Accept: <span class="built_in">application</span>/vnd.heroku+json; <span class="built_in">version</span>=<span class="number">3</span></div></pre></td></tr></table></figure>
+<h3 id="支持Etag缓存"><a href="#支持Etag缓存" class="headerlink" title="支持Etag缓存"></a>支持Etag缓存</h3><p>在所有返回的响应中包含<code>ETag</code>头信息，用来标识资源的版本。这让用户对资源进行缓存处理成为可能，在后续的访问请求中把<code>If-None-Match</code>头信息设置为之前得到的<code>ETag</code>值，就可以侦测到已缓存的资源是否需要更新。</p>
+<h3 id="为内省而提供-Request-Id"><a href="#为内省而提供-Request-Id" class="headerlink" title="为内省而提供 Request-Id"></a>为内省而提供 Request-Id</h3><p>为每一个请求响应包含一个<code>Request-Id</code>字段，并使用UUID作为该值。通过在客户端、服务器或任何支持服务上记录该值，它能主我们提供一种机制来跟踪、诊断和调试请求。</p>
+<h3 id="通过请求中的范围（Range）拆分大的响应"><a href="#通过请求中的范围（Range）拆分大的响应" class="headerlink" title="通过请求中的范围（Range）拆分大的响应"></a>通过请求中的范围（Range）拆分大的响应</h3><p>一个大的响应应该通过多个请求使用<code>Range</code>头信息来拆分，并指定如何取得。详细的请求和响应的头信息（header），状态码(status code)，范围(limit)，排序(ordering)和迭代(iteration)等，参考<a href="https://devcenter.heroku.com/articles/platform-api-reference#ranges" target="_blank" rel="external">Heroku Platform API discussion of Ranges</a>.</p>
+<h2 id="HTTP-API-设计指南（请求部分）"><a href="#HTTP-API-设计指南（请求部分）" class="headerlink" title="HTTP API 设计指南（请求部分）"></a>HTTP API 设计指南（请求部分）</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这篇指南介绍描述了 HTTP+JSON API 的一种设计模式，最初摘录整理自 Heroku 平台的 API 设计指引 <a href="https://devcenter.heroku.com/articles/platform-api-reference" target="_blank" rel="external">Heroku 平台 API 指引</a>。</p>
+<p>这篇指南除了详细介绍现有的 API 外，Heroku 将来新加入的内部 API 也会符合这种设计模式，我们希望非 Heroku 员工的API设计者也能感兴趣。</p>
+<p>我们的目标是保持一致性，专注业务逻辑同时避免过度设计。我们一直试图找出一种良好的、一致的、显而易见的 API 设计方法，而并不是所谓的”最终/理想模式”。</p>
+<p>我们假设你熟悉基本的 HTTP+JSON API 设计方法，所以本篇指南并不包含所有的 API 设计基础。</p>
+<p>我们欢迎你为这篇指南做<a href="https://github.com/interagent/http-api-design/blob/master/CONTRIBUTING.md" target="_blank" rel="external">贡献</a>。</p>
+<hr>
+<h3 id="返回合适的状态码"><a href="#返回合适的状态码" class="headerlink" title="返回合适的状态码"></a>返回合适的状态码</h3><p>为每一次的响应返回合适的HTTP状态码。 好的响应应该使用如下的状态码:</p>
+<ul>
+<li><code>200</code>: <code>GET</code>请求成功，及<code>DELETE</code>或<code>PATCH</code>同步请求完成，或者<code>PUT</code>同步更新一个已存在的资源</li>
+<li><code>201</code>: <code>POST</code> 同步请求完成，或者<code>PUT</code>同步创建一个新的资源</li>
+<li><code>202</code>: <code>POST</code>，<code>PUT</code>，<code>DELETE</code>，或<code>PATCH</code>请求接收，将被异步处理</li>
+<li><code>206</code>: <code>GET</code> 请求成功，但是只返回一部分，参考：<a href="">上文中范围分页</a></li>
+</ul>
+<p>使用身份认证（authentication）和授权（authorization）错误码时需要注意：</p>
+<ul>
+<li><code>401 Unauthorized</code>: 用户未认证，请求失败</li>
+<li><code>403 Forbidden</code>: 用户无权限访问该资源，请求失败</li>
+</ul>
+<p>当用户请求错误时，提供合适的状态码可以提供额外的信息：</p>
+<ul>
+<li><code>422 Unprocessable Entity</code>: 请求被服务器正确解析，但是包含无效字段</li>
+<li><code>429 Too Many Requests</code>: 因为访问频繁，你已经被限制访问，稍后重试</li>
+<li><code>500 Internal Server Error</code>: 服务器错误，确认状态并报告问题</li>
+</ul>
+<p>对于用户错误和服务器错误情况状态码，参考： <a href="https://tools.ietf.org/html/rfc7231#section-6" target="_blank" rel="external">HTTP response code spec</a></p>
+<h3 id="提供全部可用的资源"><a href="#提供全部可用的资源" class="headerlink" title="提供全部可用的资源"></a>提供全部可用的资源</h3><p>提供全部可显现的资源 (例如： 这个对象的所有属性) ，当响应码为200或是201时返回所有可用资源，包含 <code>PUT</code>/<code>PATCH</code> 和 <code>DELETE</code><br>请求，例如:</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ curl -X <span class="keyword">DELETE</span> \</div><div class="line">  https:<span class="comment">//service.com/apps/1f9b/domains/0fd4</span></div><div class="line"></div><div class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</div><div class="line">Content-<span class="built_in">Type</span>: application/json;charset=utf<span class="number">-8</span></div><div class="line">...</div><div class="line">&#123;</div><div class="line">  <span class="string">"created_at"</span>: <span class="string">"2012-01-01T12:00:00Z"</span>,</div><div class="line">  <span class="string">"hostname"</span>: <span class="string">"subdomain.example.com"</span>,</div><div class="line">  <span class="string">"id"</span>: <span class="string">"01234567-89ab-cdef-0123-456789abcdef"</span>,</div><div class="line">  <span class="string">"updated_at"</span>: <span class="string">"2012-01-01T12:00:00Z"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当请求状态码为202时，不返回所有可用资源，例如：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ curl -X DELETE \</div><div class="line">  <span class="symbol">https:</span>/<span class="regexp">/service.com/apps</span><span class="regexp">/1f9b/dynos</span><span class="regexp">/05bd</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">HTTP/</span><span class="number">1.1</span> <span class="number">202</span> Accepted</div><div class="line">Content-<span class="symbol">Type:</span> application/json;charset=utf-<span class="number">8</span></div><div class="line">...</div><div class="line">&#123;&#125;</div></pre></td></tr></table></figure>
+<h3 id="在请求的body体使用JSON格式数据"><a href="#在请求的body体使用JSON格式数据" class="headerlink" title="在请求的body体使用JSON格式数据"></a>在请求的body体使用JSON格式数据</h3><p>在 <code>PUT</code>/<code>PATCH</code>/<code>POST</code> 请求的正文（request bodies）中使用JSON格式数据，而不是使用 form 表单形式的数据。这与我们使用JSON格式返回请求相对应，例如:</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ curl -X POST https:<span class="string">//service.com/apps</span> \</div><div class="line">    -H <span class="string">"Content-Type: application/json"</span> \</div><div class="line">    -d '&#123;<span class="string">"name"</span>: <span class="string">"demoapp"</span>&#125;'</div><div class="line"></div><div class="line">&#123;</div><div class="line">  <span class="string">"id"</span>: <span class="string">"01234567-89ab-cdef-0123-456789abcdef"</span>,</div><div class="line">  <span class="string">"name"</span>: <span class="string">"demoapp"</span>,</div><div class="line">  <span class="string">"owner"</span>: &#123;</div><div class="line">    <span class="string">"email"</span>: <span class="string">"username@example.com"</span>,</div><div class="line">    <span class="string">"id"</span>: <span class="string">"01234567-89ab-cdef-0123-456789abcdef"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用统一的资源路径格式"><a href="#使用统一的资源路径格式" class="headerlink" title="使用统一的资源路径格式"></a>使用统一的资源路径格式</h3><h4 id="资源名（Resource-names）"><a href="#资源名（Resource-names）" class="headerlink" title="资源名（Resource names）"></a>资源名（Resource names）</h4><p>使用复数形式为资源命名，除非这个资源在系统中是单例的 (例如，在大多数系统中，给定的用户帐户只有一个)。 这种方式保持了特定资源的统一性。</p>
+<h4 id="行为（Actions）"><a href="#行为（Actions）" class="headerlink" title="行为（Actions）"></a>行为（Actions）</h4><p>好的末尾不需要为资源指定特殊的行为，但在特殊情况下，为某些资源指定行为却是必要的。为了描述清楚，在行为前加上一个标准的<code>actions</code>：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/resources/<span class="symbol">:resource/actions/</span><span class="symbol">:action</span></div></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/runs/</span>&#123;run_id&#125;<span class="regexp">/actions/</span>stop</div></pre></td></tr></table></figure>
+<h3 id="路径和属性要小写"><a href="#路径和属性要小写" class="headerlink" title="路径和属性要小写"></a>路径和属性要小写</h3><p>为了和域名命名规则保持一致，使用小写字母并用<code>-</code>分割路径名字，例如：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service-api.com/users</div><div class="line">service-api.com/app-setups</div></pre></td></tr></table></figure>
+<p>属性也使用小写字母，但是属性名要用下划线<code>_</code>分割，以便在Javascript中省略引号。 例如：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">service_class:</span> <span class="string">"first"</span></div></pre></td></tr></table></figure>
+<h3 id="支持方便的无id间接引用"><a href="#支持方便的无id间接引用" class="headerlink" title="支持方便的无id间接引用"></a>支持方便的无id间接引用</h3><p>在某些情况下，让用户提供ID去定位资源是不方便的。例如，一个用户想取得他在Heroku平台app信息，但是这个app的唯一标识是UUID。这种情况下，你应该支持接口通过名字和ID都能访问，例如:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ curl https:<span class="regexp">//</span>service.com<span class="regexp">/apps/</span>&#123;app_id_or_name&#125;</div><div class="line">$ curl https:<span class="regexp">//</span>service.com<span class="regexp">/apps/</span><span class="number">97</span>addcf0-c182</div><div class="line">$ curl https:<span class="regexp">//</span>service.com<span class="regexp">/apps/</span>www-prod</div></pre></td></tr></table></figure>
+<p>不要只接受使用名字而放弃了使用id。</p>
+<h3 id="最小化路径嵌套"><a href="#最小化路径嵌套" class="headerlink" title="最小化路径嵌套"></a>最小化路径嵌套</h3><p>在一些有父路径/子路径嵌套关系的资源数据模块中，路径可能有非常深的嵌套关系，例如:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/orgs/</span>&#123;org_id&#125;<span class="regexp">/apps/</span>&#123;app_id&#125;<span class="regexp">/dynos/</span>&#123;dyno_id&#125;</div></pre></td></tr></table></figure>
+<p>推荐在根(root)路径下指定资源来限制路径的嵌套深度。使用嵌套指定范围的资源。在上述例子中，dyno属于app，app属于org可以表示为：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="string">/orgs/</span>&#123;org_id&#125;</div><div class="line"><span class="string">/orgs/</span>&#123;org_id&#125;<span class="string">/apps</span></div><div class="line"><span class="string">/apps/</span>&#123;app_id&#125;</div><div class="line"><span class="string">/apps/</span>&#123;app_id&#125;<span class="string">/dynos</span></div><div class="line"><span class="string">/dynos/</span>&#123;dyno_id&#125;</div></pre></td></tr></table></figure>
+<h2 id="HTTP-API-设计指南（响应部分）"><a href="#HTTP-API-设计指南（响应部分）" class="headerlink" title="HTTP API 设计指南（响应部分）"></a>HTTP API 设计指南（响应部分）</h2><h3 id="前言-1"><a href="#前言-1" class="headerlink" title="前言"></a>前言</h3><p>这篇指南介绍描述了 HTTP+JSON API 的一种设计模式，最初摘录整理自 Heroku 平台的 API 设计指引 <a href="https://devcenter.heroku.com/articles/platform-api-reference" target="_blank" rel="external">Heroku 平台 API 指引</a>。</p>
+<p>这篇指南除了详细介绍现有的 API 外，Heroku 将来新加入的内部 API 也会符合这种设计模式，我们希望非 Heroku 员工的API设计者也能感兴趣。</p>
+<p>我们的目标是保持一致性，专注业务逻辑同时避免过度设计。我们一直试图找出一种良好的、一致的、显而易见的 API 设计方法，而并不是所谓的”最终/理想模式”。</p>
+<p>我们假设你熟悉基本的 HTTP+JSON API 设计方法，所以本篇指南并不包含所有的 API 设计基础。</p>
+<p>我们欢迎你为这篇指南做<a href="https://github.com/interagent/http-api-design/blob/master/CONTRIBUTING.md" target="_blank" rel="external">贡献</a>。</p>
+<hr>
+<h3 id="提供资源的-UU-ID"><a href="#提供资源的-UU-ID" class="headerlink" title="提供资源的(UU)ID"></a>提供资源的(UU)ID</h3><p>在默认情况给每一个资源一个<code>id</code>属性。除非有更好的理由，否则请使用UUID。不要使用那种在服务器上或是资源中不是全局唯一的标识，尤其是自动增长的id。</p>
+<p>生成小写的UUID格式 <code>8-4-4-4-12</code>，例如：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"id": "01234567<span class="string">-89</span>ab-cdef<span class="string">-0123</span><span class="string">-456789</span>abcdef"</div></pre></td></tr></table></figure>
+<h3 id="提供标准的时间戳"><a href="#提供标准的时间戳" class="headerlink" title="提供标准的时间戳"></a>提供标准的时间戳</h3><p>为资源提供默认的创建时间 <code>created_at</code> 和更新时间 <code>updated_at</code>，例如:</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  ...</div><div class="line">  <span class="string">"created_at"</span>: <span class="string">"2012-01-01T12:00:00Z"</span>,</div><div class="line">  <span class="string">"updated_at"</span>: <span class="string">"2012-01-01T13:00:00Z"</span>,</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>有些资源不需要使用时间戳那么就忽略这两个字段。</p>
+<h3 id="使用UTC（世界标准时间）时间，用ISO8601进行格式化"><a href="#使用UTC（世界标准时间）时间，用ISO8601进行格式化" class="headerlink" title="使用UTC（世界标准时间）时间，用ISO8601进行格式化"></a>使用UTC（世界标准时间）时间，用ISO8601进行格式化</h3><p>在接收和返回时都只使用UTC格式。ISO8601格式的数据，例如:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"<span class="selector-tag">finished_at</span>": "2012<span class="selector-tag">-01-01T12</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:00Z"</span></div></pre></td></tr></table></figure>
+<h3 id="嵌套外键关系"><a href="#嵌套外键关系" class="headerlink" title="嵌套外键关系"></a>嵌套外键关系</h3><p>使用嵌套对象序列化外键关联，例如:</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"service-production"</span>,</div><div class="line">  <span class="string">"owner"</span>: &#123;</div><div class="line">    <span class="string">"id"</span>: <span class="string">"5d8201b0..."</span></div><div class="line">  &#125;,</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而不是像这样:</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"service-production"</span>,</div><div class="line">  <span class="string">"owner_id"</span>: <span class="string">"5d8201b0..."</span>,</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种方式尽可能的把相关联的资源信息内联在一起，而不用改变资源的结构，或者引入更多的字段，例如:</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"service-production"</span>,</div><div class="line">  <span class="string">"owner"</span>: &#123;</div><div class="line">    <span class="string">"id"</span>: <span class="string">"5d8201b0..."</span>,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"Alice"</span>,</div><div class="line">    <span class="string">"email"</span>: <span class="string">"alice@heroku.com"</span></div><div class="line">  &#125;,</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="生成结构化的错误"><a href="#生成结构化的错误" class="headerlink" title="生成结构化的错误"></a>生成结构化的错误</h3><p>响应错误的时，生成统一的、结构化的错误信息。包含一个机器可读的错误 <code>id</code>，一个人类能识别的错误信息（<code>message</code>），根据情况可以添加一个<code>url</code>来告诉客户端关于这个错误的更多信息以及如何去解决它，例如:</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 <span class="number">429</span> Too Many Requests</div></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"id"</span>:      <span class="string">"rate_limit"</span>,</div><div class="line">  <span class="attr">"message"</span>: <span class="string">"Account reached its API rate limit."</span>,</div><div class="line">  <span class="attr">"url"</span>:     <span class="string">"https://docs.service.com/rate-limits"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>文档化客户端可能遇到的错误信息格式，以及这些可能的错误信息<code>id</code>。</p>
+<h3 id="显示频率限制状态"><a href="#显示频率限制状态" class="headerlink" title="显示频率限制状态"></a>显示频率限制状态</h3><p>客户端的访问速度限制可以维护服务器的良好状态，保证为其他客户端请求提供高性的服务。你可以使用<a href="http://en.wikipedia.org/wiki/Token_bucket" target="_blank" rel="external">token bucket algorithm</a>技术量化请求限制。</p>
+<p>为每一个带有<code>RateLimit-Remaining</code>响应头的请求，返回预留的请求tokens。</p>
+<h3 id="保证响应JSON最小化"><a href="#保证响应JSON最小化" class="headerlink" title="保证响应JSON最小化"></a>保证响应JSON最小化</h3><p>请求中多余的空格会增加响应大小，而且现在很多的HTTP客户端都会自己输出可读格式（”prettify”）的JSON。所以最好保证响应JSON最小化，例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"beta"</span>:<span class="literal">false</span>,<span class="attr">"email"</span>:<span class="string">"alice@heroku.com"</span>,<span class="attr">"id"</span>:<span class="string">"01234567-89ab-cdef-0123-456789abcdef"</span>,<span class="attr">"last_login"</span>:<span class="string">"2012-01-01T12:00:00Z"</span>,<span class="attr">"created_at"</span>:<span class="string">"2012-01-01T12:00:00Z"</span>,<span class="attr">"updated_at"</span>:<span class="string">"2012-01-01T12:00:00Z"</span>&#125;</div></pre></td></tr></table></figure>
+<p>而不是这样：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"beta"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="attr">"email"</span>: <span class="string">"alice@heroku.com"</span>,</div><div class="line">  <span class="attr">"id"</span>: <span class="string">"01234567-89ab-cdef-0123-456789abcdef"</span>,</div><div class="line">  <span class="attr">"last_login"</span>: <span class="string">"2012-01-01T12:00:00Z"</span>,</div><div class="line">  <span class="attr">"created_at"</span>: <span class="string">"2012-01-01T12:00:00Z"</span>,</div><div class="line">  <span class="attr">"updated_at"</span>: <span class="string">"2012-01-01T12:00:00Z"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你可以提供可选的方式为客户端提供更详细可读的响应，使用查询参数（例如：<code>?pretty=true</code>）或者通过<code>Accept</code>头信息参数（例如：<code>Accept: application/vnd.heroku+json; version=3; indent=4;</code>）</p>
+<h2 id="HTTP-API-设计指南（结尾）"><a href="#HTTP-API-设计指南（结尾）" class="headerlink" title="HTTP API 设计指南（结尾）"></a>HTTP API 设计指南（结尾）</h2><h3 id="前言-2"><a href="#前言-2" class="headerlink" title="前言"></a>前言</h3><p>这篇指南介绍描述了 HTTP+JSON API 的一种设计模式，最初摘录整理自 Heroku 平台的 API 设计指引 Heroku 平台 API 指引。</p>
+<p>这篇指南除了详细介绍现有的 API 外，Heroku 将来新加入的内部 API 也会符合这种设计模式，我们希望非 Heroku 员工的API设计者也能感兴趣。</p>
+<p>我们的目标是保持一致性，专注业务逻辑同时避免过度设计。我们一直试图找出一种良好的、一致的、显而易见的 API 设计方法，而并不是所谓的”最终/理想模式”。</p>
+<p>我们假设你熟悉基本的 HTTP+JSON API 设计方法，所以本篇指南并不包含所有的 API 设计基础。</p>
+<p>我们欢迎你为这篇指南做贡献。</p>
+<h3 id="提供机器可读的JSON模式"><a href="#提供机器可读的JSON模式" class="headerlink" title="提供机器可读的JSON模式"></a>提供机器可读的JSON模式</h3><p>提供一个机器可读的模式来恰当的表现你的API。使用<br>prmd管理你的模式，并且确保用prmd verify验证是有效的。</p>
+<h3 id="提供人类可读的文档"><a href="#提供人类可读的文档" class="headerlink" title="提供人类可读的文档"></a>提供人类可读的文档</h3><p>提供人类可读的文档让客户端开发人员可以理解你的API。</p>
+<p>如果你用prmd创建了一个概要并且按上述要求描述，你可以为所有节点很容易的使用prmd doc生成Markdown文档。</p>
+<p>除了节点信息，提供一个API概述信息:</p>
+<p>验证授权，包含如何取得和如何使用token。<br>API稳定及版本管理，包含如何选择所需要的版本。<br>一般情况下的请求和响应的头信息。<br>错误的序列化格式。<br>不同编程语言客户端使用API的例子。</p>
+<h3 id="提供可执行的例子"><a href="#提供可执行的例子" class="headerlink" title="提供可执行的例子"></a>提供可执行的例子</h3><p>提供可执行的示例让用户可以直接在终端里面看到API的调用情况，最大程度的让这些示例可以简单的使用，以减少用户尝试使用API的工作量。例如:</p>
+<p>$ export TOKEN=… # acquire from dashboard<br>$ curl -is <a href="https://$TOKEN@service.com/users" target="_blank" rel="external">https://$TOKEN@service.com/users</a><br>如果你使用prmd生成Markdown文档，每个节点都会自动获取一些示例。</p>
+<h3 id="描述稳定性"><a href="#描述稳定性" class="headerlink" title="描述稳定性"></a>描述稳定性</h3><p>描述您的API的稳定性或是它在各种各样节点环境中的完备性和稳定性，例如：加上 原型版（prototype）/开发版（development）/产品版（production）等标记。</p>
+<p>更多关于可能的稳定性和改变管理的方式，查看 Heroku API compatibility policy</p>
+<p>一旦你的API宣布产品正式版本及稳定版本时，不要在当前API版本中做一些不兼容的改变。如果你需要，请创建一个新的版本的API。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/10/Canvas实现刮刮乐效果/" rel="next" title="Canvas实现的刮刮乐效果">
+                <i class="fa fa-chevron-left"></i> Canvas实现的刮刮乐效果
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/hanbao.jpg"
+               alt="Sunmy" />
+          <p class="site-author-name" itemprop="name">Sunmy</p>
+           
+              <p class="site-description motion-element" itemprop="description">留一片空白，随时浓墨重彩</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunmy000" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com" target="_blank" title="SegmentFault">
+                  
+                    <i class="fa fa-fw fa-meh-o"></i>
+                  
+                    
+                      SegmentFault
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://juejin.im" target="_blank" title="掘金">
+                  
+                    <i class="fa fa-fw fa-spinner"></i>
+                  
+                    
+                      掘金
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-API-设计指南（基础部分）"><span class="nav-number">1.</span> <span class="nav-text">HTTP API 设计指南（基础部分）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#隔离关注点"><span class="nav-number">1.1.</span> <span class="nav-text">隔离关注点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制使用安全连接（Secure-Connections）所有的访问API行为，都需要用-TLS-通过安全连接来访问。没有必要搞清或解释什么情况需要-TLS-什么情况不需要-TLS，直接强制任何访问都要通过-TLS。"><span class="nav-number">1.2.</span> <span class="nav-text">强制使用安全连接（Secure Connections）所有的访问API行为，都需要用 TLS 通过安全连接来访问。没有必要搞清或解释什么情况需要 TLS 什么情况不需要 TLS，直接强制任何访问都要通过 TLS。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制头信息-Accept-中提供版本号"><span class="nav-number">1.3.</span> <span class="nav-text">强制头信息 Accept 中提供版本号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持Etag缓存"><span class="nav-number">1.4.</span> <span class="nav-text">支持Etag缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为内省而提供-Request-Id"><span class="nav-number">1.5.</span> <span class="nav-text">为内省而提供 Request-Id</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过请求中的范围（Range）拆分大的响应"><span class="nav-number">1.6.</span> <span class="nav-text">通过请求中的范围（Range）拆分大的响应</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-API-设计指南（请求部分）"><span class="nav-number">2.</span> <span class="nav-text">HTTP API 设计指南（请求部分）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">2.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回合适的状态码"><span class="nav-number">2.2.</span> <span class="nav-text">返回合适的状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提供全部可用的资源"><span class="nav-number">2.3.</span> <span class="nav-text">提供全部可用的资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在请求的body体使用JSON格式数据"><span class="nav-number">2.4.</span> <span class="nav-text">在请求的body体使用JSON格式数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用统一的资源路径格式"><span class="nav-number">2.5.</span> <span class="nav-text">使用统一的资源路径格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#资源名（Resource-names）"><span class="nav-number">2.5.1.</span> <span class="nav-text">资源名（Resource names）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行为（Actions）"><span class="nav-number">2.5.2.</span> <span class="nav-text">行为（Actions）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路径和属性要小写"><span class="nav-number">2.6.</span> <span class="nav-text">路径和属性要小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持方便的无id间接引用"><span class="nav-number">2.7.</span> <span class="nav-text">支持方便的无id间接引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小化路径嵌套"><span class="nav-number">2.8.</span> <span class="nav-text">最小化路径嵌套</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-API-设计指南（响应部分）"><span class="nav-number">3.</span> <span class="nav-text">HTTP API 设计指南（响应部分）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言-1"><span class="nav-number">3.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提供资源的-UU-ID"><span class="nav-number">3.2.</span> <span class="nav-text">提供资源的(UU)ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提供标准的时间戳"><span class="nav-number">3.3.</span> <span class="nav-text">提供标准的时间戳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用UTC（世界标准时间）时间，用ISO8601进行格式化"><span class="nav-number">3.4.</span> <span class="nav-text">使用UTC（世界标准时间）时间，用ISO8601进行格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套外键关系"><span class="nav-number">3.5.</span> <span class="nav-text">嵌套外键关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成结构化的错误"><span class="nav-number">3.6.</span> <span class="nav-text">生成结构化的错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示频率限制状态"><span class="nav-number">3.7.</span> <span class="nav-text">显示频率限制状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保证响应JSON最小化"><span class="nav-number">3.8.</span> <span class="nav-text">保证响应JSON最小化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-API-设计指南（结尾）"><span class="nav-number">4.</span> <span class="nav-text">HTTP API 设计指南（结尾）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言-2"><span class="nav-number">4.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提供机器可读的JSON模式"><span class="nav-number">4.2.</span> <span class="nav-text">提供机器可读的JSON模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提供人类可读的文档"><span class="nav-number">4.3.</span> <span class="nav-text">提供人类可读的文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提供可执行的例子"><span class="nav-number">4.4.</span> <span class="nav-text">提供可执行的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#描述稳定性"><span class="nav-number">4.5.</span> <span class="nav-text">描述稳定性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sunmy</span>
+
+  
+</div>
+
+
+<!--  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+-->
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共24.6k字</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+</html>
+
