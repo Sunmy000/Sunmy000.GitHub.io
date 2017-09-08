@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://sunfeat.com/"/>
-  <updated>2017-09-05T12:43:33.133Z</updated>
+  <updated>2017-09-08T04:45:49.660Z</updated>
   <id>http://sunfeat.com/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS特效</title>
+    <link href="http://sunfeat.com/2017/09/07/js%E7%89%B9%E6%95%88/"/>
+    <id>http://sunfeat.com/2017/09/07/js特效/</id>
+    <published>2017-09-07T13:57:30.049Z</published>
+    <updated>2017-09-08T04:45:49.660Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="js特效"><a href="#js特效" class="headerlink" title="js特效"></a>js特效</h2><h3 id="元素隐藏消失"><a href="#元素隐藏消失" class="headerlink" title="元素隐藏消失"></a>元素隐藏消失</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jstexiao/jsyc.gif" alt="js显示和隐藏"></p>
+<blockquote>
+<p>特效思路：</p>
+</blockquote>
+<p>1.确定需要出现的div的和样式，为红色的div设置<code>display:none</code></p>
+<p>2.以通过id名的方式获取页面中对应的两个元素</p>
+<p>3.为<code>checkbox</code>绑定鼠标进入事件<code>onmouseover</code>，在事件处理函数中将红色div的设置 <code>dom对象.style.display = &quot;block&quot;</code></p>
+<p>4..为<code>checkbox</code>绑定鼠标离开事件<code>onmouseout</code>，在事件处理函数中将红色div的设置 <code>dom对象.style.display = &quot;none&quot;</code></p>
+<p><a href="http://jsbin.com/vupaxisomu/edit?html,css,js,output" target="_blank" rel="external">代码演示</a></p>
+<hr>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/jstexiao/jsxiala.gif" alt="js下拉菜单"></p>
+<blockquote>
+<p>特效思路：</p>
+</blockquote>
+<p>1.写好html结构和样式，为要隐藏的子元素ul设置 <code>display: none</code></p>
+<p>2.为整个最外层元素设置鼠标进入事件，和鼠标离开事件，分别设置 <code>dom对象.style.display = &quot;block&quot;</code>和 <code>dom对象.style.display = &quot;none&quot;</code></p>
+<p>3.为 li 中的 a 标签设置 <code>a:hover{background:aqua;}</code></p>
+<p><a href="http://jsbin.com/zilode/edit?html,css,js,output" target="_blank" rel="external">代码演示</a></p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;js特效&quot;&gt;&lt;a href=&quot;#js特效&quot; class=&quot;headerlink&quot; title=&quot;js特效&quot;&gt;&lt;/a&gt;js特效&lt;/h2&gt;&lt;h3 id=&quot;元素隐藏消失&quot;&gt;&lt;a href=&quot;#元素隐藏消失&quot; class=&quot;headerlink&quot; title=&quot;元素隐藏消
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>HTTP API 设计指南</title>
