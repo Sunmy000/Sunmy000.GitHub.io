@@ -473,7 +473,7 @@ js的历史总结：
 <p>书写Javascript代码有三种方式，第一种是直接在script标签中书写，第二种是将代码写在js文件中，通过script进行引入。第三种为内嵌入html结构中书写js，但不利于后期代码开发和维护，不推荐；</p>
 </blockquote>
 <p>直接在script中书写javascript代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	alert("今天天气真好呀");</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="actionscript">	alert(<span class="string">"今天天气真好呀"</span>);</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>通过script标签引入一个JS文件，需要指定src属性</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"test.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>通过在html标签中内嵌入html结构执行(但这种方式并不推荐 不利于后期代码开发和维护)</p>
@@ -591,7 +591,7 @@ js的历史总结：
 <h3 id="数值范围"><a href="#数值范围" class="headerlink" title="数值范围"></a>数值范围</h3><blockquote>
 <p>javascript不能表示世界上所有的数，因此在javascript中，数值大小是有一定限制的。</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Number</span>.MIN_VALUE  :<span class="number">5e-324</span></div><div class="line"><span class="built_in">Number</span>.MAX_VALUE  :<span class="number">1.7976931348623157e+308</span></div><div class="line"><span class="literal">Infinity</span>   :正无穷</div><div class="line">-<span class="literal">Infinity</span>  :负无穷</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Number</span><span class="selector-class">.MIN_VALUE</span>  <span class="selector-pseudo">:5e-324</span></div><div class="line"><span class="selector-tag">Number</span><span class="selector-class">.MAX_VALUE</span>  <span class="selector-pseudo">:1.7976931348623157e+308</span></div><div class="line"><span class="selector-tag">Infinity</span>   :正无穷</div><div class="line"><span class="selector-tag">-Infinity</span>  :负无穷</div></pre></td></tr></table></figure>
 <p><img src="http://ou0923swf.bkt.clouddn.com/image/jsbasic/09.png" alt=""></p>
 <h3 id="数值判断"><a href="#数值判断" class="headerlink" title="数值判断"></a>数值判断</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> <span class="literal">NaN</span>:表示一个非数值，当无法运算或者运算错误的时候，会得到一个<span class="literal">NaN</span>，<span class="literal">NaN</span>是<span class="built_in">number</span>类型，表示一个非数值。</div><div class="line"><span class="number">2.</span> <span class="literal">NaN</span>不等于<span class="literal">NaN</span></div><div class="line"><span class="number">3.</span> <span class="built_in">isNaN</span>用来判断是否是一个数字，当返回<span class="literal">true</span>的时候，表示不是一个数字，返回<span class="literal">false</span>表示是一个数字。</div></pre></td></tr></table></figure>
 <p>【要求：判断一个数据是不是数字】<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = <span class="string">"abc"</span>;</div><div class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> data == <span class="string">"number"</span>&amp;&amp;!<span class="built_in">isNaN</span>(data))&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"是数字"</span>);    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -759,7 +759,7 @@ js的历史总结：
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -770,7 +770,7 @@ js的历史总结：
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
