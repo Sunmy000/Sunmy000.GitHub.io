@@ -4,15 +4,38 @@
 
     
   <url>
-    <loc>http://sunfeat.com/2016/06/12/JS%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2017-09-07T13:44:26.789Z</lastmod>
+    <loc>http://sunfeat.com/2016/02/10/js%E5%9F%BA%E7%A1%8001/</loc>
+    <lastmod>2017-09-08T03:46:24.058Z</lastmod>
     <data>
         <display>
-        <title>JavaScript基础知识</title>
+        <title>JavaScript基础知识（下篇）</title>
+        <pubTime>2016-02-10T05:00:00.000Z</pubTime>
+        
+        <tag>js基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="js基础" url="http://sunfeat.com/categories/js%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunfeat.com/2016/06/12/JS%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2017-09-08T03:46:07.692Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript基础知识（上篇）</title>
         <pubTime>2016-06-12T08:03:00.000Z</pubTime>
         
          
            
+             
+              <breadCrumb title="js基础" url="http://sunfeat.com/categories/js%E5%9F%BA%E7%A1%80/"/>
+          
         </display>
     </data>
     </url>
@@ -196,26 +219,6 @@
            
              
               <breadCrumb title="标准编码风格" url="http://sunfeat.com/categories/%E6%A0%87%E5%87%86%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunfeat.com/2016/02/10/js%E5%9F%BA%E7%A1%8001/</loc>
-    <lastmod>2017-09-01T02:22:30.498Z</lastmod>
-    <data>
-        <display>
-        <title>JS基础01</title>
-        <pubTime>2016-02-10T05:00:00.000Z</pubTime>
-        
-        <tag>js基础</tag>
-         
-         
-           
-             
-              <breadCrumb title="js基础" url="http://sunfeat.com/categories/js%E5%9F%BA%E7%A1%80/"/>
           
         </display>
     </data>

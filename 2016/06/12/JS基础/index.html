@@ -106,7 +106,7 @@
 
 <meta name="description" content="JS前置知识浏览器以及网站相关介绍 浏览器定义：可以显示网页服务器或者文件系统的HTML文件内容，并让用户与这些文件交互的一种软件  我们常规使用的五大浏览器：chorme，firefox，IE，Safari以及Oprea 从内核来看：有webkit，gecko，trident，presto  1、Trident内核代表产品Internet Explorer，又称其为IE内核。Trident（又称">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript基础知识">
+<meta property="og:title" content="JavaScript基础知识（上篇）">
 <meta property="og:url" content="http://sunfeat.com/2016/06/12/JS基础/index.html">
 <meta property="og:site_name" content="孙梦尧的博客">
 <meta property="og:description" content="JS前置知识浏览器以及网站相关介绍 浏览器定义：可以显示网页服务器或者文件系统的HTML文件内容，并让用户与这些文件交互的一种软件  我们常规使用的五大浏览器：chorme，firefox，IE，Safari以及Oprea 从内核来看：有webkit，gecko，trident，presto  1、Trident内核代表产品Internet Explorer，又称其为IE内核。Trident（又称">
@@ -117,9 +117,9 @@
 <meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/09.png">
 <meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/10.png">
 <meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/11.jpg">
-<meta property="og:updated_time" content="2017-09-07T13:44:26.789Z">
+<meta property="og:updated_time" content="2017-09-08T03:46:07.692Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript基础知识">
+<meta name="twitter:title" content="JavaScript基础知识（上篇）">
 <meta name="twitter:description" content="JS前置知识浏览器以及网站相关介绍 浏览器定义：可以显示网页服务器或者文件系统的HTML文件内容，并让用户与这些文件交互的一种软件  我们常规使用的五大浏览器：chorme，firefox，IE，Safari以及Oprea 从内核来看：有webkit，gecko，trident，presto  1、Trident内核代表产品Internet Explorer，又称其为IE内核。Trident（又称">
 <meta name="twitter:image" content="http://ou0923swf.bkt.clouddn.com/image/jsbasic/01.jpg">
 
@@ -157,7 +157,7 @@
 
 
 
-  <title>JavaScript基础知识 | 孙梦尧的博客</title>
+  <title>JavaScript基础知识（上篇） | 孙梦尧的博客</title>
   
 
 
@@ -347,7 +347,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript基础知识</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript基础知识（上篇）</h1>
         
 
         <div class="post-meta">
@@ -369,6 +369,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js基础/" itemprop="url" rel="index">
+                    <span itemprop="name">js基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -489,7 +511,7 @@ js的历史总结：
 <li><p>值可以省略，脚本延迟到文档完全被解析和显示后再执行</p>
 </li>
 </ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"myJs.js"</span> <span class="attr">async</span>=<span class="string">"async"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--async立即异步下载外部JS,JS下载完毕立即执行--&gt;</span></div><div class="line">    <span class="comment">&lt;!--defer立即异步下载外部JS,JS下载完毕延迟到最后执行--&gt;</span></div><div class="line">    <span class="comment">&lt;!--这两个属性可以省略属性值--&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"myJs.js"</span> <span class="attr">async</span>=<span class="string">"async"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--async立即异步下载外部JS,JS下载完毕立即执行--&gt;</span></div><div class="line"><span class="comment">&lt;!--defer立即异步下载外部JS,JS下载完毕延迟到最后执行--&gt;</span></div><div class="line"><span class="comment">&lt;!--这两个属性可以省略属性值--&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="输入输出语句"><a href="#输入输出语句" class="headerlink" title="输入输出语句"></a>输入输出语句</h2><blockquote>
 <p>在实际开发，常用1和3，并且1在控制台输出不影响页面正常显示，不会阻塞代码运行，灵活操作，在实际开发中用于代码调试较多。</p>
 </blockquote>
@@ -503,9 +525,9 @@ js的历史总结：
 <li><p>confirm 确认框[^注释]</p>
 </li>
 <li><p>prompt 输入框[^注释]</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">"内容"</span>);<span class="comment">//在控制台打印输出内容</span></div><div class="line"><span class="built_in">document</span>.write(<span class="string">"内容"</span>);<span class="comment">//在页面书写内容</span></div><div class="line">alert(<span class="string">"内容"</span>);<span class="comment">//弹窗显示内容</span></div><div class="line"><span class="built_in">console</span>.warn(<span class="string">"警告框 一般系统在使用"</span>);</div><div class="line"><span class="built_in">console</span>.error(<span class="string">"错误提示信息，一般系统在使用"</span>);</div><div class="line"><span class="built_in">console</span>.info(<span class="string">"输出信息"</span>);</div><div class="line">confirm(<span class="string">"请回答是或者否"</span>);</div></pre></td></tr></table></figure>
 </li>
 </ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">"内容"</span>);<span class="comment">//在控制台打印输出内容</span></div><div class="line"><span class="built_in">document</span>.write(<span class="string">"内容"</span>);<span class="comment">//在页面书写内容</span></div><div class="line">alert(<span class="string">"内容"</span>);<span class="comment">//弹窗显示内容</span></div><div class="line"><span class="built_in">console</span>.warn(<span class="string">"警告框 一般系统在使用"</span>);</div><div class="line"><span class="built_in">console</span>.error(<span class="string">"错误提示信息，一般系统在使用"</span>);</div><div class="line"><span class="built_in">console</span>.info(<span class="string">"输出信息"</span>);</div><div class="line">confirm(<span class="string">"请回答是或者否"</span>);</div></pre></td></tr></table></figure>
 <p>[^注释]: window 是全局对象  是浏览器中的顶级对象  window.alert()中的window 可以省略不写</p>
 <h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><blockquote>
 <p>不被程序执行的代码。用于程序员标记代码，在后期的修改，以及他人的学习时有所帮助，在JS中，分为单行注释和多行注释</p>
@@ -555,7 +577,7 @@ js的历史总结：
 <p>tips:javascript是一种弱类型语言，不管声明什么类型的变量，都是用var，并且变量的类型是可以变化的。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age = <span class="number">90</span>;</div><div class="line">age = <span class="string">"张三"</span>;</div></pre></td></tr></table></figure>
 <hr>
-<h2 id="JavaScript中的数据类型"><a href="#JavaScript中的数据类型" class="headerlink" title="JavaScript中的数据类型"></a>JavaScript中的数据类型</h2><p><strong>简单(基本、值)数据类型</strong><br>            Number（数字类型）、String（字符串）、Boolean（布尔类型）<br>           Undefined、Null（特殊类型）</p>
+<h2 id="JavaScript中的数据类型"><a href="#JavaScript中的数据类型" class="headerlink" title="JavaScript中的数据类型"></a>JavaScript中的数据类型</h2><p><strong>简单(基本、值)数据类型</strong><br>    Number（数字类型）、String（字符串）、Boolean（布尔类型）<br>    Undefined、Null（特殊类型）</p>
 <p>  <strong>复杂(引用)数据类型</strong><br>       object</p>
 <h2 id="如何查看数据类型"><a href="#如何查看数据类型" class="headerlink" title="如何查看数据类型"></a>如何查看数据类型</h2><p>使用typeof关键字查看数据类型</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> name;</div><div class="line"><span class="keyword">typeof</span>(name);</div></pre></td></tr></table></figure>
@@ -635,8 +657,8 @@ js的历史总结：
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/10/js基础01/" rel="next" title="JS基础01">
-                <i class="fa fa-chevron-left"></i> JS基础01
+              <a href="/2016/02/10/js基础01/" rel="next" title="JavaScript基础知识（下篇）">
+                <i class="fa fa-chevron-left"></i> JavaScript基础知识（下篇）
               </a>
             
           </div>
