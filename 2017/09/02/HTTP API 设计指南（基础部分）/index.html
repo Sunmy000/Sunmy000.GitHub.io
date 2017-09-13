@@ -461,7 +461,7 @@
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  ...</div><div class="line">  <span class="string">"created_at"</span>: <span class="string">"2012-01-01T12:00:00Z"</span>,</div><div class="line">  <span class="string">"updated_at"</span>: <span class="string">"2012-01-01T13:00:00Z"</span>,</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>有些资源不需要使用时间戳那么就忽略这两个字段。</p>
 <h3 id="使用UTC（世界标准时间）时间，用ISO8601进行格式化"><a href="#使用UTC（世界标准时间）时间，用ISO8601进行格式化" class="headerlink" title="使用UTC（世界标准时间）时间，用ISO8601进行格式化"></a>使用UTC（世界标准时间）时间，用ISO8601进行格式化</h3><p>在接收和返回时都只使用UTC格式。ISO8601格式的数据，例如:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"<span class="selector-tag">finished_at</span>": "2012<span class="selector-tag">-01-01T12</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:00Z"</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"finished_at"</span>: <span class="string">"2012-01-01T12:00:00Z"</span></div></pre></td></tr></table></figure>
 <h3 id="嵌套外键关系"><a href="#嵌套外键关系" class="headerlink" title="嵌套外键关系"></a>嵌套外键关系</h3><p>使用嵌套对象序列化外键关联，例如:</p>
 <figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"service-production"</span>,</div><div class="line">  <span class="string">"owner"</span>: &#123;</div><div class="line">    <span class="string">"id"</span>: <span class="string">"5d8201b0..."</span></div><div class="line">  &#125;,</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>而不是像这样:</p>
@@ -771,7 +771,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共24.7k字</span>
+  <span class="post-count">博客全站共27.6k字</span>
 </div>
 
 

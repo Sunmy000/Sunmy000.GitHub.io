@@ -113,7 +113,11 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jstexiao/jsyc.gif">
 <meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jstexiao/jsxiala.gif">
-<meta property="og:updated_time" content="2017-09-08T04:45:49.660Z">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jstexiao/smallBox.gif">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jstexiao/shoufengqin.gif">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jstexiao/currentTime.gif">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/jstexiao/clock.gif">
+<meta property="og:updated_time" content="2017-09-13T02:30:00.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS特效">
 <meta name="twitter:description" content="js特效元素隐藏消失  特效思路：  1.确定需要出现的div的和样式，为红色的div设置display:none 2.以通过id名的方式获取页面中对应的两个元素 3.为checkbox绑定鼠标进入事件onmouseover，在事件处理函数中将红色div的设置 dom对象.style.display = &amp;quot;block&amp;quot; 4..为checkbox绑定鼠标离开事件onmouseou">
@@ -403,7 +407,7 @@
 <p>4..为<code>checkbox</code>绑定鼠标离开事件<code>onmouseout</code>，在事件处理函数中将红色div的设置 <code>dom对象.style.display = &quot;none&quot;</code></p>
 <p><a href="http://jsbin.com/vupaxisomu/edit?html,css,js,output" target="_blank" rel="external">代码演示</a></p>
 <hr>
-<p><img src="http://ou0923swf.bkt.clouddn.com/image/jstexiao/jsxiala.gif" alt="js下拉菜单"></p>
+<h3 id="下拉菜单"><a href="#下拉菜单" class="headerlink" title="下拉菜单"></a>下拉菜单</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jstexiao/jsxiala.gif" alt="js下拉菜单"></p>
 <blockquote>
 <p>特效思路：</p>
 </blockquote>
@@ -412,6 +416,34 @@
 <p>3.为 li 中的 a 标签设置 <code>a:hover{background:aqua;}</code></p>
 <p><a href="http://jsbin.com/zilode/edit?html,css,js,output" target="_blank" rel="external">代码演示</a></p>
 <hr>
+<h3 id="点击创建小方块"><a href="#点击创建小方块" class="headerlink" title="点击创建小方块"></a>点击创建小方块</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jstexiao/smallBox.gif" alt=""></p>
+<blockquote>
+<p>特效思路：    </p>
+</blockquote>
+<p>1.先初始化小方块的样式，宽高以及设置为绝对定位，创建一个颜色数组 <code>arrColor= [&quot;red&quot;, &quot;yellow&quot;, &quot;blue&quot;, &quot;green&quot;]</code></p>
+<p>2.创建一个空字符串用于拼接，进行for循环遍历<code>var left = (i%10)*60+50; //left值的规律</code> <code>var top =  parseInt(i/10)*60+50;//top值的规律</code> <code>rrColor[i%arrColor.length]//颜色的值</code></p>
+<p>3.获取容器对象通过<code>innerHTML</code>插入到文档中</p>
+<p><a href="http://jsbin.com/lifinez/edit?html,css,js,output" target="_blank" rel="external">代码演示</a></p>
+<hr>
+<h3 id="基于jquery的手风琴特效"><a href="#基于jquery的手风琴特效" class="headerlink" title="基于jquery的手风琴特效"></a>基于jquery的手风琴特效</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jstexiao/shoufengqin.gif" alt="基于jquery的手风琴特效"></p>
+<blockquote>
+<p>特效思路：</p>
+</blockquote>
+<p>1.先布置静态结构和样式，获取全部h3标签，绑定鼠标点击事件，为当前h3添加背景为蓝色样式，移除其他兄弟h3<code>.siblings</code>元素的背景色样式</p>
+<p>2.为所有h3标签绑定鼠标进入和离开事件，为下一个<code>next</code>元素进行<code>show</code> 显示和<code>hide</code>隐藏</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//所用到的api函数</span></div><div class="line"><span class="selector-tag">on</span>()  <span class="selector-tag">addClass</span>() <span class="selector-tag">removeClass</span>() <span class="selector-tag">siblings</span>() <span class="selector-tag">next</span>() <span class="selector-tag">show</span>() <span class="selector-tag">hide</span>() </div><div class="line"><span class="comment">//所用到事件</span></div><div class="line"><span class="selector-tag">click</span>事件 <span class="selector-tag">mouseenter</span>事件 <span class="selector-tag">mouseleave</span>事件</div></pre></td></tr></table></figure>
+<p><a href="http://jsbin.com/huqikim/edit?html,css,js,output" target="_blank" rel="external">代码演示</a></p>
+<hr>
+<h3 id="显示当前系统时间"><a href="#显示当前系统时间" class="headerlink" title="显示当前系统时间"></a>显示当前系统时间</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jstexiao/currentTime.gif" alt="显示当前系统时间"></p>
+<blockquote>
+<p>特效思路：</p>
+</blockquote>
+<p>1.利用内置对象Date中的一些api，特别注意要处理一下，<code>getDay()</code>所返回的星期数为0-6，0为星期日</p>
+<p>2.封装一个小函数来补零，进行字符串拼接</p>
+<p>3.通过<code>setInterval</code>间隔1s调用一次</p>
+<p><a href="http://jsbin.com/salizof/edit?js,output" target="_blank" rel="external">代码演示</a></p>
+<hr>
+<h3 id="模拟时钟"><a href="#模拟时钟" class="headerlink" title="模拟时钟"></a>模拟时钟</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jstexiao/clock.gif" alt="模拟时钟"></p>
 
       
     </div>
@@ -644,7 +676,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#js特效"><span class="nav-number">1.</span> <span class="nav-text">js特效</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#元素隐藏消失"><span class="nav-number">1.1.</span> <span class="nav-text">元素隐藏消失</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#js特效"><span class="nav-number">1.</span> <span class="nav-text">js特效</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#元素隐藏消失"><span class="nav-number">1.1.</span> <span class="nav-text">元素隐藏消失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下拉菜单"><span class="nav-number">1.2.</span> <span class="nav-text">下拉菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#点击创建小方块"><span class="nav-number">1.3.</span> <span class="nav-text">点击创建小方块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于jquery的手风琴特效"><span class="nav-number">1.4.</span> <span class="nav-text">基于jquery的手风琴特效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示当前系统时间"><span class="nav-number">1.5.</span> <span class="nav-text">显示当前系统时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟时钟"><span class="nav-number">1.6.</span> <span class="nav-text">模拟时钟</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -685,7 +717,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共24.7k字</span>
+  <span class="post-count">博客全站共27.6k字</span>
 </div>
 
 
