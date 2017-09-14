@@ -4,8 +4,65 @@
 
     
   <url>
+    <loc>http://sunfeat.com/2017/09/07/js%E7%89%B9%E6%95%88/</loc>
+    <lastmod>2017-09-14T08:40:20.089Z</lastmod>
+    <data>
+        <display>
+        <title>JS特效</title>
+        <pubTime>2017-09-07T13:57:30.049Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunfeat.com/2017/01/10/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2017-09-14T08:18:43.787Z</lastmod>
+    <data>
+        <display>
+        <title>字符串的常用方法</title>
+        <pubTime>2017-01-10T05:11:00.000Z</pubTime>
+        
+        <tag>字符串方法</tag>
+         
+         
+           
+             
+              <breadCrumb title="字符串方法" url="http://sunfeat.com/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunfeat.com/2017/01/10/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81/</loc>
+    <lastmod>2017-09-14T07:56:40.466Z</lastmod>
+    <data>
+        <display>
+        <title>字符串编码</title>
+        <pubTime>2017-01-10T05:11:00.000Z</pubTime>
+        
+        <tag>字符串</tag>
+         
+        <tag>编码</tag>
+         
+         
+           
+             
+              <breadCrumb title="字符串" url="http://sunfeat.com/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://sunfeat.com/2017/01/10/%E6%95%B0%E7%BB%84%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2017-09-14T04:01:41.089Z</lastmod>
+    <lastmod>2017-09-14T07:06:55.636Z</lastmod>
     <data>
         <display>
         <title>数组的常用方法</title>
@@ -18,21 +75,6 @@
              
               <breadCrumb title="数组方法" url="http://sunfeat.com/categories/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunfeat.com/2017/09/07/js%E7%89%B9%E6%95%88/</loc>
-    <lastmod>2017-09-14T02:35:11.514Z</lastmod>
-    <data>
-        <display>
-        <title>JS特效</title>
-        <pubTime>2017-09-07T13:57:30.049Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>
@@ -90,26 +132,6 @@
            
              
               <breadCrumb title="js基础" url="http://sunfeat.com/categories/js%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunfeat.com/2017/01/10/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2017-09-06T13:26:09.995Z</lastmod>
-    <data>
-        <display>
-        <title>字符串的常用方法</title>
-        <pubTime>2017-01-10T05:11:00.000Z</pubTime>
-        
-        <tag>字符串方法</tag>
-         
-         
-           
-             
-              <breadCrumb title="字符串方法" url="http://sunfeat.com/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95/"/>
           
         </display>
     </data>
@@ -192,26 +214,6 @@
            
              
               <breadCrumb title="原型" url="http://sunfeat.com/categories/%E5%8E%9F%E5%9E%8B/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunfeat.com/2017/01/10/JavaScript%E5%AF%B9%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E5%8A%A0%E5%AF%86(%E8%87%AA%E5%AE%9A%E4%B9%89%E7%AE%80%E5%8D%95%E7%89%88)/</loc>
-    <lastmod>2017-09-02T02:06:23.305Z</lastmod>
-    <data>
-        <display>
-        <title>JavaScript对字符串进行加密(自定义简单版)</title>
-        <pubTime>2017-01-10T03:00:00.000Z</pubTime>
-        
-        <tag>字符串加密</tag>
-         
-         
-           
-             
-              <breadCrumb title="加密" url="http://sunfeat.com/categories/%E5%8A%A0%E5%AF%86/"/>
           
         </display>
     </data>
