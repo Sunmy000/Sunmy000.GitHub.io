@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://sunfeat.com/"/>
-  <updated>2017-09-13T02:30:00.432Z</updated>
+  <updated>2017-09-14T02:35:11.514Z</updated>
   <id>http://sunfeat.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://sunfeat.com/2017/09/07/js%E7%89%B9%E6%95%88/"/>
     <id>http://sunfeat.com/2017/09/07/js特效/</id>
     <published>2017-09-07T13:57:30.049Z</published>
-    <updated>2017-09-13T02:30:00.432Z</updated>
+    <updated>2017-09-14T02:35:11.514Z</updated>
     
     <content type="html"><![CDATA[<h2 id="js特效"><a href="#js特效" class="headerlink" title="js特效"></a>js特效</h2><h3 id="元素隐藏消失"><a href="#元素隐藏消失" class="headerlink" title="元素隐藏消失"></a>元素隐藏消失</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jstexiao/jsyc.gif" alt="js显示和隐藏"></p>
 <blockquote>
@@ -41,7 +41,7 @@
 <p>3.为 li 中的 a 标签设置 <code>a:hover{background:aqua;}</code></p>
 <p><a href="http://jsbin.com/zilode/edit?html,css,js,output" target="_blank" rel="external">代码演示</a></p>
 <hr>
-<h3 id="点击创建小方块"><a href="#点击创建小方块" class="headerlink" title="点击创建小方块"></a>点击创建小方块</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jstexiao/smallBox.gif" alt=""></p>
+<h3 id="点击创建小方块"><a href="#点击创建小方块" class="headerlink" title="点击创建小方块"></a>点击创建小方块</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jstexiao/smallBox.gif" alt="点击创建小方块"></p>
 <blockquote>
 <p>特效思路：    </p>
 </blockquote>
@@ -69,6 +69,23 @@
 <p><a href="http://jsbin.com/salizof/edit?js,output" target="_blank" rel="external">代码演示</a></p>
 <hr>
 <h3 id="模拟时钟"><a href="#模拟时钟" class="headerlink" title="模拟时钟"></a>模拟时钟</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jstexiao/clock.gif" alt="模拟时钟"></p>
+<blockquote>
+<p>特效思路：</p>
+</blockquote>
+<p>1.布置布局和样式，将三个div的背景图完全重叠，获取当前的小时分钟秒需要注意的是，秒针每秒转6度，分针每小时转6度，时针每小时转30度。</p>
+<p>2.设置三张图片的旋转角度</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//360度 60秒   1秒  6度</span></div><div class="line">$(<span class="string">"ss"</span>).style.transform = <span class="string">"rotate("</span> + ( (s + ms / <span class="number">1000</span>) * <span class="number">6</span>) + <span class="string">"deg)"</span>;</div><div class="line"><span class="comment">// 分针 转一圈360  60分账  1分钟 6度</span></div><div class="line">$(<span class="string">"mm"</span>).style.transform = <span class="string">"rotate("</span> + (m * <span class="number">6</span> + (s * <span class="number">6</span>) / <span class="number">60</span>) + <span class="string">"deg)"</span>;</div><div class="line"><span class="comment">// 一圈360度 12小时  1小时 30</span></div><div class="line"><span class="comment">// var aa = (m*6+(s*6)/60)/360*30</span></div><div class="line"><span class="keyword">var</span> aa = (m * <span class="number">6</span> + (s * <span class="number">6</span>) / <span class="number">60</span>) / <span class="number">12</span>;</div><div class="line">$(<span class="string">"hh"</span>).style.transform = <span class="string">"rotate("</span> + (h * <span class="number">30</span> + aa) + <span class="string">"deg)"</span>;</div></pre></td></tr></table></figure>
+<p><a href="http://jsbin.com/jutexu/edit?output" target="_blank" rel="external">代码演示</a></p>
+<hr>
+<h3 id="倒计时效果"><a href="#倒计时效果" class="headerlink" title="倒计时效果"></a>倒计时效果</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/jstexiao/countdown.gif" alt="倒计时效果"></p>
+<blockquote>
+<p>特效思路：</p>
+</blockquote>
+<p>1.完成静态布局和样式</p>
+<p>2.未来时间减去现在时间的差越来越小最后为0，结束倒计时。</p>
+<p>3.通过获取文本框1的value值，来构造未来时间的对象，设置<code>setInterval</code>，设置当前时间对象，做一下差值并换算，每隔1000ms设置一次文本框2的value值，</p>
+<p><a href="http://jsbin.com/xefofup/edit?js,output" target="_blank" rel="external">代码演示</a></p>
+<hr>
 ]]></content>
     
     <summary type="html">
@@ -199,6 +216,47 @@
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>js设置a标签href不跳转 禁止跳转</title>
+    <link href="http://sunfeat.com/2017/08/10/js%E8%AE%BE%E7%BD%AEa%E6%A0%87%E7%AD%BEhref%E4%B8%8D%E8%B7%B3%E8%BD%AC%20%E7%A6%81%E6%AD%A2%E8%B7%B3%E8%BD%AC/"/>
+    <id>http://sunfeat.com/2017/08/10/js设置a标签href不跳转 禁止跳转/</id>
+    <published>2017-08-10T05:00:00.000Z</published>
+    <updated>2017-09-13T03:16:06.279Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-方法"><a href="#1-方法" class="headerlink" title="1.方法"></a>1.方法</h2><p>当页面中a标签不需要任何跳转时，从原理上来讲，可分如下两种方法：</p>
+<p>1.标签属性href，使其指向空或不返回任何内容。如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0);"</span> &gt;</span>点此无反应javascript:void(0)<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span> &gt;</span>点此无反应javascript:<span class="tag">&lt;/<span class="name">a</span>&gt;</span>123</div></pre></td></tr></table></figure>
+<p>2.标签事件onclick，阻止其默认行为。如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span> <span class="attr">onclick</span>=<span class="string">"return false;"</span>&gt;</span>return false;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">onclick</span>=<span class="string">"return false;"</span>&gt;</span>return false;<span class="tag">&lt;/<span class="name">a</span>&gt;</span>123</div></pre></td></tr></table></figure>
+<p>注意：只有一个href=”#”是不可以的。</p>
+<h2 id="2-原理"><a href="#2-原理" class="headerlink" title="2.原理"></a>2.原理</h2><p>1.标签属性href=”javascript:void(0);” 关键是理解void(0)的含义。<br>javascript中void是一个操作符，该操作符指定要计算一个表达式但是不返回值</p>
+<p>用法格式如下：</p>
+<p>a). javascript:void (expression)</p>
+<p>b). javascript:void expression</p>
+<p>你以使用 void 操作符指定超级链接。表达式会被计算但是不会当前文档处装入任何内容。所以，javascript:void(0) 仅仅表示一个死链接。</p>
+<p>只有href=”#”是不可以的，因为#包含了一个位置信息，默认的锚是#top 也就是网页的上端。我理解的锚是指网页中具体位置。</p>
+<p>例如：</p>
+<p>首先我们在网页body内最上面添加一个</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"top"</span> <span class="attr">name</span>=<span class="string">"top"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>1</div></pre></td></tr></table></figure>
+<p>我们再到body内，需要出现点击后转到顶部位置添加，</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#top"</span>&gt;</span>回到顶部<span class="tag">&lt;/<span class="name">a</span>&gt;</span>1</div></pre></td></tr></table></figure>
+<p>点击回到顶部即可让滚动回到顶部。</p>
+<p>标签事件onclick=”return false;” 在HTML代码中，无论你在哪里放置了onclick事件，并且返回值为false时，那么该处的默认行为将不会执行。这里的默认行为是指没有Onclick事件时原本的行为。<br>最后，我们来回顾下a标签的三种用法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.w3school.com.cn"</span>&gt;</span>W3School<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"index.html"</span>&gt;</span> index <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#top"</span>&gt;</span>top<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      当不需要a标签进行跳转时所需的设置
+    
+    </summary>
+    
+      <category term="js知识" scheme="http://sunfeat.com/categories/js%E7%9F%A5%E8%AF%86/"/>
+    
+    
+      <category term="a标签" scheme="http://sunfeat.com/tags/a%E6%A0%87%E7%AD%BE/"/>
     
   </entry>
   
@@ -556,6 +614,51 @@
     
     
       <category term="标准编码风格" scheme="http://sunfeat.com/tags/%E6%A0%87%E5%87%86%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数组的常用方法</title>
+    <link href="http://sunfeat.com/2017/01/10/%E6%95%B0%E7%BB%84%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/"/>
+    <id>http://sunfeat.com/2017/01/10/数组的常用方法/</id>
+    <published>2017-01-10T05:11:00.000Z</published>
+    <updated>2017-09-14T03:57:45.554Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>数组的length属性不同于字符串的length属性可进行读写操作，字符串的length属性可读不可写</p>
+</blockquote>
+<h3 id="push"><a href="#push" class="headerlink" title="push()"></a>push()</h3><p>作用：将一个或者多个元素 往数组的末尾添加进去<br>参数：一个或者多个元素<br>返回值：改变后的数组的长度<br>注意事项： 原数组会发生改变</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"><span class="keyword">var</span> result = arr.push(<span class="number">6</span>,<span class="number">7</span>)</div><div class="line"><span class="built_in">console</span>.log(arr) <span class="comment">//[1, 2, 3, 4, 5, 6, 7]</span></div><div class="line"><span class="built_in">console</span>.log(result) <span class="comment">//7</span></div></pre></td></tr></table></figure>
+<h3 id="unshift"><a href="#unshift" class="headerlink" title="unshift()"></a>unshift()</h3><p>作用：将一个或者多个元素 往数组的最前面添加进去<br>参数：一个或者多个元素<br>返回值: 改变后的数组的长度<br>注意事项：原数组会发生改变</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"><span class="keyword">var</span> result = arr.unshift(<span class="number">6</span>,<span class="number">7</span>)</div><div class="line"><span class="built_in">console</span>.log(arr) <span class="comment">//[6, 7, 1, 2, 3, 4, 5]</span></div><div class="line"><span class="built_in">console</span>.log(result) <span class="comment">//7</span></div></pre></td></tr></table></figure>
+<h3 id="pop"><a href="#pop" class="headerlink" title="pop()"></a>pop()</h3><p>作用：从数组最后面删除一项<br>参数：无<br>返回值：删除的那一项<br>注意事项：原数组会发生改变</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"><span class="keyword">var</span> result = arr.pop()</div><div class="line"><span class="built_in">console</span>.log(arr) <span class="comment">//[1, 2, 3, 4]</span></div><div class="line"><span class="built_in">console</span>.log(result) <span class="comment">//5</span></div></pre></td></tr></table></figure>
+<h3 id="shift"><a href="#shift" class="headerlink" title="shift()"></a>shift()</h3><p>作用：从数组最前面删除一项<br>参数：无<br>返回值：删的那一项<br>注意事项 原数组会发生改变</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"><span class="keyword">var</span> result = arr.shift()</div><div class="line"><span class="built_in">console</span>.log(arr) <span class="comment">//[2, 3, 4, 5]</span></div><div class="line"><span class="built_in">console</span>.log(result) <span class="comment">//1</span></div></pre></td></tr></table></figure>
+<h3 id="reverse"><a href="#reverse" class="headerlink" title="reverse()"></a>reverse()</h3><p>作用：翻转数组<br>参数： 无<br>返回值： 翻转后的数组<br>注意事项： 原数组会发生改变</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"><span class="keyword">var</span> result = arr.reverse()</div><div class="line"><span class="built_in">console</span>.log(arr) <span class="comment">//[5, 4, 3, 2, 1]</span></div><div class="line"><span class="built_in">console</span>.log(result) <span class="comment">//[5, 4, 3, 2, 1]</span></div></pre></td></tr></table></figure>
+<h3 id="sort"><a href="#sort" class="headerlink" title="sort()"></a>sort()</h3><p>作用：数组排序<br>原理： 按照字符串的字符编码进行逐位比较 然后排序<br>参数：无  /   函数来实现数字排序（该函数需要两个形参，并返回负值 0 正值）<br>返回值：排序改变后的数组<br>注意事项 原数组会发生改变</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>,<span class="number">8</span>,<span class="number">75</span>,<span class="number">6</span>]</div><div class="line"><span class="keyword">var</span> result = arr.sort()</div><div class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[2, 6, 75, 8]</span></div><div class="line"><span class="built_in">console</span>.log(result); <span class="comment">//[2, 6, 75, 8]</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">"5"</span>&gt;<span class="string">"21"</span>) <span class="comment">//true</span></div><div class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>,<span class="number">8</span>,<span class="number">75</span>,<span class="number">6</span>,<span class="number">46</span>]</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> b-a</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> result = arr.sort(fun)</div><div class="line"><span class="built_in">console</span>.log(arr) <span class="comment">//[75, 46, 8, 6, 2]</span></div><div class="line"><span class="built_in">console</span>.log(result) <span class="comment">//[75, 46, 8, 6, 2]</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//扩展一下</span></div><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>] <span class="comment">//随机打乱数组</span></div><div class="line">arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.random()<span class="number">-0.5</span></div><div class="line">&#125;)</div><div class="line"><span class="built_in">console</span>.log(arr)</div></pre></td></tr></table></figure>
+<h3 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h3><p>作用： 用来连接数组或者元素<br>参数： 一个或者多个数组或者元素<br>返回值： 连接后的新数组<br>注意事项：原数组不会发生改变</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div><div class="line"><span class="keyword">var</span> arr2 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>]</div><div class="line"><span class="keyword">var</span> arr3 = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>]</div><div class="line"><span class="keyword">var</span> newArr = arr.concat(<span class="string">'red'</span>, arr2, arr3)</div><div class="line"><span class="built_in">console</span>.log(newArr) <span class="comment">//[1, 2, 3, 4, 5, "red", "a", "b", "c", "d", "e", "A", "B", "C", "D", "E"]</span></div><div class="line"><span class="built_in">console</span>.log(arr) <span class="comment">//[1, 2, 3, 4, 5]</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="keyword">var</span> arr2 = [[[<span class="number">5</span>,<span class="number">6</span>]]];</div><div class="line"><span class="keyword">var</span> newArr = arr.concat(<span class="number">4</span>,arr2);</div><div class="line"><span class="built_in">console</span>.log(newArr); <span class="comment">//[1,2,3,4,[[5,6]]]</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;数组的length属性不同于字符串的length属性可进行读写操作，字符串的length属性可读不可写&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;push&quot;&gt;&lt;a href=&quot;#push&quot; class=&quot;headerlink&quot; title
+    
+    </summary>
+    
+      <category term="数组方法" scheme="http://sunfeat.com/categories/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/"/>
+    
+    
+      <category term="数组方法" scheme="http://sunfeat.com/tags/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
