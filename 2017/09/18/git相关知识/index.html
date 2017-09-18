@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="孙梦尧, 孙梦尧的博客" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="孙梦尧的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="操作计算的两种方式 图形界面 命令行  命令行概述 dos（window）  shell（Linux–csh ksh bash）   什么是shell在计算机科学中，Shell俗称壳，用来区别于Kernel（核），是指“提供使用者使用界面”的软件（命令解析器）。它类似于DOS下的command和后来的cmd.exe。它接收用户命令，然后调用相应的应用程序。这种类型的版本控制系统，功能比较单一，比如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="版本控制Git">
+<meta property="og:url" content="http://sunfeat.com/2017/09/18/git相关知识/index.html">
+<meta property="og:site_name" content="孙梦尧的博客">
+<meta property="og:description" content="操作计算的两种方式 图形界面 命令行  命令行概述 dos（window）  shell（Linux–csh ksh bash）   什么是shell在计算机科学中，Shell俗称壳，用来区别于Kernel（核），是指“提供使用者使用界面”的软件（命令解析器）。它类似于DOS下的command和后来的cmd.exe。它接收用户命令，然后调用相应的应用程序。这种类型的版本控制系统，功能比较单一，比如">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%871.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/git1.jpg">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%872.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%873.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%874.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%875.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%877.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%878.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%879.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8710.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8711.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8712.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8713.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8714.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8715.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8716.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8717.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8718.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8719.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%876.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8720.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8721.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8722.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8723.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8724.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8725.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8726.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8727.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8728.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8729.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8730.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8731.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8732.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8733.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8734.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8735.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8736.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8737.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8738.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8739.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8740.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8741.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8742.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8743.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8744.png">
+<meta property="og:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8745.png">
+<meta property="og:updated_time" content="2017-09-18T16:57:33.006Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="版本控制Git">
+<meta name="twitter:description" content="操作计算的两种方式 图形界面 命令行  命令行概述 dos（window）  shell（Linux–csh ksh bash）   什么是shell在计算机科学中，Shell俗称壳，用来区别于Kernel（核），是指“提供使用者使用界面”的软件（命令解析器）。它类似于DOS下的command和后来的cmd.exe。它接收用户命令，然后调用相应的应用程序。这种类型的版本控制系统，功能比较单一，比如">
+<meta name="twitter:image" content="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%871.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://sunfeat.com/2017/09/18/git相关知识/"/>
+
+
+
+
+
+  <title>版本控制Git | 孙梦尧的博客</title>
+  
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/prism-pojoaque.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/sunmy000"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    
+	<header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">孙梦尧的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://sunfeat.com/2017/09/18/git相关知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sunmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/hanbao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孙梦尧的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">版本控制Git</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-18T21:37:12+08:00">
+                2017-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="操作计算的两种方式"><a href="#操作计算的两种方式" class="headerlink" title="操作计算的两种方式"></a>操作计算的两种方式</h2><ol>
+<li>图形界面</li>
+<li>命令行</li>
+</ol>
+<h2 id="命令行概述"><a href="#命令行概述" class="headerlink" title="命令行概述"></a>命令行概述</h2><ul>
+<li><p>dos（window）</p>
+</li>
+<li><p>shell（Linux–csh ksh bash）</p>
+</li>
+</ul>
+<h2 id="什么是shell"><a href="#什么是shell" class="headerlink" title="什么是shell"></a>什么是shell</h2><p>在计算机科学中，Shell俗称壳，用来区别于Kernel（核），是指“提供使用者使用界面”的软件（<font color="ff7600">命令解析器</font>）。它类似于DOS下的command和后来的cmd.exe。<font color="ff7600">它接收用户命令，然后调用相应的应用程序</font>。<br><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%871.png" alt=""><br>这种类型的版本控制系统，功能比较单一，比如很难实现多人协同开发，所以现在几乎很少使用了。</p>
+<h2 id="shell-分类"><a href="#shell-分类" class="headerlink" title="shell 分类"></a>shell 分类</h2><p>1、图形界面shell：通过提供友好的可视化界面，调用相应应用程序，如windows系列操作系统，Linux系统上的图形化应用程序GNOME、KDE等。</p>
+<p>2、命令行shell：通过键盘输入特定命令的方式，调用相应的应用程序，如windows系统的cmd.exe、Windows PowerShell，Linux系统的Bourne shell ( sh)、<font color="ff7600">Bourne Again shell ( bash)</font>等。</p>
+<h2 id="认识-bash-这个-shell"><a href="#认识-bash-这个-shell" class="headerlink" title="认识 bash 这个 shell"></a>认识 bash 这个 shell</h2><p>在window系统下使用bash，需要一个软件，这个软件模拟集成了bash大部分命令。</p>
+<p>各个 shell 的功能都差不多， Linux 默认使用 bash ，所以我们主要学习bash的使用。</p>
+<p><strong>1. bash 命令格式</strong></p>
+<p>命令 [-options][参数]，如：tar  zxvf  demo.tar.gz</p>
+<p>查看帮助：命令 –help</p>
+<p><strong>2. bash 常见命令</strong></p>
+<ul>
+<li>pwd (Print Working Directory) 查看当前目录</li>
+</ul>
+<ul>
+<li>cd (Change Directory) 切换目录，如 cd /etc</li>
+<li>ls (List) 查看当前目录下内容，如 ls -al</li>
+<li>mkdir (Make Directory) 创建目录，如 mkdir blog</li>
+<li>touch 创建文件，如 touch index.html</li>
+<li>cat 查看文件全部内容，如 cat index.html</li>
+<li>less 查看文件，如more /etc/passwd、less /etc/passwd</li>
+<li>rm (remove) 删除文件，如 rm index.html、rm -rf  blog</li>
+<li>rmdir (Remove Directory) 删除文件夹，<font color="ff7600">只能删除空文件夹</font>，不常用</li>
+<li>mv (move) 移动文件或重命名，如 mv index.html ./demo/index.html</li>
+<li>cp (copy) 复制文件，cp index.html ./demo/index.html</li>
+<li>tab 自动补全，连按<font color="ff7600">两次</font>会将<font color="ff7600">所有</font>匹配内容显示出来</li>
+<li>> 和 &gt;&gt;重定向，如echo hello world! &gt; README.md，&gt;覆盖 &gt;&gt;追加</li>
+<li><font color="ff7600">| 管道符可以将多个命令连接使用，上一次（命令）的执行结果当成下一次（命令）的参数。</font></li>
+<li><font color="ff7600">grep 匹配内容，一般结合管道符使用</font>
+
+
+
+</li>
+</ul>
+<h2 id="版本控制工具的作用"><a href="#版本控制工具的作用" class="headerlink" title="版本控制工具的作用"></a>版本控制工具的作用</h2><ol>
+<li>方便团队开发过程中进行代码的合并</li>
+<li>能够保留所有的历史记录，方便随时回滚</li>
+</ol>
+<h2 id="vi编辑器"><a href="#vi编辑器" class="headerlink" title="vi编辑器"></a>vi编辑器</h2><blockquote>
+<p>如同Windows下的记事本，vi编辑器是Linux下的标配，通过它我们可以创建、编辑文件。它是一个随系统一起安装的文本编辑软件。</p>
+</blockquote>
+<h3 id="vi编辑器的三种模式"><a href="#vi编辑器的三种模式" class="headerlink" title="vi编辑器的三种模式"></a>vi编辑器的三种模式</h3><blockquote>
+<p>vi编辑器提供了3种模式，分别是命令模式、插入模式、底行模式，每种模式下用户所能进行的操作是不一样的。</p>
+</blockquote>
+<ul>
+<li>3种模式的切换如下图所示：</li>
+</ul>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/git1.jpg" alt=""></p>
+<p>输入模式是不能直接切换到末行模式的，必须要先切回到命令模式（按ESC键)</p>
+<h3 id="vi-vim常用操作"><a href="#vi-vim常用操作" class="headerlink" title="vi/vim常用操作"></a>vi/vim常用操作</h3><ul>
+<li>a)打开/创建文件， vi 文件路径</li>
+<li>b)  <font color="red">底行模式</font> :w保存，:w filenme另存为</li>
+<li>c) <font color="red">底行模式</font>  :q退出</li>
+<li>d)  <font color="red">底行模式</font>  :wq保存并退出</li>
+<li>e)  <font color="red">底行模式</font>  :e! 撤销更改，返回到上一次保存的状态</li>
+<li>f)  <font color="red">底行模式</font>  :q! 不保存强制退出</li>
+<li>g) <font color="red">底行模式</font>  :set nu 设置行号</li>
+<li>h) <font color="ff7600">命令模式</font> ZZ（大写）保存并退出</li>
+<li>i) <font color="ff7600">命令模式</font>  u辙销操作，可多次使用</li>
+<li>j) <font color="ff7600">命令模式</font>  dd删除当前行</li>
+<li>k) <font color="ff7600">命令模式</font>  yy复制当前行</li>
+<li>l) <font color="ff7600">命令模式</font>  p 粘贴内容</li>
+<li>m) <font color="ff7600">命令模式</font>  ctrl+f向前翻页</li>
+<li>n) <font color="ff7600">命令模式</font>  ctrl+b向后翻页</li>
+<li>o) <font color="ff7600">命令模式</font>  i进入编辑模式，当前光标处插入</li>
+<li>p) <font color="ff7600">命令模式</font>  a进入编辑模式，当前光标后插入</li>
+<li>q) <font color="ff7600">命令模式</font>  A进入编辑模式，光标移动到行尾</li>
+<li>r) <font color="ff7600">命令模式</font>  o进入编辑模式，当前行下面插入新行</li>
+<li>s) <font color="ff7600">命令模式</font>  O进入编辑模式，当前行上面插入新行</li>
+</ul>
+<p>当处在<font color="red">编辑模式</font>的情况下，和在Windows编辑器的使用相似。</p>
+<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p>SSH是一种网络协议，用于计算机之间的加密登录。</p>
+<p>SSH只是一种协议，存在多种实现，既有商业实现，也有开源实现。本文针对的是<a href="http://www.openssh.com/" target="_blank" rel="external">OpenSSH</a>，它是自由软件，应用非常广泛。</p>
+<p>如果要在Windows系统中使用SSH，会用到另一种软件<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty" target="_blank" rel="external">PuTTY</a>，我们后面用到的Git客户也集成了SSH</p>
+<p>格式：ssh user@host</p>
+<p>user 代表真实存在的用户host代表要登录的远程计算机</p>
+<p>常见有两种加密技术，分别是<font color="ff7600">对称性加密</font>和<font color="ff7600">非对称性加密</font>，SSH属于后者。</p>
+<p>对称加密<a href="http://baike.baidu.com/view/7420.htm" target="_blank" rel="external">算法</a>在加密和解密时使用的是同一个密钥；而<a href="http://baike.baidu.com/view/1490349.htm" target="_blank" rel="external">非对称加密算法</a>需要两个<a href="http://baike.baidu.com/view/934.htm" target="_blank" rel="external">密钥</a>来进行加密和解密，这两个秘钥分别是<a href="http://baike.baidu.com/view/1145160.htm" target="_blank" rel="external">公开密钥</a>（public key，简称公钥）和私有密钥（private key，简称私钥）。</p>
+<p><strong>工作原理</strong></p>
+<p>公钥和私钥是成对出现，可以通过ssh-keygen -t rsa来创建，既可以通过密钥来加密数据，也可以通过私钥来加密数据，如果是以公钥进行的数据加密，只能与之相对应的私钥才可以解密，相反如果以私钥进行的数据加密，则只能与之对应的公钥才可以将数据进行解密，这样就可以提高信息传递的安全性。</p>
+<p><strong>免密码登录（待定）</strong></p>
+<p>我们可以将本地机器上的公钥保存到特定的远程计算机上，这样当我们再次登录访问这台远程计算机时就可以实现免密码登录了。</p>
+<p>1、ssh-keygen -t rsa会创建公钥和密钥（默认在用户目录/.ssh目录下）</p>
+<p>2、ssh-copy-id user@host添加到对应远程主机的用户目录/.ssh目录下</p>
+<p>3、也可以登录远程主机，进入到用户目录/.ssh目录下手动创建authorized_keys文件，并将自已的公钥粘入该文件。 </p>
+<h2 id="关于版本控制"><a href="#关于版本控制" class="headerlink" title="关于版本控制"></a>关于版本控制</h2><p>版本控制（Version Control Systems）是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。这个系统可以自动帮我们备份文件的每一次更改，并且可以非常方便的恢复到任意的备份（版本）状态。</p>
+<p>举例：我们通常都是手动的重命名一个文件进行备份的，index.html改成index1.html或者index.html.bak等形式，然后这种方式对于单个文件我们还能够管理，但是对于整个项目而言，就会成为噩梦了！！！我们不得不借助于软件来实现。</p>
+<p>实现版本控制的软件有很多种类，大致可以分为本地版本控制系统、集中式版本控制系统、分布式版本控制系统。</p>
+<h2 id="版本控制概述"><a href="#版本控制概述" class="headerlink" title="版本控制概述"></a>版本控制概述</h2><ul>
+<li>本地版本控制</li>
+</ul>
+<p>借助软件我们可以记录下文件的每一次修改，如下图所示，文件被修改后，记录下了3个版本，这样我们通过版本控制系统（软件）便可以非常方便的恢复到任意版本。</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%872.png" alt=""><br>这种类型的版本控制系统，功能比较单一，比如<font color="red">很难实现多人协同开发</font>，所以现在几乎很少使用了。</p>
+<ul>
+<li>集中版本控制<br>实际开发环境，一个项目通常是由<font color="red">多人协作</font>共同完成的，如何让在不同终端上的开发者协同工作成了亟待解决的问题，集中式版本控制系统便应运而生了。它通过单一的集中管理的服务器，保存所有文件的修订<font color="red">版本</font>，协同工作的开发者都通过<font color="red">客户端连到这台服务器</font>，取出最新的文件或者提交更新。其代表为<font color="red">SVN</font>，如下图所示。</li>
+</ul>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%873.png" alt=""><br>这种方式很好解决了多人协同开发的问题，但是也有一个弊端，如果集中管理的服务器出现故障，<font color="red">将会导致数据（版本）丢失的风险</font>，另外协同开发者从集中服务器中更新数据时，<font color="red">严重依赖网络</font>，如果网络不佳，也给开发带来诸多不便。</p>
+<ul>
+<li>分布式版本控制</li>
+</ul>
+<p>分布式版本控制系统，则不需要<font color="red">中央服务器</font>，每个协同开发者都拥有一个<font color="red">完整的版本库</font>，这么一来，任何协同开发者用的服务器发生故障，事后都可以用其它协同开发者本地仓库恢复。</p>
+<p>由于版本库在本地计算机，也便<font color="red">不再受网络影响</font>了。如果要将本地的修改，推送给其它协同开发者，还需要一台<font color="red">共享服务器</font>，所有开发者通过这台共享服务器<font color="red">同步和更新</font>数据。如下图所示。</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%874.png" alt=""></p>
+<p>分布式版本控制系统弥补了前面两种版本控制系统的缺陷，成为了版本控制的首选方案。其代表就是<font color="red">Git</font>。</p>
+<h2 id="git环境安装"><a href="#git环境安装" class="headerlink" title="git环境安装"></a>git环境安装</h2><ul>
+<li><strong>window安装</strong><ul>
+<li><a href="http://git-scm.com/download/win" target="_blank" rel="external">下载地址</a>，下载后和普通软件安装方式一样</li>
+</ul>
+</li>
+<li><strong>linux安装</strong><ul>
+<li>CentOS发行版：sudo yum install git</li>
+<li>Ubuntu发行版：sudo apt-get install git</li>
+</ul>
+</li>
+<li><strong>Mac安装</strong><ul>
+<li>打开Terminal直接输入git命令，会自动提示，按提示引导安装即可</li>
+</ul>
+</li>
+</ul>
+<h2 id="git工作原理"><a href="#git工作原理" class="headerlink" title="git工作原理"></a>git工作原理</h2><h3 id="git的三个工作区域"><a href="#git的三个工作区域" class="headerlink" title="git的三个工作区域"></a>git的三个工作区域</h3><ul>
+<li>工作目录（.git所在的目录，用来存储当前代码）</li>
+</ul>
+<p>是对项目的某个版本独立提取出来的内容。这些从Git仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。</p>
+<ul>
+<li>暂存区域（git临时存储代码）</li>
+</ul>
+<p>是一个文件，保存了下次将提交的文件列表信息，一般在Git仓库目录中。有时候也被称作“索引”（Index），不过一般说法还是叫暂存区域。</p>
+<ul>
+<li>Git仓库（存储整个项目的快照，保存当前的暂存区中的一份代码）</li>
+</ul>
+<p>是Git用来保存项目的元数据和对象数据库的地方。 这是Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%875.png" alt=""></p>
+<h3 id="git管理文件的4中状态"><a href="#git管理文件的4中状态" class="headerlink" title="git管理文件的4中状态"></a>git管理文件的4中状态</h3><ul>
+<li>未追踪untraced（新创建的文件）</li>
+<li>已暂存staged（位于暂存区的文件，一般用于存储半成品）</li>
+<li>已提交commited（位于本地仓库的文件，一般用于存储成品，该成品最终会上线）</li>
+<li>已修改modified（暂存过的文件又被修改了）</li>
+</ul>
+<h3 id="基本的Git工作流程"><a href="#基本的Git工作流程" class="headerlink" title="基本的Git工作流程"></a>基本的Git工作流程</h3><p>1、在工作目录中修改文件。</p>
+<p>2、暂存文件，将文件的快照放入暂存区域。</p>
+<p>3、提交文件，找到暂存区域的文件，将快照永久性存储到Git仓库目录。</p>
+<h2 id="Git本地仓库"><a href="#Git本地仓库" class="headerlink" title="Git本地仓库"></a>Git本地仓库</h2><p>Git本地仓库指的是开发者计算机中的仓库。</p>
+<h2 id="git工作流程-本地创建仓库"><a href="#git工作流程-本地创建仓库" class="headerlink" title="git工作流程-本地创建仓库"></a>git工作流程-本地创建仓库</h2><p>命令行方式：任意目录（建议开发根目录）右键 &gt; Git Bash Here</p>
+<ol>
+<li>配置用户信息</li>
+</ol>
+<p>配置用户的意义在于记录开发者信息，以便在版本控制记录开发者的操作行为，如lion于2016-08-24解决了一个bug。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name "自已的名字"</div><div class="line">git config --global user.email "自已的邮箱地址"</div></pre></td></tr></table></figure>
+<p>–global 配置当前用户所有仓库<br>注：配置用户只需要执行1次，可以重复使用。</p>
+<ol>
+<li><p>查看用户信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --list</div></pre></td></tr></table></figure>
+</li>
+<li><p>初始化仓库</p>
+</li>
+</ol>
+<p>如果想要利用git进行版本控制，需要将现有项目初始化为一个仓库，或者将一个已有的使用git进行版本控制的仓库克隆到本地。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%877.png" alt=""></p>
+<p>git init会在当前项目目录中创建一个名为.git的隐藏目录，这个目录包含了暂存区和仓库两个区域，有了这个隐藏目录就可以使用git来管理项目了，通过ls  -al 可以查看。</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%878.png" alt=""></p>
+<ol>
+<li>查看当前仓库的状态</li>
+</ol>
+<p>初始化仓库后便可以进行开发了，进入到刚刚创建好并初始为仓库的目录，添加我们开发需要的文件。</p>
+<p>通过git status可以检测当前仓库文件的状态（未追踪untracked）。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%879.png" alt=""></p>
+<p>注：git会忽略空的目录</p>
+<ol>
+<li>把工作目录中的文件添加到暂存区</li>
+</ol>
+<p>假设经过一段时间的开发后，需要把已开发的部分暂存起来等待提交，使用git add 添加到暂存区。</p>
+<p>git add 文件名/ 文件路径 “*”或-A代表所有</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add 文件列表</div><div class="line">git add * 添加所有文件</div></pre></td></tr></table></figure>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8710.png" alt=""></p>
+<p>通过git status再次查看文件状态，放到暂存区的文件被标记成了绿色，等待提交。</p>
+<p>注：颜色是工具给添加的，目的是增加可读性并不是git统一的。</p>
+<ol>
+<li>撤销更改</li>
+</ol>
+<p>继续我们的开发，再次git status可以再次查看仓库状态</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8711.png" alt="">被标记了红色，说明index.html被再次修改了。又经过一段时间后发现新开发的部分有Bug，想要回到之前状态，可以使用git checkout 文件名，将上次暂存的文件还原到工作区。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout index.html</div></pre></td></tr></table></figure>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8712.png" alt=""></p>
+<ol>
+<li>提交文件</li>
+</ol>
+<p>经过一个相对较长阶段开发或者一个功能开发完成了，就可以提交到本地仓库了，永久保存了。</p>
+<p>git commit -m ‘备注信息’</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m 备注信息</div></pre></td></tr></table></figure>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8713.png" alt=""></p>
+<p>将暂存区被标记成绿色的文件，全部提交到本地仓库存储。</p>
+<p>这时git status查看状态</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8714.png" alt=""></p>
+<p>没有什么可提交的，变的很干净。</p>
+<ol>
+<li>查看提交历史</li>
+</ol>
+<p>反反复复开发了很多的功能了，通过git log查看一下提交的历史。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log</div></pre></td></tr></table></figure>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8715.png" alt=""></p>
+<p>我们可以查看到一次次的提交记录</p>
+<ol>
+<li>再次检测仓库文件状态</li>
+</ol>
+<p>隔了好些天后，继续开发</p>
+<p>git status 查看状态</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8716.png" alt=""></p>
+<p>又提示有修改，等待重新添加到暂存区。</p>
+<ol>
+<li>重新添加暂存区然后提交</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add index.html</div><div class="line">git status</div><div class="line">git commit -m '完成了分享功能'</div></pre></td></tr></table></figure>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8717.png" alt=""></p>
+<ol>
+<li>再次查看历史<br>git log 可查到所有提交历史<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8718.png" alt=""></p>
+<p>这时可以查看到更多提交历史。<br>仓库示意图</p>
+<ol>
+<li>恢复到以前提交的版本<br>通过commit id值可以回到之前某一次的提交（时光倒流）<br>git reset –hard c888a614e072e2这样便回到了支付功能的状态<br>git log再次查看发现最后一次提交成了支付功能了</li>
+</ol>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8719.png" alt="">仓库示意图<br><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%876.png" alt=""></p>
+<h2 id="git分支操作"><a href="#git分支操作" class="headerlink" title="git分支操作"></a>git分支操作</h2><h3 id="分支概述"><a href="#分支概述" class="headerlink" title="分支概述"></a>分支概述</h3><p>在我们的现实开发中，需求往往是五花八门的，同时开发个需求的情况十分常见，比如当你正在专注开发一个功能时，突然有一个紧急的BUG需要你来修复，这个时候我们当然是希望在能够保存当前任务进度，再去修改这个BUG，等这个BUG修复完成后再继续我们的任务。如何实现呢？</p>
+<font color="orange">Git通过创建分支来解决实际开发中类似的问题。</font>
+
+<p>在Git的使用过程中一次提交称为历史记录（版本），并且会生成一个唯一的字符串，如下图</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8720.png" alt=""></p>
+<p>这个串可以代表某一个历史版本（<font color="orange">实际使用只取前面几位就可以</font>），</p>
+<p>值得注意的是所有的<font color="orange">提交</font>（commit）实际上都是在<font color="orange">分支</font>（branch）的基础上进行的（只是前面并没有介绍）。</p>
+<p>如下图所示：</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8721.png" alt=""></p>
+<p>当我们在初始化仓库的时候（实际上是产生第1次提交时），<font color="orange">Git</font>会默认帮我们创建了一个font color=”orange”&gt;master的分支，并且有font color=”orange”&gt;指针（HEAD）指到了末端。</p>
+<p>指针（HEAD）用来标明当前处于哪个分支的哪个版本，如上图指的处于master分支的最后1个版本。</p>
+<h3 id="1、创建分支"><a href="#1、创建分支" class="headerlink" title="1、创建分支"></a>1、创建分支</h3><p>git branch 分支名称</p>
+<p>当接到一个新任务时，先创建一个分支，例如购物车功能git branch cart</p>
+<p>新分支会在当前分支原有历史版本的结点上进行创建，我们称其为子分支，</p>
+<p>如下图</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8722.png" alt=""></p>
+<font color="orang">新建的子分支会继承父分支的所有提交历史。</font>zh<br><br>### 2、切换分支<br><br>git checkout cart(分支名称)<br><br>上一步只是创建了一个新的分支cart，要开发购物车功能需要切换到cart分支，如下图<br><br><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8723.png" alt=""><br><br>这时HEAD会指向cart的<fonr color="'orange'">末端，然后再进行功能开发。<br><br>### 3、提交操作<br><br>持续开发购物车功能<br><br><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8724.png" alt=""><br><br>这次的提交历史版本就会记录在cart这个分支上了，并且<font color="orange">HEAD伴随cart在移动</font>。<br><br>### 4、修复 Bug<br><br>开发购物车过程中突然需要紧急修复一个bug，这时可以另外建立一个分支来进行修复，先切换到master分支，git checkout master<br><br><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8725.png" alt=""><br><br>当我们切换回master后，HEAD指向了master分支的末端，并且我们观察<font color="orange">发现我们工作目录中并没有购物车功能代码</font>。<br><br>### 5、创建新分支修复bug<br><br>修改并提交会在 hotfix 分支上创建新版本，并不会影响到 cart 分支的代码。<br><br><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8726.png" alt=""><br><br>### 6、继续新的开发<br><br>修复完 bug 之后切换回 cart 分支，继续开发购物车功能。<br><br><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8727.png" alt=""><br><br>注：当我们git checkout branchname时，HEAD会自动指向对应分支的末端，<font color="orange">工作目录中的源码也会随之发生改变。</font>
+
+<p>这个时候我们就在hotfix这个分支上修复了这个BUG，而我们原来在cart分支上的操作并未受到影响。</p>
+<p>思考一个问题：</p>
+<p>现在cart这个分支上是否包含了hotfix的修复呢？</p>
+<p>实际上从上图可以看出这时的cart分支并没有包含有hotfix的修复。</p>
+<h3 id="7、合并（融合）分支"><a href="#7、合并（融合）分支" class="headerlink" title="7、合并（融合）分支"></a>7、合并（融合）分支</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8728.png" alt=""></p>
+<p>这时cart会有两个父结点了，cart便包含了hotfix里的修复了}</p>
+<h3 id="8、删除分支"><a href="#8、删除分支" class="headerlink" title="8、删除分支"></a>8、删除分支</h3><p>git branch -d hotfix</p>
+<p>这时用来修复bug创建的hotfix分支已经没有用处了，我们可以将它删除。</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8729.png" alt=""></p>
+<h3 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h3><ol>
+<li><p>创建分支</p>
+</li>
+<li><p>切换分支</p>
+</li>
+<li><p>合并分支</p>
+</li>
+<li><p>删除分支</p>
+</li>
+</ol>
+<h2 id="Git-远程（共享）仓库"><a href="#Git-远程（共享）仓库" class="headerlink" title="Git 远程（共享）仓库"></a>Git 远程（共享）仓库</h2><p>通过上面学习我们可以很好的管理本地版本控制了，可是如果我们下班回到家里突然来了灵感觉得有部分代码可以优化，如果能接着公司电脑上的代码继续写该有多好呀！另一种情形，假设项目比较大，不同的功能模块由不同的开发人员完成，不同模块儿之间又难免会依赖关系，这时如果我们的代码互相合并（融合）该有多好呀！所有模块开发完毕后，需要整合到一起，要能做到准确无误该有多好呀！</p>
+<p>借助一个远程仓库，大家可以共享代码、历史版本等数据，便可以解决以上遇到的所有问题，在学习远程仓库前我们先来学习git clone path这个命令。</p>
+<h3 id="创建共享仓库"><a href="#创建共享仓库" class="headerlink" title="创建共享仓库"></a>创建共享仓库</h3><p>Git要求共享仓库是一个以<font color="orange">.git结尾的目录。</font></p>
+<p>mkdir repo.git 创建以.git结尾目录</p>
+<p>cd repo.git 进入这个目录</p>
+<p>git init –bare 初始化一个共享仓库，也叫裸仓库 <font color="orange">注意选项–bare</font></p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8730.png" alt=""></p>
+<p>这样我们就建好了一个共享的仓库，但这时这个仓库是一个<font color="red">空的仓库</font>，并且不允在这个仓库中进行任何修改。</p>
+<h3 id="向共享仓库共享（同步）内容"><a href="#向共享仓库共享（同步）内容" class="headerlink" title="向共享仓库共享（同步）内容"></a>向共享仓库共享（同步）内容</h3><p>将自已开发的项目同步到这个目录中，其它开发者就可以共享你开发的项目了。</p>
+<p>1、进入到yike目录</p>
+<p>2、git push ../repo.git master</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8731.png" alt=""></p>
+<p>这样便把yike中的项目同步进了repo.git中。</p>
+<h3 id="从共享仓库里取出内容"><a href="#从共享仓库里取出内容" class="headerlink" title="从共享仓库里取出内容"></a>从共享仓库里取出内容</h3><p>1、新创建一个目录（模拟另一个开发者）</p>
+<p>2、git clone ./repo.git demo</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8732.png" alt=""></p>
+<p>通过repo.git共享仓库，我们轻松得到了一个yike的副本</p>
+<h3 id="6、通过-demo-仓库向-repo-git-共享内容"><a href="#6、通过-demo-仓库向-repo-git-共享内容" class="headerlink" title="6、通过 demo 仓库向 repo.git 共享内容"></a>6、通过 demo 仓库向 repo.git 共享内容</h3><p>进入到 demo 里，我们做一些修改</p>
+<p>cd demo</p>
+<p>git push ../repo.git master</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8733.png" alt=""></p>
+<h3 id="在360仓库从-repo-git-获取共享的内容"><a href="#在360仓库从-repo-git-获取共享的内容" class="headerlink" title="在360仓库从 repo.git 获取共享的内容"></a>在360仓库从 repo.git 获取共享的内容</h3><p>cd yike</p>
+<p>git pull ../repo.git master</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8734.png" alt=""></p>
+<font color="skyblue">奇迹似乎发生了，我们轻松的将demo仓库里的内容，通过repo.git共享给了yike仓库。</font>
+
+<p>惊喜不断，问题也总是不断，我们发现我们这个共享的仓库只是放到了本地的，其它人是没有办法从我们这个共享仓库共享内容的！！！</p>
+<p>然而现实是，办法总是有的！！！！</p>
+<p>我们把这个共享的仓库放到一台远程服务器上，问题不就解决了吗？</p>
+<h2 id="gitHub-和-gitLab"><a href="#gitHub-和-gitLab" class="headerlink" title="gitHub 和 gitLab"></a>gitHub 和 gitLab</h2><p>如果我们熟悉服务器的话，我们完全可以将上述的步骤在我们的远程服务器上进行操作，然后再做一些登录权限的设置，就可非常完美的搭建一个共享服务器了。其实为了更好的管理我们的仓库，一些第三方机构开发出了Web版仓库管理程序，通过Web界面形式管理仓库。</p>
+<p>gitHub关于它的名气与意义，大家可以自行查阅，我们这里介绍它的使用</p>
+<h3 id="注册账号并完善资料"><a href="#注册账号并完善资料" class="headerlink" title="注册账号并完善资料"></a>注册账号并完善资料</h3><h3 id="创建共享仓库-1"><a href="#创建共享仓库-1" class="headerlink" title="创建共享仓库"></a>创建共享仓库</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8735.png" alt=""></p>
+<h3 id="填写仓库资料"><a href="#填写仓库资料" class="headerlink" title="填写仓库资料"></a>填写仓库资料</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8736.png" alt=""></p>
+<h3 id="共享仓库"><a href="#共享仓库" class="headerlink" title="共享仓库"></a>共享仓库</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8737.png" alt=""></p>
+<p>远程地址特别长，我们可以给他起一个别名</p>
+<p>git remote add origin git@github.com:Botue/repo.git</p>
+<p>这样origin 就代表 git@github.com:Botue/repo.git</p>
+<p>当我们通过git clone 从共享仓库获内容时，会自动帮我们添加origin到对应的仓库地址，例如：git clone git@github.com:Botue/repo.git 会自动添加origin 对应 git@github.com:Botue/repo.git</p>
+<h3 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h3><p>ssh-keygen -t rsa 然后一路回车，这里会在当前用户生成了一个.ssh的文件夹</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8738.png" alt=""></p>
+<p>将id_rsa.pub公钥的内容复制</p>
+<p>打开gitHub的个人中心</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8739.png" alt=""></p>
+<p>打到SSH keys</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8740.png" alt=""></p>
+<p>到此我们便可以通过gitHub 提供的Web界面来管理我们的仓库了。</p>
+<p>我们发现通过gitHub管理仓库实在是太方便了，可是只能免费使用公开仓库，自已公司的代码当然不能公开了，可是私有仓库又是需要交“保护费”的，无耐国人还是比较喜欢免费的，网络界总是有很多雷峰的，比如gitLab!!!</p>
+<p>gitLab也是一个可以通过Web界面管理仓库的网站程序，我们可以把它架设到公司自已的服务器上，实现仓库私有化，这也是大部分公司通常采用的方法，其使用方法与gitHub十分相似。</p>
+<p>我将闲置电脑配置成了一台服务器，上面架设了gitLab程序，我们接下来的练习全部会在gitLab上进行演示。</p>
+<h2 id="命令汇总"><a href="#命令汇总" class="headerlink" title="命令汇总"></a>命令汇总</h2><p>git config配置本地仓库</p>
+<p>常用git config –global user.name、git config –global user.email</p>
+<p>git config –list查看配置详情</p>
+<p>git init 初始一个仓库，添加–bare可以初始化一个共享（裸）仓库</p>
+<p>git status 可以查看当前仓库的状态</p>
+<p>git add“文件” 将工作区中的文件添加到暂存区中，其中file可是一个单独的文件，也可以是一个目录、“*”、-A</p>
+<p>git commit -m ‘备注信息’ 将暂存区的文件，提交到本地仓库</p>
+<p>git log 可以查看本地仓库的提交历史</p>
+<p>git branch查看分支</p>
+<p>git branch“分支名称” 创建一个新的分支</p>
+<p>git checkout“分支名称” 切换分支</p>
+<p>git checkout -b deeveloper 他健并切到developer分支</p>
+<p>git merge“分支名称” 合并分支</p>
+<p>git branch -d “分支名称” 删除分支</p>
+<p>git clone “仓库地址”获取已有仓库的副本</p>
+<p>git push origin “本地分支名称:远程分支名称”将本地分支推送至远程仓库，</p>
+<p>git push origin hotfix（通常的写法）相当于</p>
+<p>git push origin hotfix:hotfix</p>
+<p>git push origin hotfix:newfeature</p>
+<p>本地仓库分支名称和远程仓库分支名称一样的情况下可以简写成一个，即git push “仓库地址” “分支名称”，如果远程仓库没有对应分支，将会自动创建</p>
+<p>git remote add “主机名称” “远程仓库地址”添加远程主机，即给远程主机起个别名，方便使用</p>
+<p>git remote 可以查看已添加的远程主机</p>
+<p>git remote show “主机名称”可以查看远程主机的信息</p>
+<h2 id="1-1-GitLab完整演示"><a href="#1-1-GitLab完整演示" class="headerlink" title="1.1 GitLab完整演示"></a>1.1 GitLab完整演示</h2><p>没错，Git非常强大！</p>
+<p>但是，如果我们的分支不加以规范管理，也有可能适得其反！</p>
+<p>1、不要有太多的树杈（子分支）</p>
+<p>2、要有一个“稳定分支”，即master分支不要轻意被修改</p>
+<p>3、要有一个开发分支（developer），保证master分支的稳定性</p>
+<p>4、所有的功能分支（feature）从developer创建</p>
+<p>5、所有功能开发完成后新建发布分支（release）</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8741.png" alt=""></p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8742.png" alt=""></p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8743.png" alt=""></p>
+<h2 id="冲突解决"><a href="#冲突解决" class="headerlink" title="冲突解决"></a>冲突解决</h2><p>假如两个开发同时改到同一文件的同一段内容会发生什么事情呢？</p>
+<p>这时就会就会产生冲突了，当冲突产生后，需要开发者进行协商确认冲突的原因，然后将冲突代码删除重新提交就可以了。</p>
+<h2 id="Git-高级"><a href="#Git-高级" class="headerlink" title="Git 高级"></a>Git 高级</h2><p>熟悉掌握以上操作，基本上是可以满足日常开的需要的，但是在解决一些特殊问题时，就又需要我们能够掌握更多的命令。</p>
+<h3 id="gitignore忽略文件"><a href="#gitignore忽略文件" class="headerlink" title="gitignore忽略文件"></a>gitignore忽略文件</h3><p>在项目根目录下创建一个.gitignore文件，可以将不希望提交的罗列在这个文件里，如项目的配置文件、node_modules等</p>
+<p><a href="https://github.com/github/gitignore" target="_blank" rel="external">https://github.com/github/gitignore</a></p>
+<h3 id="比较差异"><a href="#比较差异" class="headerlink" title="比较差异"></a>比较差异</h3><p>当内容被修改，我们无法确定修改哪些内容时，可以通过git diff来进行差异比较。</p>
+<p>git difftool 比较的是工作区和暂存的差异</p>
+<p>git difftool “SHA”比较与特定提交的差异</p>
+<p>git difftool “SHA”“SHA”比较某两次提交的差异</p>
+<p>git difftool 分支名称 比较与某个分支的差异</p>
+<h3 id="回滚（撤销）操作"><a href="#回滚（撤销）操作" class="headerlink" title="回滚（撤销）操作"></a>回滚（撤销）操作</h3><p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8744.png" alt=""></p>
+<p>HEAD 默认指向当前分支的“末端”，即最后的一次提交，但是我们通过git reset 可以改变HEAD的指向。</p>
+<p><strong>看情况解释（稍微复杂一些，理解就好）</strong></p>
+<p>1、git reset</p>
+<p>–hard 工作区会变、历史(HEAD)会变， 暂存区也变</p>
+<p>–soft 只会变历史(HEAD)</p>
+<p>–mixed（默认是这个选项）历史(HEAD)会变、暂存区也变，工作区不变</p>
+<p>2、git checkout</p>
+<p>git checkout SHA – “某个文件”，代表只是从SHA这个版中取出特定的文件，</p>
+<p>和git reset 是有区别的，reset 重写了历史，checkout 则没有。</p>
+<h3 id="更新仓库"><a href="#更新仓库" class="headerlink" title="更新仓库"></a>更新仓库</h3><p>在项目开发过程中，经常性的会遇到远程（共享）仓库和本地仓库不一致，我们可以通过git fetch 命令来更新本地仓库，使本地仓库和远程（共享）仓库保持一致。</p>
+<p>git fetch  “远程主机”</p>
+<p>或者</p>
+<p>git fetch “远程主机” “分支名称”</p>
+<p>我们要注意的是，利用git fetch 获取的更新会保存在本地仓库中，但是并没有体现到我们的工作目录中，需要我们再次利用git merge来将对应的分支合并（融合）到特定分支。如下</p>
+<p>git pull origin 某个分支， 上操作相当于下面两步</p>
+<p>git fetch </p>
+<p>git merge origin/某个分支</p>
+<p><strong>问题：如何查看远程主机上总共有多少个分支？</strong></p>
+<p>git branch -a 便可以查看所有(本地+远程仓库)分支了</p>
+<p><img src="http://ou0923swf.bkt.clouddn.com/image/git/%E5%9B%BE%E7%89%8745.png" alt=""></p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>删除远程分支git push origin –delete 分支名称</p>
+<p>删除远程分支git push origin :分支名称</p>
+<h2 id="Git命令"><a href="#Git命令" class="headerlink" title="Git命令"></a>Git命令</h2><ul>
+<li>配置用户信息<ul>
+<li>全局配置，软件安装目录C:\Program Files\Git\mingw64\etc\gitconfig</li>
+<li>用户配置，用户名目录C:\Users\www.gitconfig</li>
+<li>项目配置，项目目录</li>
+<li>git config –global user.name zhangsan</li>
+<li>git config –global user.email “zhangsan@163.com”</li>
+</ul>
+</li>
+<li>查看文件状态<ul>
+<li>git status</li>
+</ul>
+</li>
+<li>查看提交记录(按q键退出)<ul>
+<li>git log</li>
+</ul>
+</li>
+<li>工作区添加到暂存区<ul>
+<li>git add</li>
+</ul>
+</li>
+<li>暂存区覆盖工作区内容<ul>
+<li>git checkout</li>
+</ul>
+</li>
+<li>暂存区提交到本地仓库<ul>
+<li>git commit -m ‘bug fixed’</li>
+</ul>
+</li>
+<li>回滚特定版本<ul>
+<li>git reset –hard \<commit></commit></li>
+</ul>
+</li>
+</ul>
+</fonr>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/15/JSDOM01/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/hanbao.jpg"
+               alt="Sunmy" />
+          <p class="site-author-name" itemprop="name">Sunmy</p>
+           
+              <p class="site-description motion-element" itemprop="description">留一片空白，随时浓墨重彩</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunmy000" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com" target="_blank" title="SegmentFault">
+                  
+                    <i class="fa fa-fw fa-meh-o"></i>
+                  
+                    
+                      SegmentFault
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://juejin.im" target="_blank" title="掘金">
+                  
+                    <i class="fa fa-fw fa-spinner"></i>
+                  
+                    
+                      掘金
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作计算的两种方式"><span class="nav-number">1.</span> <span class="nav-text">操作计算的两种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行概述"><span class="nav-number">2.</span> <span class="nav-text">命令行概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是shell"><span class="nav-number">3.</span> <span class="nav-text">什么是shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-分类"><span class="nav-number">4.</span> <span class="nav-text">shell 分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#认识-bash-这个-shell"><span class="nav-number">5.</span> <span class="nav-text">认识 bash 这个 shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版本控制工具的作用"><span class="nav-number">6.</span> <span class="nav-text">版本控制工具的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vi编辑器"><span class="nav-number">7.</span> <span class="nav-text">vi编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vi编辑器的三种模式"><span class="nav-number">7.1.</span> <span class="nav-text">vi编辑器的三种模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vi-vim常用操作"><span class="nav-number">7.2.</span> <span class="nav-text">vi/vim常用操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH"><span class="nav-number">8.</span> <span class="nav-text">SSH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于版本控制"><span class="nav-number">9.</span> <span class="nav-text">关于版本控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版本控制概述"><span class="nav-number">10.</span> <span class="nav-text">版本控制概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git环境安装"><span class="nav-number">11.</span> <span class="nav-text">git环境安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git工作原理"><span class="nav-number">12.</span> <span class="nav-text">git工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git的三个工作区域"><span class="nav-number">12.1.</span> <span class="nav-text">git的三个工作区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git管理文件的4中状态"><span class="nav-number">12.2.</span> <span class="nav-text">git管理文件的4中状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本的Git工作流程"><span class="nav-number">12.3.</span> <span class="nav-text">基本的Git工作流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git本地仓库"><span class="nav-number">13.</span> <span class="nav-text">Git本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git工作流程-本地创建仓库"><span class="nav-number">14.</span> <span class="nav-text">git工作流程-本地创建仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git分支操作"><span class="nav-number">15.</span> <span class="nav-text">git分支操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分支概述"><span class="nav-number">15.1.</span> <span class="nav-text">分支概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1、创建分支"><span class="nav-number">15.2.</span> <span class="nav-text">1、创建分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、合并（融合）分支"><span class="nav-number">15.3.</span> <span class="nav-text">7、合并（融合）分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、删除分支"><span class="nav-number">15.4.</span> <span class="nav-text">8、删除分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支操作"><span class="nav-number">15.5.</span> <span class="nav-text">分支操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-远程（共享）仓库"><span class="nav-number">16.</span> <span class="nav-text">Git 远程（共享）仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建共享仓库"><span class="nav-number">16.1.</span> <span class="nav-text">创建共享仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向共享仓库共享（同步）内容"><span class="nav-number">16.2.</span> <span class="nav-text">向共享仓库共享（同步）内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从共享仓库里取出内容"><span class="nav-number">16.3.</span> <span class="nav-text">从共享仓库里取出内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、通过-demo-仓库向-repo-git-共享内容"><span class="nav-number">16.4.</span> <span class="nav-text">6、通过 demo 仓库向 repo.git 共享内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在360仓库从-repo-git-获取共享的内容"><span class="nav-number">16.5.</span> <span class="nav-text">在360仓库从 repo.git 获取共享的内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gitHub-和-gitLab"><span class="nav-number">17.</span> <span class="nav-text">gitHub 和 gitLab</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册账号并完善资料"><span class="nav-number">17.1.</span> <span class="nav-text">注册账号并完善资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建共享仓库-1"><span class="nav-number">17.2.</span> <span class="nav-text">创建共享仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#填写仓库资料"><span class="nav-number">17.3.</span> <span class="nav-text">填写仓库资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共享仓库"><span class="nav-number">17.4.</span> <span class="nav-text">共享仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成密钥"><span class="nav-number">17.5.</span> <span class="nav-text">生成密钥</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令汇总"><span class="nav-number">18.</span> <span class="nav-text">命令汇总</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-GitLab完整演示"><span class="nav-number">19.</span> <span class="nav-text">1.1 GitLab完整演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冲突解决"><span class="nav-number">20.</span> <span class="nav-text">冲突解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-高级"><span class="nav-number">21.</span> <span class="nav-text">Git 高级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gitignore忽略文件"><span class="nav-number">21.1.</span> <span class="nav-text">gitignore忽略文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较差异"><span class="nav-number">21.2.</span> <span class="nav-text">比较差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回滚（撤销）操作"><span class="nav-number">21.3.</span> <span class="nav-text">回滚（撤销）操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新仓库"><span class="nav-number">21.4.</span> <span class="nav-text">更新仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-number">21.5.</span> <span class="nav-text">其它</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git命令"><span class="nav-number">22.</span> <span class="nav-text">Git命令</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sunmy</span>
+
+  
+</div>
+
+
+<!--  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+-->
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共42.9k字</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+</html>
+
